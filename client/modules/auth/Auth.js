@@ -5,10 +5,10 @@ import SignupUserMutation from './mutations/Signup'
 import { authenticatedRoute } from './utils'
 import FormMessageList from 'components/FormMessageList/FormMessageList'
 import styles from './Auth.scss'
-import environment from '../../utils/relayEnvironment'
-import { Input, Button, Checkbox, Grid } from 'semantic-ui-react';
 import Page from 'components/Page/Page'
-import { graphql, createFragmentContainer } from 'react-relay';
+
+import { Input, Button, Checkbox, Grid } from 'semantic-ui-react';
+
 
 function isLoginCheck() {
   return window.location.pathname === '/login'
@@ -106,18 +106,19 @@ class Auth extends React.Component {
   }
 
   submitForm = (form) => {
-    console.log(this.props)
     form.preventDefault()
     const isLogin = isLoginCheck(this.props)
     const { input, errors } = validateInput(this.state.input)
-    const { router, relay } = this.props
+    const { environment, router } = this.props
     if (!errors && isLogin) {
       delete input['firstName']
       delete input['lastName']
       LoginUserMutation(environment, this.setErrors.bind(this), input)
-    } else if (!errors) {
+    }
+    else if (!errors) {
       SignupUserMutation(environment, this.setErrors.bind(this), input)
-    } else {
+    }
+    else {
       this.setErrors(errors)
     }
   }
@@ -130,15 +131,15 @@ class Auth extends React.Component {
     else return []
   }
 
+
   render() {
-    console.log(this)
     const { input, errors } = this.state
     const isLogin = isLoginCheck(this.props)
     const title = isLogin ? 'Login' : 'Sign up'
     //const formErrors = this.getErrors('')
 
     return (
-    <Page title={title} viewer={this.props.viewer}>
+      <Page title={title}>
       <div className={styles.container}>
         <form
           id={isLogin ? 'Login' : ' Sign up'}
@@ -188,6 +189,9 @@ class Auth extends React.Component {
             required
             placeholder='Email' />
 
+          <br />
+
+
           <Input
             id='password'
             className={styles.textFields}
@@ -226,17 +230,12 @@ class Auth extends React.Component {
               <Checkbox className={styles.rememberMe} label='Remember me' />
             }
         </form>
-      </div>
-    </Page>
+        </div>
+      </Page>
     )
   }
+
+
 }
 
-export default createFragmentContainer(
-  Auth,
-  graphql`
-    fragment Auth_viewer on Viewer {
-      ...Page_viewer
-    }
-  `
-)
+export default authenticatedRoute(Auth, false)

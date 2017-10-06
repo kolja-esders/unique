@@ -48,7 +48,7 @@ if (process.env.NODE_ENV === 'production') {
             compress: {
                 warnings: false
             }
-        })
+        }),
     ];
 } else {
     appEntry = [
@@ -73,7 +73,7 @@ if (process.env.NODE_ENV === 'production') {
         new webpack.NamedModulesPlugin(),
         new webpack.DefinePlugin({
             __DEV__: true
-        })
+        }),
     ];
 }
 

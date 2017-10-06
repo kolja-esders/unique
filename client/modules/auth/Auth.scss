@@ -2,9 +2,9 @@
   display: flex;
   flex: 1;
   justify-content: center;
+  margin-top: 200px;
 
   .form {
-    margin-top: 200px;
     width: 350px;
     text-align: center;   
 
@@ -19,10 +19,10 @@
   }
 
   .nameFields {
-    margin-bottom: 10px!important;
+    margin-bottom: 10px;
 
     .row {
-      padding: 0!important;
+      padding: 0;
     }
 
     .column:last-of-type {

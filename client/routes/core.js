@@ -4,7 +4,6 @@
 import SharedBooks from 'modules/core/SharedBooks/SharedBooks';
 import AddBookToBookshelf from 'modules/core/AddBookToBookshelf/AddBookToBookshelf';
 import GroupView from 'modules/core/GroupView/GroupView';
-import TestView from 'modules/core/TestView/TestView';
 
 
 const coreRoutes = [
@@ -20,10 +19,6 @@ const coreRoutes = [
   {
     path: '/group/:name_url',
     component: GroupView,
-  },
-  {
-    path: '/test',
-    component: TestView,
   },
   //{
     //path: '/polls/:id/detail',

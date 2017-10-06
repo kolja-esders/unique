@@ -1,10 +1,9 @@
 import React from 'react'
 import styles from './Header.scss'
-import { Link } from 'found';
+import Link from 'react-router-dom/es/Link'
 import { Button } from 'semantic-ui-react'
 import { graphql, createFragmentContainer } from 'react-relay';
 import { logoutViewer } from 'modules/auth/jwtUtils'
-import { isAuthenticated } from 'modules/auth/utils'
 
 class Header extends React.Component {
 
@@ -13,13 +12,14 @@ class Header extends React.Component {
   }
 
   render() {
+    const isLoggedIn = this.props.viewer != null
     return (
       <header className={styles.root}>
           <h1 className={styles.brand_name}>
               <Link to="/" className={styles.brand_name_link}>Gutenberg</Link>
           </h1>
           <nav className={styles.nav}>
-              { this.props.isAuthenticated ? (
+              { isLoggedIn ? (
                   <div>
                   <Button basic as={Link} to='/shared-books' className={styles.item}>All Books</Button>
                   <Button basic as={Link} to='/' className={styles.item}>My Books</Button>
@@ -38,7 +38,7 @@ class Header extends React.Component {
 }
 
 export default createFragmentContainer(
-  isAuthenticated(Header),
+  Header,
   graphql`
     fragment Header_viewer on Viewer {
       id

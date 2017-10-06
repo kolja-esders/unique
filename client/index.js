@@ -1,25 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import Root from './new_root';
+import Root from './root';
+import 'semantic-ui-less/semantic.less'
 
-const mountNode = document.createElement('div');
-document.body.appendChild(mountNode);
+const root = document.createElement('div');
+document.body.appendChild(root);
 
 const render = (Component) => {
   ReactDOM.render(
     <AppContainer >
       <Component />
     </AppContainer>,
-    mountNode
+    root
   );
 };
 
 render(Root);
 
+// Hot Module Replacement API
 if (module.hot) {
-  module.hot.accept('./new_root', () => {
-    const NextRoot = require('./new_root').default; // eslint-disable-line global-require
+  module.hot.accept('./root', () => {
+    const NextRoot = require('./root').default; // eslint-disable-line global-require
     render(NextRoot);
   });
 }
