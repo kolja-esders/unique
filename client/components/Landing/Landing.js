@@ -7,14 +7,27 @@ import { Button, Grid } from 'semantic-ui-react';
 import Link from 'react-router-dom/es/Link'
 import styles from './Landing.scss';
 
+
 class Landing extends React.Component {
   render() {
     return (
-      <Page title='Your Insurance.' viewer={this.props.viewer}>
+      <Page title='' viewer={this.props.viewer}>
+
         <section className={styles.container}>
-          <MyBookList bookshelf={this.props.viewer.user.bookshelf}/>
-          <Button primary as={Link} to='/add-book' className={styles.addBook}>Add book</Button>
+          <h1>Insurance is unique.</h1>
+          <h3>As are you.</h3>
+
+          <p>
+            <Button primary as={Link} to='/add-book' className={styles.addBook}>Explore</Button>
+          </p>
+
+          <p>
+            <a
+              href="https://www.youtube.com/watch?v=p6N-ad52Z60" id="gtm_link_watch_the_video_above_the_fold" class="link-video js-btn-video"><i></i>Watch the video
+            </a>
+          </p>
         </section>
+
       </Page>
     );
   }
@@ -26,7 +39,7 @@ export default createFragmentContainer(
   AuthenticatedLanding,
   graphql`
     fragment Landing_viewer on Viewer {
-      ...Page_viewer
+      ...Page_viewerz
       id
       user {
         email
