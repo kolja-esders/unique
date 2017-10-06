@@ -1,0 +1,23 @@
+.root {
+  height: 100px;
+  width: 800px;
+  margin: 0 auto;
+
+  .personal {
+    margin: 0 auto;
+    text-align: center;
+
+    .name {
+      margin-top: 10px;
+    }
+
+    .welcome {
+      color: #aaa;
+    }
+  }
+
+  .continueBtn {
+    float: right;
+  }
+
+}
