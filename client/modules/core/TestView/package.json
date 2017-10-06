@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "found-relay": "^0.2.0",
+    "relay-local-schema": "^0.6.2"
+  }
+}
