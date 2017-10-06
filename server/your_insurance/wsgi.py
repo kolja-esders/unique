@@ -1,5 +1,5 @@
 """
-WSGI config for gutenberg project.
+WSGI config for your_insurance project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

@@ -1,5 +1,5 @@
 """
-Django settings for gutenberg project.
+Django settings for your_insurance project.
 """
 
 from os.path import dirname, join, exists
@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'webpack_loader',
     'graphene_django',
     'custom_user',
-    'gutenberg',
+    'your_insurance',
     'core'
 ]
 
@@ -51,13 +51,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'gutenberg.urls'
+ROOT_URLCONF = 'your_insurance.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            join(BASE_DIR, 'server', 'gutenberg', 'templates'),
+            join(BASE_DIR, 'server', 'your_insurance', 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'gutenberg.wsgi.application'
+WSGI_APPLICATION = 'your_insurance.wsgi.application'
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -110,7 +110,7 @@ USE_L10N = True
 USE_TZ = True
 
 GRAPHENE = {
-    'SCHEMA': 'gutenberg.schema.schema',  # Where your Graphene schema lives
+    'SCHEMA': 'your_insurance.schema.schema',  # Where your Graphene schema lives
     'SCHEMA_OUTPUT': join(BASE_DIR, 'lib/schema.json')  # defaults to schema.json
 }
 

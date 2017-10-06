@@ -1,5 +1,5 @@
 {
-  "name": "gutenberg",
+  "name": "your_insurance",
   "version": "1.0.0",
   "scripts": {
     "start": "yarn run clean && webpack-dev-server",
