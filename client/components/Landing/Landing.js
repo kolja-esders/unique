@@ -10,7 +10,7 @@ import styles from './Landing.scss';
 class Landing extends React.Component {
   render() {
     return (
-      <Page title='Gutenberg' viewer={this.props.viewer}>
+      <Page title='Your Insurance.' viewer={this.props.viewer}>
         <section className={styles.container}>
           <MyBookList bookshelf={this.props.viewer.user.bookshelf}/>
           <Button primary as={Link} to='/add-book' className={styles.addBook}>Add book</Button>
