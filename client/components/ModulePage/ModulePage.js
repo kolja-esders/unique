@@ -35,7 +35,6 @@ const data = [{
 class ModulePage extends React.Component{
 
   render(){
-
     return(
       <Page title='' viewer={this.props.viewer}>
 
