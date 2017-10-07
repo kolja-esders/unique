@@ -7,7 +7,9 @@ import GroupView from 'modules/core/GroupView/GroupView';
 import LoadingPage from 'components/LoadingPage/LoadingPage'
 import ConfirmPage from 'modules/core/ConfirmPage/ConfirmPage';
 import LandingPage from 'components/Landing/Landing';
-import ModulePage from 'components/ModulePage/ModulePage'
+import ModulePage from 'components/ModulePage/ModulePage';
+import NewsFeed from 'components/NewsFeed/NewsFeed';
+import Story from 'components/Story/Story';
 
 
 const coreRoutes = [
@@ -33,12 +35,17 @@ const coreRoutes = [
   },
   {
     path: '/home',
-    component: LandingPage,
+    component: ModulePage,
   },
   {
-    path: '/myinsurances',
-    component: ModulePage,
+    path: '/newsfeed',
+    component: NewsFeed,
+  },
+  {
+    path: "/Story",
+    component: Story,
   }
+
 
   //{
     //path: '/polls/:id/detail',

@@ -6,6 +6,7 @@ import { graphql, createFragmentContainer } from 'react-relay';
 import { logoutViewer } from 'modules/auth/jwtUtils'
 import { authenticatedRoute } from 'modules/auth/utils'
 import ProfileImage from 'components/ProfileImage/ProfileImage.js'
+import img from '../../../assets/logo2.png'
 
 
 let getActivity = function(name, frequency) {
@@ -15,12 +16,14 @@ let getActivity = function(name, frequency) {
       <span className={styles.freq}>{ frequency }</span>
     </div>
   );
-
 }
 
 class ConfirmPage extends React.Component {
 
   render() {
+    console.log(this.props.viewer)
+    const user = this.props.viewer.user;
+    
     return (
       <header className={styles.root}>
         <div className={styles.personal}>
@@ -29,10 +32,10 @@ class ConfirmPage extends React.Component {
               <ProfileImage imagePath="https://scontent-ams3-1.xx.fbcdn.net/v/t31.0-8/15271783_1242828795739861_3065007741581304786_o.jpg?oh=bc827532805d7e451af6ffa279e01a32&oe=5A7B1765" />
             </div>
             <div className={styles.imageWrapper}>
-              <ProfileImage imagePath="https://scontent-ams3-1.xx.fbcdn.net/v/t31.0-8/15271783_1242828795739861_3065007741581304786_o.jpg?oh=bc827532805d7e451af6ffa279e01a32&oe=5A7B1765" />
+              <ProfileImage imagePath={img} />
             </div>
           </div>
-          <h1 className={styles.name}>Kolja<span className={styles.welcome}>, meet Ginger</span></h1>
+          <h1 className={styles.name}>{ user.firstName }<span className={styles.welcome}>, meet Ginger</span></h1>
         </div>
 
         <Form>
@@ -48,15 +51,19 @@ class ConfirmPage extends React.Component {
 
                   <Form.Field>
                     <label>First name</label>
-                    <input placeholder='First name' value='Kolja'/>
+                    <input placeholder='First name' value={ user.firstName }/>
                   </Form.Field>
                   <Form.Field>
                     <label>Last name</label>
-                    <input placeholder='Last name' value='Esders'/>
+                    <input placeholder='Last name' value={ user.lastName }/>
                   </Form.Field>
                   <Form.Field>
                     <label>Age</label>
                     <input placeholder='Age' value='24'/>
+                  </Form.Field>
+                  <Form.Field>
+                    <label>Employer / School</label>
+                    <input placeholder='Employer / School' value='Karlsruhe Institute of Technology'/>
                   </Form.Field>
                 </Grid.Column>
 
@@ -85,9 +92,9 @@ class ConfirmPage extends React.Component {
               <Grid.Row columns={2}>
                 <Grid.Column>
                   <div className={styles.runningEmoji}></div>
-                    <Popup position='left center' inverted hoverable trigger= { getActivity('Snowboarding', 'Enthusiastic') }>Facebook post from the 12th Sept. 2017.
+                    <Popup position='left center' inverted hoverable trigger= { getActivity('Snowboarding', 'Enthusiastic, 2x in the past month') }>Facebook post from the 12th Sept. 2017.
                     </Popup>
-                    <Popup position='left center' inverted hoverable trigger= { getActivity('Running', 'Casual') }>Facebook post from the 12th Sept. 2017.
+                    <Popup position='left center' inverted hoverable trigger= { getActivity('Running', 'Casual, 1x in the past month') }>Facebook post from the 12th Sept. 2017.
                     </Popup>
                 </Grid.Column>
 
@@ -96,7 +103,7 @@ class ConfirmPage extends React.Component {
                   <Popup position='right center' inverted hoverable trigger= { getActivity('Smoking', 'Daily') }>
                     Facebook post from the 12th Sept. 2017.
                   </Popup>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Converts', 'Yearly') }>
+                  <Popup position='right center' inverted hoverable trigger= { getActivity('Concerts', 'Yearly') }>
                     Facebook post from the 12th Sept. 2017.
                   </Popup>
                 </Grid.Column>
@@ -109,19 +116,22 @@ class ConfirmPage extends React.Component {
               <Grid.Row columns={2}>
                 <Grid.Column>
                   <div className={styles.deviceEmoji}></div>
-                    <Popup position='left center' inverted hoverable trigger= { getActivity('Snowboarding', 'Enthusiastic') }>Facebook post from the 12th Sept. 2017.
+                    <Popup position='left center' inverted hoverable trigger= { getActivity('Smartphone', '~ 1,000 €') }>Facebook post from the 12th Sept. 2017.
                     </Popup>
-                    <Popup position='left center' inverted hoverable trigger= { getActivity('Running', 'Casual') }>Facebook post from the 12th Sept. 2017.
+                    <Popup position='left center' inverted hoverable trigger= { getActivity('Oven', '~ 3.200 €') }>Facebook post from the 12th Sept. 2017.
                     </Popup>
                 </Grid.Column>
 
                 <Grid.Column>
                   <div className={styles.familyEmoji}></div>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Smoking', 'Daily') }>
-                    Facebook post from the 12th Sept. 2017.
+                  <Popup position='right center' inverted hoverable trigger= { getActivity('Cassandra', '32 years old') }>
+                    Facebook profile information.
                   </Popup>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Converts', 'Yearly') }>
-                    Facebook post from the 12th Sept. 2017.
+                  <Popup position='right center' inverted hoverable trigger= { getActivity('Anna', '12 years old') }>
+                    Facebook profile information.
+                  </Popup>
+                  <Popup position='right center' inverted hoverable trigger= { getActivity('Tom', '10 years old') }>
+                    Facebook profile information.
                   </Popup>
                 </Grid.Column>
               </Grid.Row>
@@ -141,10 +151,10 @@ class ConfirmPage extends React.Component {
 
                 <Grid.Column>
                   <div className={styles.vacationEmoji}></div>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Smoking', 'Daily') }>
+                  <Popup position='right center' inverted hoverable trigger= { getActivity('Bali', 'In April') }>
                     Facebook post from the 12th Sept. 2017.
                   </Popup>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Converts', 'Yearly') }>
+                  <Popup position='right center' inverted hoverable trigger= { getActivity('Mallorca', 'In January') }>
                     Facebook post from the 12th Sept. 2017.
                   </Popup>
                 </Grid.Column>
@@ -155,7 +165,7 @@ class ConfirmPage extends React.Component {
         </Form>
 
         <h1 className={styles.brand_name}>
-          <Button as={Link} color="green" size="huge" to="/home" className={styles.continueBtn}>Looking good</Button>
+          <Button as={Link} color="green" size="huge" fluid to="/home" className={styles.continueBtn}>Get me some recommendations</Button>
         </h1>
       </header>
     )
@@ -171,6 +181,8 @@ export default createFragmentContainer(
       id
       user {
         email
+        firstName
+        lastName
       }
     }
   `,

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { hasValidJwtToken } from './jwtUtils';
 
-export const postAuthRoute = '/'
-
-
+export const postAuthRoute = '/setup'
 
 export function isAuthenticated(ComposedClass) {
   // Higher order component used to check if the user is authenticated
@@ -54,7 +52,7 @@ export function authenticatedRoute(ComposedClass, requireAuth = true, ) {
         history.push(postAuthRoute);
       } else if (requireAuth && !isAuthenticated) {
         // If route is meant for authenticated user redirect to login page
-        history.push('/login');
+        history.push('/');
       }
     }
 
