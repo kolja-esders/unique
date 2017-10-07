@@ -5,7 +5,7 @@ from graphene_django.types import DjangoObjectType, ObjectType
 from core.user_helper.jwt_util import get_token_user_id
 from core.user_helper.jwt_schema import TokensInterface
 from .models import Book as BookModal, BookshelfEntry as BookshelfEntryModal, Membership as MembershipModal, Group as GroupModal
-from .models import DetectionReason as DetectionReasonModal, Device as DeviceModal, Activity as ActivityModal, FamilyMember as FamilyMemberModal, LifestyleEntity as LifestyleEntityModal, Location as LocationModal, Injury as InjuryModal, Person as PersonModal, Contract as ContractModal, Review as ReviewModal
+from .models import DetectionReason as DetectionReasonModal, Device as DeviceModal, Activity as ActivityModal, FamilyMember as FamilyMemberModal, LifestyleEntity as LifestyleEntityModal, Location as LocationModal, Injury as InjuryModal, Person as PersonModal, Contract as ContractModal, Review as ReviewModal, CustomUser as CustomUserModal, SalaryMapping as SalaryMappingModal, Story as StoryModal
 
 class Book(DjangoObjectType):
     class Meta:
@@ -84,6 +84,41 @@ class Location(DjangoObjectType):
         model = LocationModal
         interfaces = (graphene.Node, )
 
+class Injury(DjangoObjectType):
+    class Meta:
+        model = InjuryModal
+        interfaces = (graphene.Node, )
+
+class Person(DjangoObjectType):
+    class Meta:
+        model = PersonModal
+        interfaces = (graphene.Node, )
+
+class CustomUser(DjangoObjectType):
+    class Meta:
+        model = CustomUserModal
+        interfaces = (graphene.Node, )
+
+class Contract(DjangoObjectType):
+      class Meta:
+          model = ContractModal
+          interfaces = (graphene.Node,)
+
+class Review(DjangoObjectType):
+    class Meta:
+        model = ReviewModal
+        interfaces = (graphene.Node,)
+
+class SalaryMapping(DjangoObjectType):
+    class Meta:
+        model = SalaryMappingModal
+        interfaces = (graphene.Node,)
+
+class Story(DjangoObjectType):
+    class Meta:
+        model = StoryModal
+        interfaces = (graphene.Node,)
+
 
 class CoreQueries(graphene.AbstractType):
     detection_reason = graphene.Node.Field(DetectionReason)
@@ -110,6 +145,33 @@ class CoreQueries(graphene.AbstractType):
     locations = graphene.List(Location)
     all_locations = DjangoFilterConnectionField(Location)
 
+    injury = graphene.Node.Field(Injury)
+    injuries = graphene.List(Injury)
+    all_injuries = DjangoFilterConnectionField(Injury)
+
+    person = graphene.Node.Field(Person)
+    persons = graphene.List(Person)
+    all_persons = DjangoFilterConnectionField(Person)
+
+    custom_user = graphene.Node.Field(CustomUser)
+    custom_users = graphene.List(CustomUser)
+    all_custom_users = DjangoFilterConnectionField(CustomUser)
+
+    contract = graphene.Node.Field(Contract)
+    contracts = graphene.List(Contract)
+    all_contracts = DjangoFilterConnectionField(Contract)
+
+    review = graphene.Node.Field(Review)
+    reviews = graphene.List(Review)
+    all_reviews = DjangoFilterConnectionField(Review)
+
+    salary_mapping = graphene.Node.Field(SalaryMapping)
+    salary_mappings = graphene.List(SalaryMapping)
+    all_salary_mappings = DjangoFilterConnectionField(SalaryMapping)
+
+    story = graphene.Node.Field(Story)
+    stories = graphene.List(Story)
+    all_stories = DjangoFilterConnectionField(Story)
 
 
     def resolve_detection_reasons(self, args, context, info):
@@ -136,7 +198,33 @@ class CoreQueries(graphene.AbstractType):
         locations = LocationModal.objects.all()
         return locations
 
+    def resolve_injuries(self, args, context, info):
+        injuries = InjuryModal.objects.all()
+        return injuries
 
+    def resolve_persons(self, args, context, info):
+        persons = PersonModal.objects.all()
+        return persons
+
+    def resolve_custom_users(self, args, context, info):
+        custom_users = CustomUserModal.objects.all()
+        return custom_users
+
+    def resolve_contracts(self, args, context, info):
+        contracts = ContractModal.objects.all()
+        return contracts
+
+    def resolve_reviews(self, args, context, info):
+        reviews = ReviewModal.objects.all()
+        return reviews
+
+    def resolve_salary_mappings(self, args, context, info):
+        salary_mappings = SalaryMappingModal.objects.all()
+        return salary_mappings
+
+    def resolve_stories(self, args, context, info):
+        stories = StoryModal.objects.all()
+        return stories
 
 
     book = graphene.Node.Field(Book)
