@@ -95,11 +95,11 @@ class Person(models.Model):
     income = models.CharField(max_length=64, blank=True)
     expenses = models.CharField(max_length=64, blank=True)
     fitness = models.CharField(max_length=128, blank=True)
-    activities = models.CharField(max_length=512, blank=True)
+    activities = models.ManyToManyField(Activity)
     home_town = models.CharField(max_length=512, blank=True)
     country = models.CharField(max_length=256, blank=True)
     education = models.CharField(max_length=256, blank=True) # most recent
-    devices = models.ManyToManyField(Device)  # replace
+    devices = models.ManyToManyField(Device)
 
 class CustomUser(AbstractEmailUser):
     username = models.CharField(max_length=31, blank=True)
