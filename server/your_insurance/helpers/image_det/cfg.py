@@ -1,5 +1,5 @@
 import torch
-from utils import convert2cpu
+from server.your_insurance.helpers.image_det.utils import convert2cpu
 
 def parse_cfg(cfgfile):
     blocks = []

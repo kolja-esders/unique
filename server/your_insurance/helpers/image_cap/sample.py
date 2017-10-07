@@ -11,6 +11,7 @@ from PIL import Image
 
 from server.your_insurance.helpers.image_cap.model import EncoderCNN, DecoderRNN
 from server.your_insurance.helpers.image_cap.build_vocab import Vocabulary
+from server.your_insurance.helpers.utils import PROJ_PATH
 
 
 def to_var(x, volatile=False):
@@ -30,9 +31,9 @@ def load_image(image_path, transform=None):
 def get_img_description(image_path):
 
 
-    encoder_path = "./models/encoder-5-3000.pkl"
-    decoder_path = "./models/decoder-5-3000.pkl"
-    vocab_path = "/home/david/reps/your-insurance/server/your_insurance/helpers/image_cap/data/vocab.pkl"
+    encoder_path = PROJ_PATH+"/helpers/image_cap/models/encoder-5-3000.pkl"
+    decoder_path = PROJ_PATH+"/helpers/image_cap/models/decoder-5-3000.pkl"
+    vocab_path = PROJ_PATH+"/helpers/image_cap/data/vocab.pkl"
     embed_size = 256
     hidden_size = 512
     num_layers = 1
@@ -87,5 +88,5 @@ def get_img_description(image_path):
     print (sentence)
     return sentence
     
-#get_img_description("/home/david/reps/pytorch-tutorial/tutorials/03-advanced/image_captioning/png/example.png")
+# get_img_description("/home/david/reps/your-insurance/data/cigarette.jpg")
 
