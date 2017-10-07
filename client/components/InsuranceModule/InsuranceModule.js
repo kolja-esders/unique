@@ -20,12 +20,15 @@ class InsuranceModule extends React.Component{
             <span className={styles.price}>${this.props.data.premium}</span>
 
               <Popup
+                className={styles.popup}
                 trigger={  <Image className={styles.simPicture} src={this.props.data.pictures[0]} size='tiny' shape='circular' />}
                 flowing
                 hoverable
               >
               {<SimilarityPopup data={this.props.data}/>}
             </Popup>
+
+
 
             <Image className={styles.simPicture} src={this.props.data.pictures[1]} size='tiny' shape='circular' />
             <Image className={styles.simPicture} src={this.props.data.pictures[2]} size='tiny' shape='circular' />
