@@ -5374,6 +5374,10 @@ react-facebook-login-component@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/react-facebook-login-component/-/react-facebook-login-component-0.9.0.tgz#5eaf45f7534b811095a33158783c6f01b7156152"
 
+react-facebook-login@^3.6.2:
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/react-facebook-login/-/react-facebook-login-3.6.2.tgz#1965f6af54cc90341b788d0752185cfd25a14d30"
+
 react-facebook@^4.0.16:
   version "4.0.16"
   resolved "https://registry.yarnpkg.com/react-facebook/-/react-facebook-4.0.16.tgz#e68c728c9653bb266e307f549e4fab9d05d87ffc"

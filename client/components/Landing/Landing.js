@@ -56,10 +56,8 @@ class Landing extends React.Component {
   }
 }
 
-const AuthenticatedLanding = authenticatedRoute(Landing);
-
 export default createFragmentContainer(
-  AuthenticatedLanding,
+  Landing,
   graphql`
     fragment Landing_viewer on Viewer {
       ...Page_viewer
