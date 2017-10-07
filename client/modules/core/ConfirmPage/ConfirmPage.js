@@ -96,7 +96,7 @@ class ConfirmPage extends React.Component {
                   <Popup position='right center' inverted hoverable trigger= { getActivity('Smoking', 'Daily') }>
                     Facebook post from the 12th Sept. 2017.
                   </Popup>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Converts', 'Yearly') }>
+                  <Popup position='right center' inverted hoverable trigger= { getActivity('Concerts', 'Yearly') }>
                     Facebook post from the 12th Sept. 2017.
                   </Popup>
                 </Grid.Column>
@@ -144,10 +144,10 @@ class ConfirmPage extends React.Component {
 
                 <Grid.Column>
                   <div className={styles.vacationEmoji}></div>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Smoking', 'Daily') }>
+                  <Popup position='right center' inverted hoverable trigger= { getActivity('Bali', 'In April') }>
                     Facebook post from the 12th Sept. 2017.
                   </Popup>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Converts', 'Yearly') }>
+                  <Popup position='right center' inverted hoverable trigger= { getActivity('Mallorca', 'In January') }>
                     Facebook post from the 12th Sept. 2017.
                   </Popup>
                 </Grid.Column>
