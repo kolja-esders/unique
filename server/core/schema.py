@@ -48,12 +48,6 @@ class User(DjangoObjectType):
         )
         interfaces = (graphene.Node, TokensInterface)
 
-    bookshelf = graphene.List(BookshelfEntry)
-
-    @graphene.resolve_only_args
-    def resolve_bookshelf(self):
-        return self.bookshelfentry_set.all()
-
 class DetectionReason(DjangoObjectType):
     class Meta:
         model = DetectionReasonModal
@@ -168,15 +162,14 @@ class CoreQueries(graphene.AbstractType):
     stories = graphene.List(Story)
     all_stories = DjangoFilterConnectionField(Story)
 
-    trigger = graphene.Node.Field(Trigger)
+    trigger = graphene.Field(Trigger, id=graphene.ID())
 
     def resolve_trigger(self, args, context, info):
-        # if 'id' in args:
-           # user = UserModal.objects.get(pk=args['id'])
+        if 'id' in args:
+           user = get_user_model().objects.get(pk=args['id'])
            # create_person_for(user)
-           # return Trigger(success='1')
-        # return Trigger(success='0')
-        return None
+           return Trigger(success='1')
+        return Trigger(success='0')
 
     def resolve_detection_reasons(self, args, context, info):
         detection_reasons = DetectionReasonModal.objects.all()
