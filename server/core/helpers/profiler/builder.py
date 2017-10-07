@@ -18,6 +18,7 @@ TextCls = TextClassifier()
 def create_profile(access_token):
 
     person = Person()
+    person.save()
 
     x_dict = dict()
     x_dict['activities'] = []
@@ -37,29 +38,31 @@ def create_profile(access_token):
     person.given_name = name.split(" ")[1]
     person.surname = name.split(" ")[0]
 
-    person.home_town = infos.get("hometown")
-    person.gender = infos.get("gender")
+    person.home_town = infos.get("hometown", "")
+    person.gender = infos.get("gender", "")
 
     work = infos.get("work")
     if work is not None:
-        work = work[-1].get("employer").get("name")
+        work = work[-1].get("employer").get("name", "")
     person.work = work
 
-    person.email_address = infos.get("email")
-    person.birthday = infos.get("birthday")
+    person.email_address = infos.get("email", "")
+    person.birthday = infos.get("birthday", "")
 
     for fam_member in family:
         fm = FamilyMember()
-        fm.name = fam_member.get("name")
-        fm.age = fam_member.get("age")
-        fm.gender = fam_member.get("gender")
-        fm.relation = fam_member.get("relation")
+        fm.name = fam_member.get("name", "")
+        fm.age = fam_member.get("age", "")
+        fm.gender = fam_member.get("gender", "")
+        fm.relation = fam_member.get("relation", "")
         fm.person = person
+        fm.save()
 
     for loc in locs:
         ll = Location()
-        ll.name = loc.get("name")
+        ll.name = loc.get("name", "")
         ll.person = person
+        ll.save()
 
     for post in posts:
         rets = TextCls.classify_text(post)
@@ -117,6 +120,8 @@ def create_profile(access_token):
         act.frequency = str(np.random.randint(0,10))
         act.detection_reason = reason
         act.person = person
+        reason.save()
+        act.save()
 
     for it in x_dict['injury']:
         it_val = it['val']
@@ -125,6 +130,8 @@ def create_profile(access_token):
         inj.name = it_val
         inj.detection_reason = reason
         inj.person = person
+        reason.save()
+        inj.save()
 
     for it in x_dict['devices']:
         it_val = it['val']
@@ -133,6 +140,8 @@ def create_profile(access_token):
         dev.name = it_val
         dev.detection_reason = reason
         dev.person = person
+        reason.save()
+        dev.save()
 
     for it in x_dict['lifestyle']:
         it_val = it['val']
@@ -141,6 +150,8 @@ def create_profile(access_token):
         lif.name = it_val
         lif.detection_reason = reason
         lif.person = person
+        reason.save()
+        lif.save()
 
     for it in x_dict['locations']:
         it_val = it['val']
@@ -149,8 +160,12 @@ def create_profile(access_token):
         loc.name = it_val
         loc.detection_reason = reason
         loc.person = person
+        reason.save()
+        loc.save()
 
     print(x_dict)
+
+    person.save()
 
     return person
 
