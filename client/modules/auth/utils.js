@@ -52,7 +52,7 @@ export function authenticatedRoute(ComposedClass, requireAuth = true, ) {
         history.push(postAuthRoute);
       } else if (requireAuth && !isAuthenticated) {
         // If route is meant for authenticated user redirect to login page
-        history.push('/login');
+        history.push('/');
       }
     }
 
