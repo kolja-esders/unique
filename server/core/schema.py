@@ -43,8 +43,7 @@ class User(DjangoObjectType):
             'is_staff',
             'is_active',
             'date_joined',
-            'books',
-            'groups'
+            'person'
         )
         interfaces = (graphene.Node, TokensInterface)
 
@@ -92,11 +91,6 @@ class Injury(DjangoObjectType):
 class Person(DjangoObjectType):
     class Meta:
         model = PersonModal
-        interfaces = (graphene.Node, )
-
-class CustomUser(DjangoObjectType):
-    class Meta:
-        model = CustomUserModal
         interfaces = (graphene.Node, )
 
 class Contract(DjangoObjectType):
@@ -153,9 +147,7 @@ class CoreQueries(graphene.AbstractType):
     persons = graphene.List(Person)
     all_persons = DjangoFilterConnectionField(Person)
 
-    custom_user = graphene.Node.Field(CustomUser)
-    custom_users = graphene.List(CustomUser)
-    all_custom_users = DjangoFilterConnectionField(CustomUser)
+
 
     contract = graphene.Node.Field(Contract)
     contracts = graphene.List(Contract)
@@ -205,10 +197,6 @@ class CoreQueries(graphene.AbstractType):
     def resolve_persons(self, args, context, info):
         persons = PersonModal.objects.all()
         return persons
-
-    def resolve_custom_users(self, args, context, info):
-        custom_users = CustomUserModal.objects.all()
-        return custom_users
 
     def resolve_contracts(self, args, context, info):
         contracts = ContractModal.objects.all()
