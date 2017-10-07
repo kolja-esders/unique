@@ -16,8 +16,8 @@ class Command(BaseCommand):
             reader = csv.reader(f, delimiter=',')
             next(f)
             for row in reader:
-                if CustomUser.objects.get(email=row[7]) != None:
-                    continue
+#                if CustomUser.objects.get(email=row[7]) != None:
+#                    continue
                 obj, created = CustomUser.objects.get_or_create(
                     lfd_id=row[0],
                     parent_lfd_id=row[1],

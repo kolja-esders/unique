@@ -43,7 +43,6 @@ class Membership(models.Model):
 
     class Meta:
         unique_together = ('user', 'group')
-<<<<<<< HEAD
 '''
 
 class CustomUser(AbstractEmailUser):
@@ -85,7 +84,6 @@ class CustomUser(AbstractEmailUser):
     country = models.CharField(max_length=256, blank=True)
     education = models.CharField(max_length=256, blank=True)
     devices = models.CharField(max_length=512, blank=True)
-=======
 
 class Contract(models.Model):
     ### TODO add Person (contract owner) & Prototy person (for feature matching -> recommendations)
