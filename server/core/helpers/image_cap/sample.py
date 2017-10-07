@@ -1,16 +1,11 @@
 import torch
-import matplotlib.pyplot as plt
-import numpy as np 
-import argparse
-import pickle 
-import os
-from torch.autograd import Variable 
-from torchvision import transforms 
 from PIL import Image
+from server.core.helpers.image_cap.build_vocab import load_vocab
+from server.core.helpers.image_cap.model import EncoderCNN, DecoderRNN
+from torch.autograd import Variable
+from torchvision import transforms
 
-
-from server.your_insurance.helpers.image_cap.model import EncoderCNN, DecoderRNN
-from server.your_insurance.helpers.image_cap.build_vocab import Vocabulary
+from server.core.helpers.utils import PROJ_PATH
 
 
 def to_var(x, volatile=False):
@@ -30,24 +25,20 @@ def load_image(image_path, transform=None):
 def get_img_description(image_path):
 
 
-    encoder_path = "./models/encoder-5-3000.pkl"
-    decoder_path = "./models/decoder-5-3000.pkl"
-    vocab_path = "/home/david/reps/your-insurance/server/your_insurance/helpers/image_cap/data/vocab.pkl"
+    encoder_path = PROJ_PATH+"/helpers/image_cap/models/encoder-5-3000.pkl"
+    decoder_path = PROJ_PATH+"/helpers/image_cap/models/decoder-5-3000.pkl"
     embed_size = 256
     hidden_size = 512
     num_layers = 1
-
-
 
     # Image preprocessing
     transform = transforms.Compose([
         transforms.ToTensor(), 
         transforms.Normalize((0.485, 0.456, 0.406), 
                              (0.229, 0.224, 0.225))])
-    
-    # Load vocabulary wrapper
-    with open(vocab_path, 'rb') as f:
-        vocab = pickle.load(f)
+
+    vocab_path = PROJ_PATH + "/helpers/image_cap/data/"
+    vocab = load_vocab(vocab_path)
 
     # Build Models
     encoder = EncoderCNN(embed_size)
@@ -77,7 +68,7 @@ def get_img_description(image_path):
     # Decode word_ids to words
     sampled_caption = []
     for word_id in sampled_ids:
-        word = vocab.idx2word[word_id]
+        word = vocab.idx2word[str(word_id)]
         sampled_caption.append(word)
         if word == '<end>':
             break
@@ -87,5 +78,5 @@ def get_img_description(image_path):
     print (sentence)
     return sentence
     
-#get_img_description("/home/david/reps/pytorch-tutorial/tutorials/03-advanced/image_captioning/png/example.png")
+# get_img_description("/home/david/reps/your-insurance/data/cigarette.jpg")
 

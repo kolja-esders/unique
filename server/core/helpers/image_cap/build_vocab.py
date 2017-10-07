@@ -1,7 +1,9 @@
-import nltk
-import pickle
 import argparse
+import json
+import pickle
 from collections import Counter
+
+import nltk
 from pycocotools.coco import COCO
 
 
@@ -25,6 +27,20 @@ class Vocabulary(object):
 
     def __len__(self):
         return len(self.word2idx)
+
+
+def load_vocab(path):
+    idx = "9956"
+    i2w = json.load(open(path + "i2d", "r"))
+    w2i = json.load(open(path + "w2i", "r"))
+
+    voc = Vocabulary()
+    voc.idx = idx
+    voc.word2idx = w2i
+    voc.idx2word = i2w
+
+    return voc
+
 
 def build_vocab(json, threshold):
     """Build a simple vocabulary wrapper."""

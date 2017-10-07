@@ -46,7 +46,7 @@ class Command(BaseCommand):
                     kilograms=row[24],
                     feet_inches=row[25],
                     centimeters=row[26],
-                    profile_picture='',
+                    profile_picture='https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Pietro-Lombardi.jpg/220px-Pietro-Lombardi.jpg',
                     maried='',
                     kids='',
                     income='',

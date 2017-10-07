@@ -15,6 +15,8 @@ const rootQuery = graphql`
       ...GroupView_viewer
       ...ConfirmPage_viewer
       ...Story_viewer
+      ...LoadingPage_viewer
+      ...ModulePage_viewer
       }
   }
 `;
