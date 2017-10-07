@@ -21,38 +21,6 @@ class Group(models.Model):
     def get_url_from_name(name):
         return name.strip().lower().replace('.', '').replace(',', '').replace(' ', '-')
 
-class DetectionReason:
-    # href to image
-    # text
-    # somehow refer to fb post
-    # date
-    pass
-
-class Device:
-    # est. price, type, detection reason, [icon?]
-    pass
-
-class Activity:
-    # name, frequency (rare, ...),
-    # detection reason
-    pass
-
-class FamilyMember:
-    # name, age, gender, relation (daughter, wife, ...), detection reason
-    pass
-
-class LifestyleEntity:
-    # name (smoking), frequency (rare, daily, weekly, ...), detection reason
-    pass
-
-class Location:
-    pass
-    # name, example image, detection reason
-
-class Injury:
-    # date, type (leg, arm, heart [pietro]), detection reason
-    pass
-
 class DetectionReason(models.Model):
     href_to_image = models.CharField(max_length=1024, default="")
     text = models.CharField(max_length=512, default="")
