@@ -22,7 +22,7 @@ import urllib
 import pprint
 
 # get Facebook access token from environment variable
-ACCESS_TOKEN = 'EAACEdEose0cBAHnevxRJS5azvxeRGWgUdjSJzZAvdGosQ1kCEA8TAFxoesfvhZBjNZCWiEyBrAEMYtptDJveSPvSRx2QpSFn3qT9UB50j52Axx0FNVlINNfZCfEo2c4IPL6tfO0MJCVUVpO6qn63B0QfjAZCLs9knT9dImjS3FZAWfUmWWCWScUISYp3PjgLJXs0dTAuibmwZDZD'
+ACCESS_TOKEN = 'EAACEdEose0cBAHxgpHazBsHFt1f4k5hjV4nGzoPRZCpN8qjl6TwWtAHCKGG97bCA8boRFOn4U0XaoyyLBH5veDVRsk0wfZBZAWnAgKyg03huZCkgjQ0zG09h2zGOW13KpAdL0cRJfRQrbUbxh9mRNCxXELHndZBZBMcEGP61gfTSA3nf3Hfd6hL9NgKoTsuUEZD'
 HOST = "https://graph.facebook.com"
 
 N_IMGS = 10
@@ -63,16 +63,10 @@ def get_img_url_for_id(id):
     return img_str
 
 
-
-# You'll need an access token here to do anything.  You can get a temporary one
-# here: https://developers.facebook.com/tools/explorer/
-# Look at Bill Gates's profile for this example by using his Facebook id.
-user = 'BillGates'
-
 def get_posts_for_uid(uid):
 
     graph = facebook.GraphAPI(ACCESS_TOKEN)
-    profile = graph.get_object(user)
+    profile = graph.get_object(uid)
     posts = graph.get_connections(profile['id'], 'posts')
 
     ret_posts = []
@@ -99,18 +93,33 @@ def get_personal_infos_for_id(id):
 
     path='/'+ str(id)
 
-    params = urlencode(dict(
-        fields='about,affiliation,birthday,emails,hometown,locations,website',
-        access_token=ACCESS_TOKEN
-    ))
+    infos_fields = ["about","affiliation","birthday","name","emails","hometown","locations","website", "gender"]
 
-    url = "{host}{path}?{params}".format(host=HOST, path=path, params=params)
+    person_dict = dict()
 
-    # open the URL and read the response
-    resp = urlopen(url).read()
+    for i_f in infos_fields:
 
-    str_response = resp.decode('utf-8')
-    person_dict = json.loads(str_response)
+        params = urlencode(dict(
+            fields=i_f,
+            access_token=ACCESS_TOKEN
+        ))
+
+        url = "{host}{path}?{params}".format(host=HOST, path=path, params=params)
+
+        try:
+
+            # open the URL and read the response
+            resp = urlopen(url).read()
+
+            str_response = resp.decode('utf-8')
+            field_dict = json.loads(str_response)
+
+            person_dict[i_f] = field_dict[i_f]
+
+
+        except:
+            pass
+
 
     return person_dict
 
@@ -118,7 +127,7 @@ def get_personal_infos_for_id(id):
 def get_likes_for_uid(uid):
 
     graph = facebook.GraphAPI(ACCESS_TOKEN)
-    profile = graph.get_object(user)
+    profile = graph.get_object(uid)
     likes = graph.get_connections(profile['id'], 'likes')
 
     ret_likes = []
@@ -143,7 +152,7 @@ def get_likes_for_uid(uid):
 def get_images_for_uid(uid):
 
     graph = facebook.GraphAPI(ACCESS_TOKEN)
-    profile = graph.get_object(user)
+    profile = graph.get_object(uid)
     photos = graph.get_connections(profile['id'], 'photos')
 
     ret_imgs = []
@@ -165,6 +174,74 @@ def get_images_for_uid(uid):
             # loop and end the script.
             break
 
+    return ret_imgs
+
+
+def get_family_for_uid(uid):
+
+    graph = facebook.GraphAPI(ACCESS_TOKEN)
+    profile = graph.get_object(uid)
+    fam_members = graph.get_connections(profile['id'], 'family')
+
+    members = []
+
+    for i in range(N_IMGS):
+        try:
+            # Perform some action on each post in the collection we receive from
+            # Facebook.
+            for member in fam_members['data']:
+
+                member_info = get_personal_infos_for_id(member['id'])
+
+                members.append(dict(
+                    name = member.get('name'),
+                    birthday = member_info.get('birthday'),
+                    gender = member_info.get('gender'),
+                    relation = member.get('relationship')
+                ))
+
+            # Attempt to make a request to the next page of data, if it exists.
+            fam_members = requests.get(fam_members['paging']['next']).json()
+        except KeyError:
+            # When there are no more pages (['paging']['next']), break from the
+            # loop and end the script.
+            break
+
+    return members
+
+
+def get_locations_for_uid(uid):
+
+    graph = facebook.GraphAPI(ACCESS_TOKEN)
+    profile = graph.get_object(uid)
+    tagged_locations = graph.get_connections(profile['id'], 'tagged_places')
+
+    locations = []
+
+    for i in range(N_IMGS):
+        try:
+            # Perform some action on each post in the collection we receive from
+            # Facebook.
+            for loc in tagged_locations['data']:
+
+                locations.append(dict(
+                    name = loc.get('place').get('name'),
+                    time = loc.get('created_time'),
+                    long = loc.get('place').get('location').get('longitude'),
+                    lat = loc.get('place').get('location').get('latitude'),
+                ))
+
+            # Attempt to make a request to the next page of data, if it exists.
+            tagged_locations = requests.get(tagged_locations['paging']['next']).json()
+        except KeyError:
+            # When there are no more pages (['paging']['next']), break from the
+            # loop and end the script.
+            break
+
+    return locations
+    
+
+
 #about,affiliation,birthday,emails,likes,hometown,locations,website
 
 
@@ -172,6 +249,8 @@ print(get_posts_for_uid("BillGates"))
 print(get_images_for_uid("BillGates"))
 print(get_personal_infos_for_id("BillGates"))
 print(get_likes_for_uid("BillGates"))
+print(get_family_for_uid("me"))
+print(get_locations_for_uid("me"))
 
 # graph = facebook.GraphAPI(ACCESS_TOKEN)
 # profile = graph.get_object(user)

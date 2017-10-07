@@ -1,30 +1,41 @@
 import React from 'react';
 import styles from './InsuranceModule.scss';
-import { Grid, Button } from 'semantic-ui-react';
+import { Grid, Button, Progress, Rating, Image } from 'semantic-ui-react';
 
 
 class InsuranceModule extends React.Component{
 
   render(){
     return(
-      <div>
-        <h2>{this.props.data.type}</h2>
-        <h3>Coverage:</h3>
-        <Grid divided='vertically'>
-          <Grid.Row columns={3}>
-            <Grid.Column>
-              {this.props.data.coverage[0]}
-            </Grid.Column>
-            <Grid.Column>
-                {this.props.data.coverage[1]}
-            </Grid.Column>
-            <Grid.Column>
-                {this.props.data.coverage[2]}
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
 
+      <div className={styles.container}>
+
+        <div className={styles.insuranceContainer}>
+            <span className={styles.type}>{this.props.data.type}</span>
+            <span className={styles.peopleHeading}>People with similar interests</span>
+        </div>
+
+
+        <div className={styles.insuranceContainer}>
+            <span className={styles.price}>${this.props.data.premium}</span>
+            <Image className={styles.simPicture} src={this.props.data.pictures[0]} size='tiny' shape='circular' />
+            <Image className={styles.simPicture} src={this.props.data.pictures[1]} size='tiny' shape='circular' />
+            <Image className={styles.simPicture} src={this.props.data.pictures[2]} size='tiny' shape='circular' />
+            <Image className={styles.simPicture} src={this.props.data.pictures[3]} size='tiny' shape='circular' />
+
+        </div>
+
+        <div className={styles.insuranceContainer}>
+
+          <Button color='blue' size="huge" className={styles.buyButton}>Buy</Button>
+          <Button color='light grey' size="huge" className={styles.buyButton}>Details</Button>
+        </div>
       </div>
+
+
+
+
+
 
     );
   }

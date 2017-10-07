@@ -151,3 +151,4 @@ screenshots
 .idea
 *.pkl
 .gitignore
+*.weights

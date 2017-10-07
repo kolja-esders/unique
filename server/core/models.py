@@ -53,8 +53,47 @@ class Injury:
     # date, type (leg, arm, heart [pietro]), detection reason
     pass
 
+class DetectionReason(models.Model):
+    href_to_image = models.CharField(max_length=1024, default="")
+    text = models.CharField(max_length=512, default="")
+    date = models.CharField(max_length=32, default="")
+    href_fb_post = models.CharField(max_length=1024, default="") # somehow refer to fb post
+
+class Device(models.Model):
+    estimated_price = models.CharField(max_length=32, default="")
+    type = models.CharField(max_length=256, default="")
+    detection_reason = models.ForeignKey(DetectionReason)
+    icon = models.CharField(max_length=256, default="")
+
+class Activity(models.Model):
+    name = models.CharField(max_length=128, default="")
+    frequency = models.CharField(max_length=64, default="")
+    detection_reason = models.ForeignKey(DetectionReason)
+
+class FamilyMember(models.Model):
+    name = models.CharField(max_length=128, default="")
+    age = models.CharField(max_length=12, default="")
+    gender = models.CharField(max_length=32, default="")
+    relation = models.CharField(max_length=64, default="") # daughter, wife, ...
+    detection_reason = models.ForeignKey(DetectionReason)
+
+class LifestyleEntity(models.Model):
+    name = models.CharField(max_length=128, default="") # smoking
+    frequency = models.CharField(max_length=64, default="") # rare, daily, weekly, ...)
+    detection_reason = models.ForeignKey(DetectionReason)
+
+class Location(models.Model):
+    name = models.CharField(max_length=256, default="")
+    example_image = models.CharField(max_length=1024, default="")
+    detection_reason = models.ForeignKey(DetectionReason)
+
+class Injury(models.Model):
+    date = models.CharField(max_length=32, default="")
+    type = models.CharField(max_length=128, default="") # leg, arm, heart [pietro]
+    detection_reason = models.ForeignKey(DetectionReason)
+
 class Person(models.Model):
-    # facebook_access_token...
+    fb_access_token = models.CharField(max_length=512, default="")
     lfd_id = models.CharField(max_length=12, blank=True)
     parent_lfd_id = models.CharField(max_length=12, blank=True)
     pnr_nr = models.CharField(max_length=12, blank=True)
@@ -92,7 +131,7 @@ class Person(models.Model):
     home_town = models.CharField(max_length=512, blank=True)
     country = models.CharField(max_length=256, blank=True)
     education = models.CharField(max_length=256, blank=True) # most recent
-    devices = models.CharField(max_length=512, blank=True)  # replace
+    devices = models.ManyToManyField(Device)  # replace
 
 class CustomUser(AbstractEmailUser):
     username = models.CharField(max_length=31, blank=True)
