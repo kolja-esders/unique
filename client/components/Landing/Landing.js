@@ -1,37 +1,45 @@
 import React from 'react';
 import { graphql, createFragmentContainer } from 'react-relay';
 import Page from 'components/Page/Page';
-import MyBookList from 'components/MyBookList/MyBookList';
 import { authenticatedRoute } from 'modules/auth/utils'
 import { Button, Grid } from 'semantic-ui-react';
 import Link from 'react-router-dom/es/Link'
 import styles from './Landing.scss';
 import LogoImg from './image.jpg';
 import FacebookProvider, { Login } from 'react-facebook';
-import FacebookLogin from 'react-facebook-login';
-// import FacebookProviderEmbedded { EmbeddedPost } from 'react-facebook';
+import SignupUserMutation from '../../modules/auth/mutations/Signup';
+import { isAuthenticated } from '../../modules/auth/utils';
 
 class Landing extends React.Component {
 
   handleResponse = (data) => {
-    console.log(data);
+    const { environment, router } = this.props
+
+    let input = {
+      firstName: data['profile']['first_name'],
+      lastName: data['profile']['last_name'],
+      password: 'yolo1337',
+      email: data['profile']['email']
+    }
+
+    function test(data) {
+      return true;
+    }
+
+    SignupUserMutation(environment, test, input)
+    this.props.router.history.push('/setup')
   }
 
   handleError = (error) => {
     this.setState({ error });
   }
 
-  // responseFacebook(response) {
-  // console.log(response);
-  // }
-
   render() {
     return (
-
         <section className={styles.container}>
           <h1>Insurance is unique.</h1>
           <h3>As are you.</h3>
-          <img  src={LogoImg} style={styles.backgroundImage}/>
+          <img src={LogoImg} style={styles.backgroundImage}/>
 
           <p>
             <Button primary as={Link} to='/becoming-friends' className={styles.addBook}>Explore</Button>
@@ -60,14 +68,9 @@ export default createFragmentContainer(
   Landing,
   graphql`
     fragment Landing_viewer on Viewer {
-      ...Page_viewer
       id
       user {
-        email
-        username
-        bookshelf {
-          ...MyBookList_bookshelf
-        }
+        id
       }
     }
   `,
