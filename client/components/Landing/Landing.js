@@ -39,7 +39,7 @@ export default createFragmentContainer(
   AuthenticatedLanding,
   graphql`
     fragment Landing_viewer on Viewer {
-      ...Page_viewerz
+      ...Page_viewer
       id
       user {
         email
