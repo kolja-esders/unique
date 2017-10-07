@@ -111,7 +111,7 @@ class SalaryMapping(DjangoObjectType):
 class Story(DjangoObjectType):
     class Meta:
         model = StoryModal
-        interfaces = (graphene.Node,)
+        interfaces = (graphene.Node, )
 
 
 class CoreQueries(graphene.AbstractType):
