@@ -10,6 +10,7 @@ import LandingPage from 'components/Landing/Landing';
 import ModulePage from 'components/ModulePage/ModulePage';
 import NewsFeed from 'components/NewsFeed/NewsFeed';
 import Story from 'components/Story/Story';
+import Dashboard from 'components/Test/Dashboard';
 
 
 const coreRoutes = [
@@ -44,6 +45,10 @@ const coreRoutes = [
   {
     path: "/Story",
     component: Story,
+  },
+  {
+    path: "/Dashboard",
+    component: Dashboard,
   }
 
 
