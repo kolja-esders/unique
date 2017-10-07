@@ -78,29 +78,50 @@
     text-align: right;
   }
 
-  .activityContainer {
-    margin-top: 36px;
+  .lifestyleContainer {
+    margin-top: 5px;
     padding-top: 16px;
     padding-bottom: 16px;
     border-radius: 2px;
 
     &:hover {
       background-color: #f0f0f0;
+    }
+  
+  }
 
-      .activity {
-        background-color: #e0e0e0;
-      }
+  .activityContainer {
+    margin-top: 5px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 2px;
+
+    &:hover {
+      background-color: #f0f0f0;
     }
 
-    .activity {
+    .heavyActivity {
       padding: 8px;
       margin-left: 8px;
       font-weight: bold;
       border-radius: 2px;
-      background-color: #f0f0f0;
+      background-color: #21BA45;
+      color: white;
     }
-    
-  
+
+    .regularActivity {
+      padding: 8px;
+      margin-left: 8px;
+      font-weight: bold;
+      border-radius: 2px;
+      background-color: #FBBD08;
+      color: white;
+    }
+
+    .desc {
+      margin-left: 10px;
+      color: #aaa;
+    }
   }
 
 }

@@ -4,7 +4,7 @@ import Link from 'react-router-dom/es/Link'
 import { Button, Divider, Form, Grid, Image } from 'semantic-ui-react'
 import { graphql, createFragmentContainer } from 'react-relay';
 import { logoutViewer } from 'modules/auth/jwtUtils'
-import { authenticatedRoute } from 'modules/auth/utils'
+mport { authenticatedRoute } from 'modules/auth/utils'
 import ProfileImage from 'components/ProfileImage/ProfileImage.js'
 
 class ConfirmPage extends React.Component {
@@ -71,7 +71,34 @@ class ConfirmPage extends React.Component {
             </header>
 
             <div className={styles.activityContainer}>
-              <span className={styles.activity}>Snowboarding</span>
+              <span className={styles.heavyActivity}>Snowboarding</span>
+              <span className={styles.desc}>Very active</span>
+            </div>
+            <div className={styles.activityContainer}>
+              <span className={styles.regularActivity}>Running</span>
+              <span className={styles.desc}>Active</span>
+            </div>
+          </section>
+
+          <section className={styles.infoSection}>
+            <header>
+              <h2>
+                <div className={styles.runningEmoji}></div>
+                Lifestyle
+              </h2>
+            </header>
+
+            <div className={styles.activityContainer}>
+              <span className={styles.aspect}>Smoking</span>
+              <span className={styles.desc}>Very active</span>
+            </div>
+            <div className={styles.activityContainer}>
+              <span className={styles.heavyActivity}>Snowboarding</span>
+              <span className={styles.desc}>Very active</span>
+            </div>
+            <div className={styles.activityContainer}>
+              <span className={styles.heavyActivity}>Snowboarding</span>
+              <span className={styles.desc}>Very active</span>
             </div>
 
           </section>
