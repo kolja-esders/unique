@@ -21,14 +21,14 @@ class Header extends React.Component {
           <nav className={styles.nav}>
               { isLoggedIn ? (
                   <div>
-                  <Button basic as={Link} to='/shared-books' className={styles.item}>All Books</Button>
-                  <Button basic as={Link} to='/' className={styles.item}>My Books</Button>
+                  <Button primary as={Link} to='/home' className={styles.item}>Recommendations</Button>
+                  <Button primary as={Link} to='/feed' className={styles.item}>Feed</Button>
                   <Button basic primary className={styles.item} onClick={() => {logoutViewer()}} >Log out</Button>
                 </div>
               ) : (
                 <div>
-                  <Button basic as={Link} to='/login' className={styles.item}>Log in</Button>
-                  <Button primary as={Link} to='/signup' className={styles.item}>Sign up</Button>
+                  <Button primary as={Link} to='/home' className={styles.item}>Insurances</Button>
+                  <Button basic as={Link} to='/feed' className={styles.item}>Feed</Button>
                 </div>
               )}
           </nav>
