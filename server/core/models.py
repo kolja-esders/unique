@@ -102,3 +102,8 @@ class Review(models.Model):
     text = models.TextField()
     stars = models.FloatField()
     date = models.CharField(max_length=32, default="")
+
+
+class SalaryMapping(models.Model):
+    occupation = models.CharField(max_length=256, default="")
+    salary = models.FloatField()
