@@ -1,10 +1,11 @@
+import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import numpy as np
+from server.core.helpers.image_det.cfg import parse_cfg, print_cfg, load_conv_bn, load_conv, load_fc
 
-from server.your_insurance.helpers.image_det.cfg import parse_cfg, print_cfg, load_conv_bn, load_conv, load_fc
-from server.your_insurance.helpers.image_det.region_loss import RegionLoss
+from server.core.helpers.image_det.region_loss import RegionLoss
+
 
 #from layers.batchnorm.bn import BN2d
 

@@ -251,6 +251,286 @@ class CoreQueries(graphene.AbstractType):
         return memberships
 
 
+
+class CreateDetectionReason(graphene.Mutation):
+    class Input:
+        href_to_image = graphene.String(required=True)
+        text_to_image = graphene.String(required=True)
+        date = graphene.String(required=True)
+        type = graphene.String(required=True)
+
+    detection_reason = graphene.Field(DetectionReason)
+
+     def mutate(self, args, ctx, info):
+        href_to_image = args['href_to_image']
+        text_to_image = args['text_to_image']
+        date = args['date']
+        type = args['type']
+        detection_reason = DetectionReasonModal(
+            href_to_image=href_to_image,
+            text_to_image=text_to_image,
+            date=date,
+            type=type
+        )
+        detection_reason.save()
+        return CreateDetectionReason(detection_reason=detection_reason)
+
+class CreateDevice(graphene.Mutation):
+    class Input:
+        estimated_price = graphene.String(required=True)
+        type = graphene.String(required=True)
+        detection_reason = graphene.String(required=True)
+        icon = graphene.String(required=True)
+        person = graphene.String(required=True)
+
+    device = graphene.Field(Device)
+
+    def mutate(self, args, ctx, info):
+        detection_reason_id = args['detection_reason_id']
+        person_id = args['person_id']
+        estimated_price = args['estimated_price']
+        type = args['type']
+        detection_reason = DeviceModal.objects.get(pk=detection_reason_id)
+        icon = args['icon']
+        person = DeviceModal.objects.get(pk=person_id)
+        device = DeviceModal(
+            estimated_price=estimated_price,
+            type=type,
+            detection_reason=detection_reason,
+            icon=icon,
+            person=person
+        )
+        device.save()
+        return CreateDevice(device=device)
+
+class CreateActivity(graphene.Mutation):
+    class Input:
+        name = graphene.String(required=True)
+        frequency = graphene.String(required=True)
+        detection_reason = graphene.String(required=True)
+        person = graphene.String(required=True)
+
+    activity = graphene.Field(Activity)
+
+    def mutate(self, args, ctx, info):
+        detection_reason_id = args['detection_reason_id']
+        person_id = args['person_id']
+        name = args['name']
+        frequency = args['frequency']
+        detection_reason = ActivityModal.objects.get(pk=detection_reason_id)
+        person = ActivityModal.objects.get(pk=person_id)
+        activity = ActivityModal(
+            name=name,
+            frequency=frequency,
+            detection_reason=detection_reason,
+            person=person
+        )
+        activity.save()
+        return CreateActivity(activity=activity)
+
+class CreateFamilyMember(graphene.Mutation): # TODO TODO TODO
+    class Input:
+        name = graphene.String(required=True)
+        age = graphene.String(required=True)
+        gender = graphene.String(required=True)
+        relation = graphene.String(required=True)
+        detection_reason = graphene.String(required=True)
+        person = graphene.String(required=True)
+
+    family_member = graphene.Field(FamilyMember)
+
+    def mutate(self, args, ctx, info):
+        detection_reason_id = args['detection_reason_id']
+        person_id = args['person_id']
+        name = args['name']
+        age = args['age']
+        gender = args['gender']
+        relation = args['relation']
+        detection_reason = FamilyMemberModal.objects.get(pk=detection_reason_id)
+        person = FamilyMemberModal.objects.get(pk=person_id)
+        family_member = FamilyMemberModal(
+            name=name,
+            age=age,
+            gender=gender,
+            relation=relation,
+            detection_reason=detection_reason,
+            person=person
+        )
+        family_member.save()
+        return CreateFamilyMember(family_member=family_member)
+
+class CreateLifestyleEntity(graphene.Mutation):
+    class Input:
+        name = graphene.String(required=True)
+        frequency = graphene.String(required=True)
+        detection_reason = graphene.String(required=True)
+        person = graphene.String(required=True)
+
+    lifestyle_entity = graphene.Field(LifestyleEntity)
+
+    def mutate(self, args, ctx, info):
+        detection_reason_id = args['detection_reason_id']
+        person_id = args['person_id']
+        name = args['name']
+        frequency = args['frequency']
+        detection_reason = LifestyleEntityModal.objects.get(pk=detection_reason_id)
+        person = LifestyleEntityModal.objects.get(pk=person_id)
+        lifestyle_entity = LifestyleEntityModal(
+            name=name,
+            frequency=frequency,
+            detection_reason=detection_reason,
+            person=person
+        )
+        lifestyle_entity.save()
+        return CreateLifestyleEntity(lifestyle_entity=lifestyle_entity)
+
+class CreateLocation(graphene.Mutation):
+    class Input:
+        name = graphene.String(required=True)
+        example_image = graphene.String(required=True)
+        detection_reason = graphene.String(required=True)
+        person = graphene.String(required=True)
+
+    location = graphene.Field(Location)
+
+    def mutate(self, args, ctx, info):
+        detection_reason_id = args['detection_reason_id']
+        person_id = args['person_id']
+        name = args['name']
+        example_image = args['example_image']
+        detection_reason = LocationModal.objects.get(pk=detection_reason_id)
+        person = LocationModal.objects.get(pk=person_id)
+        location = LocationModal(
+            name=name,
+            example_image=example_image,
+            detection_reason=detection_reason,
+            person=person
+        )
+        location.save()
+        return CreateLocation(location=location)
+
+class CreateInjury(graphene.Mutation):
+    class Input:
+        date = graphene.String(required=True)
+        type = graphene.String(required=True)
+        detection_reason = graphene.String(required=True)
+        person = graphene.String(required=True)
+
+    injury = graphene.Field(Injury)
+
+    def mutate(self, args, ctx, info):
+        detection_reason_id = args['detection_reason_id']
+        person_id = args['person_id']
+        date = args['date']
+        type = args['type']
+        detection_reason = InjuryModal.objects.get(pk=detection_reason_id)
+        person = InjuryModal.objects.get(pk=person_id)
+        injury = InjuryModal(
+            date=date,
+            type=type,
+            detection_reason=detection_reason,
+            person=person
+        )
+        injury.save()
+        return CreateInjury(injury=injury)
+
+class CreateContract(graphene.Mutation):
+    class Input:
+        contract_name = graphene.String(required=True)
+        start_date = graphene.String(required=True)
+        end_date = graphene.String(required=True)
+        contract_type = graphene.String(required=True)
+        contract_class = graphene.String(required=True)
+        due_data = graphene.String(required=True)
+        amount_money = graphene.String(required=True)
+        auto_extensions = graphene.String(required=True)
+
+    contract = graphene.Field(Contract)
+
+    def mutate(self, args, ctx, info):
+        contract_name = args['contract_name']
+        start_date = args['start_date']
+        end_date = args['end_date']
+        contract_type = args['contract_type']
+        contract_class = args['contract_class']
+        due_data = args['due_data']
+        amount_money = args['amount_money']
+        auto_extensions = args['auto_extensions']
+        contract = ContractModal(
+            contract_name=contract_name,
+            start_date=start_date,
+            end_date=end_date,
+            contract_type=contract_type,
+            contract_class=contract_class,
+            due_data=due_data,
+            amount_money=amount_money,
+            auto_extensions=auto_extensions
+        )
+        contract.save()
+        return CreateContract(contract=contract)
+
+class CreateReview(graphene.Mutation): # TODO TODO TODO
+    class Input:
+       ## person = ##################
+      ##  contract = ################
+        text = graphene.String(required=True)
+        stars = graphene.String(required=True)
+        date = graphene.String(required=True)
+
+    review = graphene.Field(Review)
+
+    def mutate(self, args, ctx, info):
+   ##     person = ##################
+   ##     contract = ################
+        text = args['text']
+        stars = args['stars']
+        date = args['date']
+        review = ReviewModal(
+            #person=
+            #contract=
+            text=text,
+            stars=stars,
+            date=date
+        )
+        review.save()
+        return CreateReview(review=review)
+
+class CreateSalaryMapping(graphene.Mutation):
+    class Input:
+        occupation = graphene.String(required=True)
+        salary = graphene.String(required=True)
+
+    salary_mapping = graphene.Field(SalaryMapping)
+
+    def mutate(self, args, ctx, info):
+        occupation = args['occupation']
+        salary = args['salary']
+        salary_mapping = SalaryMappingModal(
+            occupation=occupation,
+            salary=salary
+        )
+        salary_mapping.save()
+        return CreateSalaryMapping(salary_mapping=salary_mapping)
+
+class CreateStory(graphene.Mutation):
+    class Input:
+        author = graphene.String(required=True)
+        content = graphene.String(required=True)
+
+    story = graphene.Field(Story)
+
+    def mutate(self, args, ctx, info):
+        author = args['author']
+        content = args['content']
+        story = StoryModal(
+            author=author,
+            content=content
+        )
+        story.save()
+        return CreateStory(story=story)
+
+
+
 class CreateBook(graphene.Mutation):
     class Input:
         title = graphene.String(required=True)
@@ -329,6 +609,18 @@ class CoreMutations(graphene.AbstractType):
     create_bookshelf_entry = CreateBookshelfEntry.Field()
     create_membership = CreateMembership.Field()
     create_group = CreateGroup.Field()
+
+    create_detection_reason = CreateDetectionReason.Field()
+    create_device = CreateDevice.Field()
+    create_activity = CreateActivity.Field()
+    create_family_member = CreateFamilyMember.Field()
+    create_lifestyle_entity = CreateLifestyleEntity.Field()
+    create_location = CreateLocation.Field()
+    create_injury = CreateInjury.Field()
+    create_contract = CreateContract.Field()
+    create_review = CreateReview.Field()
+    create_salary_mapping = CreateSalaryMapping.Field()
+    create_story = CreateStory.Field()
 
 
 class Viewer(ObjectType, CoreQueries):

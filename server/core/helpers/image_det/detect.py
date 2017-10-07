@@ -1,10 +1,10 @@
-import sys
 import time
-from PIL import Image, ImageDraw
-from server.your_insurance.helpers.image_det.models.tiny_yolo import TinyYoloNet
-from server.your_insurance.helpers.image_det.utils import *
-from server.your_insurance.helpers.image_det.darknet import Darknet
-from server.your_insurance.helpers.utils import PROJ_PATH
+
+from PIL import Image
+from server.core.helpers.image_det.darknet import Darknet
+from server.core.helpers.image_det.utils import *
+
+from server.core.helpers.utils import PROJ_PATH
 
 
 def detect(imgfile):

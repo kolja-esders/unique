@@ -1,13 +1,10 @@
-import json
-
-import nltk
-import pickle
 import argparse
+import json
+import pickle
 from collections import Counter
 
+import nltk
 from pycocotools.coco import COCO
-
-from server.your_insurance.helpers.utils import PROJ_PATH
 
 
 class Vocabulary(object):

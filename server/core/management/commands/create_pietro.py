@@ -1,10 +1,9 @@
-from server.your_insurance.helpers.profiler.builder import create_profile
+from django.core.management.base import BaseCommand
 
-from django.core.management.base import BaseCommand, CommandError
-
+from server.core.helpers.profiler.builder import create_profile
 
 
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        create_profile("EAACEdEose0cBAIQBk11ynMuvN3SgrnXgXDaAj1QvZAxkzHMglW1UpoRaHr1xJZCb6o0xNZAsfRQJs5vA0bmkq9ZCTqF10yEmXW73GlnUZCqIXvbbFcZBmHLgQz9F98ZAusHgFa0xuxUVPmJXGeyT0GQimZCKDZCMqc84NM9x61Iev7HvudbSYx3TSdZAJWYg3ye3sVsO8nYnckSovnRSk3lRtPxbUVktugElwZD")
+        create_profile("EAACEdEose0cBAAs5hCSFUAguMrcBvimD9rsc1aS3y8IY4hejZBEWUUmV9Xm494md2hG5dT0P86yow80FCBR9OsZCbNm0JpCuYfSeJXZBd2GDoeOMHIBsQE9QYBn9Sd0pdRjthdkf93UWMtJ4lv3zY0I9Wm2tujVZCaYQ0dQ0Xf6izXsEgnWuPl6PCsuKbHTNGhmKWedGAn4TvgfGO9MpI0cbadWmfSkZD")

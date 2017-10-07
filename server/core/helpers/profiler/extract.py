@@ -1,6 +1,6 @@
 from collections import defaultdict
 
-from server.your_insurance.helpers.utils import PROJ_PATH
+from server.core.helpers.utils import PROJ_PATH
 
 CATS = ["activities", "devices", "injury", "locations", "lifestyle"]
 
