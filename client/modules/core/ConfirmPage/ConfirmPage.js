@@ -4,7 +4,7 @@ import Link from 'react-router-dom/es/Link'
 import { Button, Divider, Form, Grid, Image } from 'semantic-ui-react'
 import { graphql, createFragmentContainer } from 'react-relay';
 import { logoutViewer } from 'modules/auth/jwtUtils'
-mport { authenticatedRoute } from 'modules/auth/utils'
+import { authenticatedRoute } from 'modules/auth/utils'
 import ProfileImage from 'components/ProfileImage/ProfileImage.js'
 
 class ConfirmPage extends React.Component {
