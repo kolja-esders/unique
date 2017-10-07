@@ -4,6 +4,11 @@ import Page from 'components/Page/Page';
 import styles from './LoadingPage.scss'
 
 class LoadingPage extends React.Component{
+  state = { percent: 10 }
+  increment = () => this.setState({
+     percent: this.state.percent >= 100 ? 0 : this.state.percent + 20,
+   })
+
   render(){
     return(
       <Page title="Becoming Friends ;-)" viewer={this.props.viewer}>
@@ -15,9 +20,12 @@ class LoadingPage extends React.Component{
                   <div className={styles.emoji}></div>
                   <div className={styles.friends}>
                     <h1>Let's become Friends!</h1>
-                    <Progress percent={60} active>
-                      Scanning social media profiles...
-                    </Progress>
+
+                   <Progress percent={this.state.percent} indicating >
+                     Scanning social media profiles...
+                   </Progress>
+                   <Button onClick={this.increment}>Increment</Button>
+
                   </div>
                 </Segment>
             </div>
@@ -29,7 +37,6 @@ class LoadingPage extends React.Component{
     );
   }
 }
-
 
 
 export default LoadingPage
