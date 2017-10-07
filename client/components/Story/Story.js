@@ -10,14 +10,14 @@ class Story extends React.Component {
 
   render() {
 
-    var story = this.props.viewer.stories[0];  // `viewer` is the active user
+    var story = this.props.viewer.stories;  // `viewer` is the active user
     // console.log(this.props.viewer.stories[0])
-    console.log(story.author)
-    console.log(story.content)
-    console.log(story)
+    console.log(story[0].author)
+    console.log(story[0].content)
+
 
     return (
-      <h1>{story.content}</h1>
+      <h1>{story[0].author}</h1>
 
     );
   }
