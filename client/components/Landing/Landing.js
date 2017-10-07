@@ -36,7 +36,8 @@ class Landing extends React.Component {
           <p>
             <Button primary as={Link} to='/add-book' className={styles.addBook}>Explore</Button>
 
-            <FacebookProvider appId="365404513910530">
+            <FacebookProvider appId="133394323974213">
+
               <Login
                   scope="email"
                   onResponse={this.handleResponse}
