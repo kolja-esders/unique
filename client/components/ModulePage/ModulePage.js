@@ -2,7 +2,12 @@ import React from 'react';
 import Page from 'components/Page/Page';
 import styles from './ModulePage.scss';
 import InsuranceModule from 'components/InsuranceModule/InsuranceModule';
-import ProfileImage from 'components/ProfileImage/ProfileImage.js'
+import ProfileImage from 'components/ProfileImage/ProfileImage.js';
+
+import Aaron from '../../assets/Aaron_Eckhart.jpg';
+import Anna from '../../assets/Anna_Nicole_Smith.jpg';
+import Astrid from '../../assets/Astrid_Betancourt.jpg';
+import Atsushi from '../../assets/Atsushi_Sato.jpg';
 
 
 const data = [{
@@ -10,15 +15,19 @@ const data = [{
   premium: 190,
   description: 'asdf',
   coverage: ['suicide', 'accidential death', 'murder'],
-  similar: ['Pietro', 'Zöllnel', 'Aase'],
-  fit: [85, 76, 63]
+  similar: ['Aaron', 'Anna', 'Astrid', 'Atsushi'],
+  pictures: [Aaron, Anna, Astrid, Atsushi],
+  fit: [85, 76, 63],
 
 },
 {
   type: 'House',
   premium: 43,
   description: 'qwert',
-  coverage: ['jewelry', 'fine art', 'bikes']
+  coverage: ['jewelry', 'fine art', 'bikes'],
+  similar: ['Aaron', 'Anna', 'Astrid', 'Atsushi'],
+  pictures: [Atsushi, Anna, Aaron, Astrid],
+  fit: [85, 76, 63],
 }
 ]
 
@@ -34,6 +43,7 @@ class ModulePage extends React.Component{
 
           <h1>Recommended Insurances</h1>
           <InsuranceModule data={data[0]}/>
+          <InsuranceModule data={data[1]}/>
 
         </section>
       </Page>

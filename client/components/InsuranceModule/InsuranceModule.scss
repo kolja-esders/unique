@@ -1,0 +1,61 @@
+.container {
+  width: 800px;
+  margin: 0 auto;
+
+  .insuranceContainer{
+    margin-top: 5px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    border-radius: 2px;
+    margin-bottom: 70px;
+
+
+    .type{
+      float: left;
+      font-size: 2rem;
+      font-family: Merriweather;
+      padding: 8px;
+      margin-left: 8px;
+      font-weight: bold;
+    }
+
+    .peopleHeading{
+      float: right;
+      font-size: 1rem;
+      font-family: Merriweather;
+      padding: 8px;
+      margin-left: 8px;
+
+    }
+
+
+    .price{
+      border-radius: 999px;
+      float: left;
+      font-size: 2rem;
+      font-family: Merriweather;
+      padding: 8px;
+      margin-left: 8px;
+      font-weight: bold;
+      background-color: pink;
+      color: white;
+      margin-top: 20px;
+    }
+
+    .buyButton{
+      float: right;
+      color: white;
+      margin-top: 20px;
+      margin-left: 8px;
+
+    }
+
+    .simPicture{
+      float: right;
+      margin-left: 8px;
+
+
+    }
+
+  }
+}
