@@ -71,7 +71,34 @@ class ConfirmPage extends React.Component {
             </header>
 
             <div className={styles.activityContainer}>
-              <span className={styles.activity}>Snowboarding</span>
+              <span className={styles.heavyActivity}>Snowboarding</span>
+              <span className={styles.desc}>Very active</span>
+            </div>
+            <div className={styles.activityContainer}>
+              <span className={styles.regularActivity}>Running</span>
+              <span className={styles.desc}>Active</span>
+            </div>
+          </section>
+
+          <section className={styles.infoSection}>
+            <header>
+              <h2>
+                <div className={styles.runningEmoji}></div>
+                Lifestyle
+              </h2>
+            </header>
+
+            <div className={styles.activityContainer}>
+              <span className={styles.aspect}>Smoking</span>
+              <span className={styles.desc}>Very active</span>
+            </div>
+            <div className={styles.activityContainer}>
+              <span className={styles.heavyActivity}>Snowboarding</span>
+              <span className={styles.desc}>Very active</span>
+            </div>
+            <div className={styles.activityContainer}>
+              <span className={styles.heavyActivity}>Snowboarding</span>
+              <span className={styles.desc}>Very active</span>
             </div>
 
           </section>
