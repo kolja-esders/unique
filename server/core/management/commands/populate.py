@@ -10,7 +10,7 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        path = "/home/patrick/InsurHack/ZurichTestUserData (2)/NEW_P_NAPA.csv"
+        path = "/home/alexander/Desktop/Hackathon/ZurichTestUserData/NEW_P_NAPA.csv"
 
         with open(path) as f:
             reader = csv.reader(f, delimiter=',')
