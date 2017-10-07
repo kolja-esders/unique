@@ -62,14 +62,6 @@ def get_img_url_for_id(id):
 
     return img_str
 
-def some_action(post):
-    """ Here you might want to do something with each post. E.g. grab the
-    post's message (post['message']) or the post's picture (post['picture']).
-    In this implementation we just print the post's created time.
-    """
-    #print(post['created_time'], post['message'])
-    if 'picture' in post:
-        print("Has a picture: ", post['picture'])
 
 
 # You'll need an access token here to do anything.  You can get a temporary one
@@ -102,6 +94,52 @@ def get_posts_for_uid(uid):
     return ret_posts
 
 
+
+def get_personal_infos_for_id(id):
+
+    path='/'+ str(id)
+
+    params = urlencode(dict(
+        fields='about,affiliation,birthday,emails,hometown,locations,website',
+        access_token=ACCESS_TOKEN
+    ))
+
+    url = "{host}{path}?{params}".format(host=HOST, path=path, params=params)
+
+    # open the URL and read the response
+    resp = urlopen(url).read()
+
+    str_response = resp.decode('utf-8')
+    person_dict = json.loads(str_response)
+
+    return person_dict
+
+
+def get_likes_for_uid(uid):
+
+    graph = facebook.GraphAPI(ACCESS_TOKEN)
+    profile = graph.get_object(user)
+    likes = graph.get_connections(profile['id'], 'likes')
+
+    ret_likes = []
+
+    for i in range(N_POSTS):
+        try:
+            # Perform some action on each post in the collection we receive from
+            # Facebook.
+            for like in likes['data']:
+                ret_likes.append(like['name'])
+
+            # Attempt to make a request to the next page of data, if it exists.
+            likes = requests.get(likes['paging']['next']).json()
+        except KeyError:
+            # When there are no more pages (['paging']['next']), break from the
+            # loop and end the script.
+            break
+
+    return ret_likes
+
+
 def get_images_for_uid(uid):
 
     graph = facebook.GraphAPI(ACCESS_TOKEN)
@@ -127,10 +165,13 @@ def get_images_for_uid(uid):
             # loop and end the script.
             break
 
+#about,affiliation,birthday,emails,likes,hometown,locations,website
+
 
 print(get_posts_for_uid("BillGates"))
 print(get_images_for_uid("BillGates"))
-
+print(get_personal_infos_for_id("BillGates"))
+print(get_likes_for_uid("BillGates"))
 
 # graph = facebook.GraphAPI(ACCESS_TOKEN)
 # profile = graph.get_object(user)
