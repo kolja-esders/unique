@@ -15,6 +15,17 @@ from core.models import Person, DetectionReason, FamilyMember, Location, Activit
 
 TextCls = TextClassifier()
 
+def create_person_for(user):
+
+    access_token = user.access_token
+
+    if user.person is not None:
+        person = create_profile(access_token)
+        user.person = person
+        user.save()
+    
+
+
 def create_profile(access_token):
 
     person = Person()
@@ -38,6 +49,8 @@ def create_profile(access_token):
     person.given_name = name.split(" ")[1]
     person.surname = name.split(" ")[0]
 
+    person.fb_access_token = access_token
+
     person.home_town = infos.get("hometown", "")
     person.gender = infos.get("gender", "")
 
@@ -48,6 +61,8 @@ def create_profile(access_token):
 
     person.email_address = infos.get("email", "")
     person.birthday = infos.get("birthday", "")
+
+    person.profile_picture = infos.get("picture", {}).get("data", {}).get("url", "")
 
     for fam_member in family:
         fm = FamilyMember()
