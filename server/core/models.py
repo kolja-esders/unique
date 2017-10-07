@@ -13,6 +13,9 @@ class Book(models.Model):
     def __str__(self):
         return self.title + ' (' + self.author + ')'
 
+class Trigger(models.Model):
+    success = models.CharField(max_length=1, default='0')
+
 class Group(models.Model):
     name = models.CharField(max_length=32, unique=True)
     name_url = models.CharField(max_length=64, unique=True)
