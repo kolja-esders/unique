@@ -33,7 +33,7 @@ class Device:
     pass
 
 class Activity:
-    # name, frequency (rare, ...),  
+    # name, frequency (rare, ...),
     # detection reason
     pass
 
@@ -134,8 +134,10 @@ class Review(models.Model):
     stars = models.FloatField()
     date = models.CharField(max_length=32, default="")
 
-
 class SalaryMapping(models.Model):
     occupation = models.CharField(max_length=256, default="")
     salary = models.FloatField()
 
+class Story(models.Model):
+    author = models.CharField(max_length=256, default="")
+    content = models.CharField(max_length=256, default="")
