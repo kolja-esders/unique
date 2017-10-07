@@ -25,7 +25,7 @@ class DetectionReason(models.Model):
     href_to_image = models.CharField(max_length=1024, default="")
     text = models.CharField(max_length=512, default="")
     date = models.CharField(max_length=32, default="")
-    fb_post = models.CharField(max_length=1024, default="") # somehow refer to fb post
+    href_fb_post = models.CharField(max_length=1024, default="") # somehow refer to fb post
 
 class Device(models.Model):
     estimated_price = models.CharField(max_length=32, default="")
