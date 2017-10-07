@@ -9,7 +9,6 @@ class LoadingPage extends React.Component{
       <Page title="Becomming Friends ;-)" viewer={this.props.viewer}>
         <section className={styles.container}>
 
-
             <h1>Lets become Friends!</h1>
             <div className={styles.emoji}></div>
         </section>
