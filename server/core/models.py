@@ -21,29 +21,40 @@ class Group(models.Model):
     def get_url_from_name(name):
         return name.strip().lower().replace('.', '').replace(',', '').replace(' ', '-')
 
-class CustomUser(AbstractEmailUser):
-    username = models.CharField(max_length=31, blank=True)
-    first_name = models.CharField(max_length=31, blank=True)
-    last_name = models.CharField(max_length=31, blank=True)
+class DetectionReason:
+    # href to image
+    # text
+    # somehow refer to fb post
+    # date
+    pass
 
-class BookshelfEntry(models.Model):
-    user = models.ForeignKey(CustomUser, null=True)
-    book = models.ForeignKey(Book, blank=True)
-    state = models.CharField(max_length = 31) # to-read, read, ...
-    rating = models.PositiveSmallIntegerField(null=True)
+class Device:
+    # est. price, type, detection reason, [icon?]
+    pass
 
-    class Meta:
-        unique_together = ('user', 'book')
+class Activity:
+    # name, frequency (rare, ...),  
+    # detection reason
+    pass
 
-class Membership(models.Model):
-    user = models.ForeignKey(CustomUser, null=True)
-    group = models.ForeignKey(Group)
+class FamilyMember:
+    # name, age, gender, relation (daughter, wife, ...), detection reason
+    pass
 
-    class Meta:
-        unique_together = ('user', 'group')
+class LifestyleEntity:
+    # name (smoking), frequency (rare, daily, weekly, ...), detection reason
+    pass
 
+class Location:
+    pass
+    # name, example image, detection reason
+
+class Injury:
+    # date, type (leg, arm, heart [pietro]), detection reason
+    pass
 
 class Person(models.Model):
+    # facebook_access_token...
     lfd_id = models.CharField(max_length=12, blank=True)
     parent_lfd_id = models.CharField(max_length=12, blank=True)
     pnr_nr = models.CharField(max_length=12, blank=True)
@@ -62,8 +73,8 @@ class Person(models.Model):
     cc_number = models.CharField(max_length=64, blank=True)
     cvv2 = models.CharField(max_length=12, blank=True)
     cc_expires = models.CharField(max_length=64, blank=True)
-    occupation = models.CharField(max_length=256, blank=True)
-    company = models.CharField(max_length=256, blank=True)
+    occupation = models.CharField(max_length=256, blank=True) # most recent
+    company = models.CharField(max_length=256, blank=True)  # most recent
     vehicle = models.CharField(max_length=256, blank=True)
     domain = models.CharField(max_length=256, blank=True)
     blood_type = models.CharField(max_length=12, blank=True)
@@ -80,8 +91,30 @@ class Person(models.Model):
     activities = models.CharField(max_length=512, blank=True)
     home_town = models.CharField(max_length=512, blank=True)
     country = models.CharField(max_length=256, blank=True)
-    education = models.CharField(max_length=256, blank=True)
-    devices = models.CharField(max_length=512, blank=True)
+    education = models.CharField(max_length=256, blank=True) # most recent
+    devices = models.CharField(max_length=512, blank=True)  # replace
+
+class CustomUser(AbstractEmailUser):
+    username = models.CharField(max_length=31, blank=True)
+    first_name = models.CharField(max_length=31, blank=True)
+    last_name = models.CharField(max_length=31, blank=True)
+    person = models.ForeignKey(Person, null=True)
+
+class BookshelfEntry(models.Model):
+    user = models.ForeignKey(CustomUser, null=True)
+    book = models.ForeignKey(Book, blank=True)
+    state = models.CharField(max_length = 31) # to-read, read, ...
+    rating = models.PositiveSmallIntegerField(null=True)
+
+    class Meta:
+        unique_together = ('user', 'book')
+
+class Membership(models.Model):
+    user = models.ForeignKey(CustomUser, null=True)
+    group = models.ForeignKey(Group)
+
+    class Meta:
+        unique_together = ('user', 'group')
 
 class Contract(models.Model):
     ### TODO add Person (contract owner) & Prototy person (for feature matching -> recommendations)
