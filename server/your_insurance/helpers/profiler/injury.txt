@@ -1,0 +1,4 @@
+broken heart:gebrochen
+torn:torn
+cut:cut
+broke:broke

@@ -4,11 +4,12 @@ from PIL import Image, ImageDraw
 from server.your_insurance.helpers.image_det.models.tiny_yolo import TinyYoloNet
 from server.your_insurance.helpers.image_det.utils import *
 from server.your_insurance.helpers.image_det.darknet import Darknet
+from server.your_insurance.helpers.utils import PROJ_PATH
 
 
 def detect(imgfile):
-    cfgfile = "cfg2/yolo.cfg"
-    weightfile = "yolo.weights"
+    cfgfile = PROJ_PATH+"/helpers/image_det/cfg2/yolo.cfg"
+    weightfile = PROJ_PATH+"/helpers/image_det/yolo.weights"
 
     m = Darknet(cfgfile)
 
@@ -16,12 +17,7 @@ def detect(imgfile):
     m.load_weights(weightfile)
     print('Loading weights from %s... Done!' % (weightfile))
 
-    if m.num_classes == 20:
-        namesfile = 'data/voc.names'
-    elif m.num_classes == 80:
-        namesfile = 'data/coco.names'
-    else:
-        namesfile = 'data/names'
+    namesfile = PROJ_PATH+'/helpers/image_det/data/coco.names'
 
     use_cuda = 0
     if use_cuda:

@@ -22,7 +22,6 @@ import urllib
 import pprint
 
 # get Facebook access token from environment variable
-ACCESS_TOKEN = 'EAACEdEose0cBAHxgpHazBsHFt1f4k5hjV4nGzoPRZCpN8qjl6TwWtAHCKGG97bCA8boRFOn4U0XaoyyLBH5veDVRsk0wfZBZAWnAgKyg03huZCkgjQ0zG09h2zGOW13KpAdL0cRJfRQrbUbxh9mRNCxXELHndZBZBMcEGP61gfTSA3nf3Hfd6hL9NgKoTsuUEZD'
 HOST = "https://graph.facebook.com"
 
 N_IMGS = 10
@@ -31,7 +30,7 @@ N_POSTS = 10
 
 # build the URL for the API endpoint
 
-def get_img_url_for_id(id):
+def get_img_url_for_id(id, access_token):
 
 
     path='/'+ str(id)
@@ -39,7 +38,7 @@ def get_img_url_for_id(id):
 
     params = urlencode(dict(
         fields='images',
-        access_token=ACCESS_TOKEN
+        access_token=access_token
     ))
 
     url = "{host}{path}?{params}".format(host=HOST, path=path, params=params)
@@ -58,14 +57,14 @@ def get_img_url_for_id(id):
 
 
     # display the result
-    pprint.pprint(img_str)
+    #pprint.pprint(img_str)
 
     return img_str
 
 
-def get_posts_for_uid(uid):
+def get_posts_for_uid(uid, access_token):
 
-    graph = facebook.GraphAPI(ACCESS_TOKEN)
+    graph = facebook.GraphAPI(access_token)
     profile = graph.get_object(uid)
     posts = graph.get_connections(profile['id'], 'posts')
 
@@ -89,11 +88,11 @@ def get_posts_for_uid(uid):
 
 
 
-def get_personal_infos_for_id(id):
+def get_personal_infos_for_id(id, access_token):
 
     path='/'+ str(id)
 
-    infos_fields = ["about","affiliation","birthday","name","emails","hometown","locations","website", "gender"]
+    infos_fields = ["about","location","affiliation","birthday","name","emails","hometown","locations","website", "gender"]
 
     person_dict = dict()
 
@@ -101,7 +100,7 @@ def get_personal_infos_for_id(id):
 
         params = urlencode(dict(
             fields=i_f,
-            access_token=ACCESS_TOKEN
+            access_token=access_token
         ))
 
         url = "{host}{path}?{params}".format(host=HOST, path=path, params=params)
@@ -124,9 +123,9 @@ def get_personal_infos_for_id(id):
     return person_dict
 
 
-def get_likes_for_uid(uid):
+def get_likes_for_uid(uid, access_token):
 
-    graph = facebook.GraphAPI(ACCESS_TOKEN)
+    graph = facebook.GraphAPI(access_token)
     profile = graph.get_object(uid)
     likes = graph.get_connections(profile['id'], 'likes')
 
@@ -149,9 +148,9 @@ def get_likes_for_uid(uid):
     return ret_likes
 
 
-def get_images_for_uid(uid):
+def get_images_for_uid(uid, access_token):
 
-    graph = facebook.GraphAPI(ACCESS_TOKEN)
+    graph = facebook.GraphAPI(access_token)
     profile = graph.get_object(uid)
     photos = graph.get_connections(profile['id'], 'photos')
 
@@ -163,7 +162,7 @@ def get_images_for_uid(uid):
             # Facebook.
             for photo in photos['data']:
                 ret_imgs.append(dict(
-                    img_url = get_img_url_for_id(photo['id']),
+                    img_url = get_img_url_for_id(photo['id'], access_token),
                     name = photo.get("name")
                 ))
 
@@ -177,9 +176,9 @@ def get_images_for_uid(uid):
     return ret_imgs
 
 
-def get_family_for_uid(uid):
+def get_family_for_uid(uid, access_token):
 
-    graph = facebook.GraphAPI(ACCESS_TOKEN)
+    graph = facebook.GraphAPI(access_token)
     profile = graph.get_object(uid)
     fam_members = graph.get_connections(profile['id'], 'family')
 
@@ -191,7 +190,7 @@ def get_family_for_uid(uid):
             # Facebook.
             for member in fam_members['data']:
 
-                member_info = get_personal_infos_for_id(member['id'])
+                member_info = get_personal_infos_for_id(member['id'], access_token)
 
                 members.append(dict(
                     name = member.get('name'),
@@ -210,9 +209,9 @@ def get_family_for_uid(uid):
     return members
 
 
-def get_locations_for_uid(uid):
+def get_locations_for_uid(uid, access_token):
 
-    graph = facebook.GraphAPI(ACCESS_TOKEN)
+    graph = facebook.GraphAPI(access_token)
     profile = graph.get_object(uid)
     tagged_locations = graph.get_connections(profile['id'], 'tagged_places')
 
@@ -245,12 +244,12 @@ def get_locations_for_uid(uid):
 #about,affiliation,birthday,emails,likes,hometown,locations,website
 
 
-print(get_posts_for_uid("BillGates"))
-print(get_images_for_uid("BillGates"))
-print(get_personal_infos_for_id("BillGates"))
-print(get_likes_for_uid("BillGates"))
-print(get_family_for_uid("me"))
-print(get_locations_for_uid("me"))
+# print(get_posts_for_uid("me"))
+# print(get_images_for_uid("me"))
+# print(get_personal_infos_for_id("me"))
+# print(get_likes_for_uid("me"))
+# print(get_family_for_uid("me"))
+# print(get_locations_for_uid("me"))
 
 # graph = facebook.GraphAPI(ACCESS_TOKEN)
 # profile = graph.get_object(user)
