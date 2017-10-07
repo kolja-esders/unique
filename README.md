@@ -1,4 +1,4 @@
-# gutenberg
+# Your Insurance.
 The Django + GraphQL Relay Modern backend.
 
 
@@ -12,13 +12,13 @@ The Django + GraphQL Relay Modern backend.
 You will need python 3 and node installed.
 You will also need to have a virtualenv activated before running npm install/yarn or the post install build step will fail as django needs to be available to dump the graphql_schema
 ```
-source ~/.virtualenvs/gutenberg/bin/activate
+source ~/.virtualenvs/your_insurance/bin/activate
 pip3 install -r ./deps/dev.txt
 yarn
 ```
 
 ## Getting started
-Define a django model, register the node and query with in the ./server/gutenberg/schema.py
+Define a django model, register the node and query with in the ./server/your_insurance/schema.py
 
 To work with the client side, add a route in the ./client/routes
 

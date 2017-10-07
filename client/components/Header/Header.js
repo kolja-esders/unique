@@ -16,7 +16,7 @@ class Header extends React.Component {
     return (
       <header className={styles.root}>
           <h1 className={styles.brand_name}>
-              <Link to="/" className={styles.brand_name_link}>Gutenberg</Link>
+              <Link to="/" className={styles.brand_name_link}>Your Insurance</Link>
           </h1>
           <nav className={styles.nav}>
               { isLoggedIn ? (

@@ -1,0 +1,45 @@
+
+
+.container {
+  width: 800px;
+  margin: 0 auto;
+
+  .addBook {
+    margin-top: 10px;
+    float: right;
+  }
+
+  .emoji{
+    width: 128px;
+    height: 128px;
+    background-image: url('../../assets/emoji_wink.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    float: left;
+  }
+
+  .root {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    margin-top: 100px;
+
+
+    .becomingFriends {
+
+       width: 800px;
+
+
+      .friends {
+        margin-left: calc(128px + 3em);
+
+      }
+    }
+  }
+
+
+
+
+
+
+}
