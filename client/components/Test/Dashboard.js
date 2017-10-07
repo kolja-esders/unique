@@ -1,6 +1,6 @@
 import React from 'react';
 import { List, Header, Feed, Statistic, Segment, Grid, Label } from 'semantic-ui-react';
-//import numeral from 'numeral'
+
 
 
 function getInitialEvents() {
