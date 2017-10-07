@@ -33,10 +33,6 @@ const coreRoutes = [
   },
   {
     path: '/home',
-    component: LandingPage,
-  },
-  {
-    path: '/myinsurances',
     component: ModulePage,
   }
 

@@ -58,6 +58,10 @@ class ConfirmPage extends React.Component {
                     <label>Age</label>
                     <input placeholder='Age' value='24'/>
                   </Form.Field>
+                  <Form.Field>
+                    <label>Employer / School</label>
+                    <input placeholder='Employer / School' value='Karlsruhe Institute of Technology'/>
+                  </Form.Field>
                 </Grid.Column>
 
                 <Grid.Column>
