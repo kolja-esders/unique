@@ -5,7 +5,8 @@ from graphene_django.types import DjangoObjectType, ObjectType
 from core.user_helper.jwt_util import get_token_user_id
 from core.user_helper.jwt_schema import TokensInterface
 from .models import Book as BookModal, BookshelfEntry as BookshelfEntryModal, Membership as MembershipModal, Group as GroupModal
-from .models import DetectionReason as DetectionReasonModal, Device as DeviceModal, Activity as ActivityModal, FamilyMember as FamilyMemberModal, LifestyleEntity as LifestyleEntityModal, Location as LocationModal, Injury as InjuryModal, Person as PersonModal, Contract as ContractModal, Review as ReviewModal, CustomUser as CustomUserModal, SalaryMapping as SalaryMappingModal, Story as StoryModal
+from .models import DetectionReason as DetectionReasonModal, Device as DeviceModal, Activity as ActivityModal, FamilyMember as FamilyMemberModal, LifestyleEntity as LifestyleEntityModal, Location as LocationModal, Injury as InjuryModal, Person as PersonModal, Contract as ContractModal, Review as ReviewModal, CustomUser as CustomUserModal, SalaryMapping as SalaryMappingModal, Story as StoryModal, Trigger as TriggerModal
+# from server.core.helpers.profiler.builder import create_person_for
 
 class Book(DjangoObjectType):
     class Meta:
@@ -46,12 +47,6 @@ class User(DjangoObjectType):
             'person'
         )
         interfaces = (graphene.Node, TokensInterface)
-
-    bookshelf = graphene.List(BookshelfEntry)
-
-    @graphene.resolve_only_args
-    def resolve_bookshelf(self):
-        return self.bookshelfentry_set.all()
 
 class DetectionReason(DjangoObjectType):
     class Meta:
@@ -113,6 +108,10 @@ class Story(DjangoObjectType):
         model = StoryModal
         interfaces = (graphene.Node, )
 
+class Trigger(DjangoObjectType):
+    class Meta:
+        model = TriggerModal
+        interfaces = (graphene.Node,)
 
 class CoreQueries(graphene.AbstractType):
     detection_reason = graphene.Node.Field(DetectionReason)
@@ -147,8 +146,6 @@ class CoreQueries(graphene.AbstractType):
     persons = graphene.List(Person)
     all_persons = DjangoFilterConnectionField(Person)
 
-
-
     contract = graphene.Node.Field(Contract)
     contracts = graphene.List(Contract)
     all_contracts = DjangoFilterConnectionField(Contract)
@@ -165,6 +162,14 @@ class CoreQueries(graphene.AbstractType):
     stories = graphene.List(Story)
     all_stories = DjangoFilterConnectionField(Story)
 
+    trigger = graphene.Field(Trigger, id=graphene.ID())
+
+    def resolve_trigger(self, args, context, info):
+        if 'id' in args:
+           user = get_user_model().objects.get(pk=args['id'])
+           # create_person_for(user)
+           return Trigger(success='1')
+        return Trigger(success='0')
 
     def resolve_detection_reasons(self, args, context, info):
         detection_reasons = DetectionReasonModal.objects.all()

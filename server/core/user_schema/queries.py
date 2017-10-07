@@ -14,7 +14,7 @@ class UserQueries(AbstractType):
 
     @staticmethod
     def resolve_users(self, args, context, info):
-        return get_user_model().objects.select_related('books').all()
+        return get_user_model().objects.all()
 
     @staticmethod
     def resolve_viewer(self, args, context, info):
