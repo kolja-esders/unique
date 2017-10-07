@@ -1,17 +1,11 @@
 import torch
-import matplotlib.pyplot as plt
-import numpy as np 
-import argparse
-import pickle 
-import os
-from torch.autograd import Variable 
-from torchvision import transforms 
 from PIL import Image
+from server.core.helpers.image_cap.build_vocab import load_vocab
+from server.core.helpers.image_cap.model import EncoderCNN, DecoderRNN
+from torch.autograd import Variable
+from torchvision import transforms
 
-
-from server.your_insurance.helpers.image_cap.model import EncoderCNN, DecoderRNN
-from server.your_insurance.helpers.image_cap.build_vocab import load_vocab
-from server.your_insurance.helpers.utils import PROJ_PATH
+from server.core.helpers.utils import PROJ_PATH
 
 
 def to_var(x, volatile=False):

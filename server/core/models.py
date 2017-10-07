@@ -27,38 +27,6 @@ class DetectionReason(models.Model):
     date = models.CharField(max_length=32, default="")
     type = models.CharField(max_length=256, default="")
 
-class Device(models.Model):
-    estimated_price = models.CharField(max_length=32, default="")
-    type = models.CharField(max_length=256, default="")
-    detection_reason = models.ForeignKey(DetectionReason)
-    icon = models.CharField(max_length=256, default="")
-
-class Activity(models.Model):
-    name = models.CharField(max_length=128, default="")
-    frequency = models.CharField(max_length=64, default="")
-    detection_reason = models.ForeignKey(DetectionReason)
-
-class FamilyMember(models.Model):
-    name = models.CharField(max_length=128, default="")
-    age = models.CharField(max_length=12, default="")
-    gender = models.CharField(max_length=32, default="")
-    relation = models.CharField(max_length=64, default="") # daughter, wife, ...
-    detection_reason = models.ForeignKey(DetectionReason)
-
-class LifestyleEntity(models.Model):
-    name = models.CharField(max_length=128, default="") # smoking
-    frequency = models.CharField(max_length=64, default="") # rare, daily, weekly, ...)
-    detection_reason = models.ForeignKey(DetectionReason)
-
-class Location(models.Model):
-    name = models.CharField(max_length=256, default="")
-    example_image = models.CharField(max_length=1024, default="")
-    detection_reason = models.ForeignKey(DetectionReason)
-
-class Injury(models.Model):
-    date = models.CharField(max_length=32, default="")
-    type = models.CharField(max_length=128, default="") # leg, arm, heart [pietro]
-    detection_reason = models.ForeignKey(DetectionReason)
 
 class Person(models.Model):
     fb_access_token = models.CharField(max_length=512, default="")
@@ -95,15 +63,49 @@ class Person(models.Model):
     income = models.CharField(max_length=64, blank=True)
     expenses = models.CharField(max_length=64, blank=True)
     fitness = models.CharField(max_length=128, blank=True)
-    activities = models.ManyToManyField(Activity, blank=True)
     home_town = models.CharField(max_length=512, blank=True)
     country = models.CharField(max_length=256, blank=True)
     education = models.CharField(max_length=256, blank=True) # most recent
-    devices = models.ManyToManyField(Device)
-    injuries = models.ManyToManyField(Injury)
-    family_members = models.ManyToManyField(FamilyMember)
-    lifestyle_entities = models.ManyToManyField(LifestyleEntity)
-    locations = models.ManyToManyField(Location)
+
+
+class Device(models.Model):
+    estimated_price = models.CharField(max_length=32, default="")
+    type = models.CharField(max_length=256, default="")
+    detection_reason = models.ForeignKey(DetectionReason)
+    icon = models.CharField(max_length=256, default="")
+    person = models.ForeignKey(Person, blank=True, null=True)
+
+class Activity(models.Model):
+    name = models.CharField(max_length=128, default="")
+    frequency = models.CharField(max_length=64, default="")
+    detection_reason = models.ForeignKey(DetectionReason)
+    person = models.ForeignKey(Person, blank=True, null=True)
+
+class FamilyMember(models.Model):
+    name = models.CharField(max_length=128, default="")
+    age = models.CharField(max_length=12, default="")
+    gender = models.CharField(max_length=32, default="")
+    relation = models.CharField(max_length=64, default="") # daughter, wife, ...
+    detection_reason = models.ForeignKey(DetectionReason)
+    person = models.ForeignKey(Person, blank=True, null=True)
+
+class LifestyleEntity(models.Model):
+    name = models.CharField(max_length=128, default="") # smoking
+    frequency = models.CharField(max_length=64, default="") # rare, daily, weekly, ...)
+    detection_reason = models.ForeignKey(DetectionReason)
+    person = models.ForeignKey(Person, blank=True, null=True)
+
+class Location(models.Model):
+    name = models.CharField(max_length=256, default="")
+    example_image = models.CharField(max_length=1024, default="")
+    detection_reason = models.ForeignKey(DetectionReason)
+    person = models.ForeignKey(Person, blank=True, null=True)
+
+class Injury(models.Model):
+    date = models.CharField(max_length=32, default="")
+    type = models.CharField(max_length=128, default="") # leg, arm, heart [pietro]
+    detection_reason = models.ForeignKey(DetectionReason)
+    person = models.ForeignKey(Person, blank=True, null=True)
 
 class CustomUser(AbstractEmailUser):
     username = models.CharField(max_length=31, blank=True)

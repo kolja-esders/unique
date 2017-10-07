@@ -1,1 +1,0 @@
-PROJ_PATH = "/home/david/reps/your-insurance/server/your_insurance/"
