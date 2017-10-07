@@ -1,7 +1,7 @@
 import csv
 
 from django.core.management.base import BaseCommand, CommandError
-from core.models import CustomUser
+from core.models import Person
 
 class Command(BaseCommand):
     help = 'Closes the specified poll for voting'
@@ -18,7 +18,7 @@ class Command(BaseCommand):
             for row in reader:
 #                if CustomUser.objects.get(email=row[7]) != None:
 #                    continue
-                obj, created = CustomUser.objects.get_or_create(
+                obj, created = Person.objects.get_or_create(
                     lfd_id=row[0],
                     parent_lfd_id=row[1],
                     pnr_nr=row[2],
@@ -26,7 +26,7 @@ class Command(BaseCommand):
                     given_name=row[4],
                     surname=row[5],
                     gender=row[6],
-                    email=row[7],
+                    email_address=row[7],
                     browser_user_agent=row[8],
                     telephone_number=row[9],
                     telephone_country_code=row[10],
