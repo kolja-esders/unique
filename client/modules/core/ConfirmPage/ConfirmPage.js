@@ -21,6 +21,9 @@ let getActivity = function(name, frequency) {
 class ConfirmPage extends React.Component {
 
   render() {
+    console.log(this.props.viewer)
+    const user = this.props.viewer.user;
+    
     return (
       <header className={styles.root}>
         <div className={styles.personal}>
@@ -32,7 +35,7 @@ class ConfirmPage extends React.Component {
               <ProfileImage imagePath={img} />
             </div>
           </div>
-          <h1 className={styles.name}>Kolja<span className={styles.welcome}>, meet Ginger</span></h1>
+          <h1 className={styles.name}>{ user.firstName }<span className={styles.welcome}>, meet Ginger</span></h1>
         </div>
 
         <Form>
@@ -48,11 +51,11 @@ class ConfirmPage extends React.Component {
 
                   <Form.Field>
                     <label>First name</label>
-                    <input placeholder='First name' value='Kolja'/>
+                    <input placeholder='First name' value={ user.firstName }/>
                   </Form.Field>
                   <Form.Field>
                     <label>Last name</label>
-                    <input placeholder='Last name' value='Esders'/>
+                    <input placeholder='Last name' value={ user.lastName }/>
                   </Form.Field>
                   <Form.Field>
                     <label>Age</label>
@@ -178,6 +181,8 @@ export default createFragmentContainer(
       id
       user {
         email
+        firstName
+        lastName
       }
     }
   `,
