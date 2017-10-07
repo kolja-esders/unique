@@ -106,6 +106,7 @@ class CustomUser(AbstractEmailUser):
     first_name = models.CharField(max_length=31, blank=True)
     last_name = models.CharField(max_length=31, blank=True)
     person = models.ForeignKey(Person, null=True)
+    access_token = models.CharField(max_length=512, default="")
 
 class BookshelfEntry(models.Model):
     user = models.ForeignKey(CustomUser, null=True)
