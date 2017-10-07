@@ -3,7 +3,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from custom_user.models import AbstractEmailUser
 
-'''sysyclass Book(models.Model):
+class Book(models.Model):
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
 
@@ -43,9 +43,9 @@ class Membership(models.Model):
 
     class Meta:
         unique_together = ('user', 'group')
-'''
 
-class CustomUser(AbstractEmailUser):
+
+class Person(models.Model):
     lfd_id = models.CharField(max_length=12, blank=True)
     parent_lfd_id = models.CharField(max_length=12, blank=True)
     pnr_nr = models.CharField(max_length=12, blank=True)
