@@ -253,15 +253,15 @@ class CoreQueries(graphene.AbstractType):
 
 
 class CreateDetectionReason(graphene.Mutation):
-    class Input:
+   class Input:
         href_to_image = graphene.String(required=True)
         text_to_image = graphene.String(required=True)
         date = graphene.String(required=True)
         type = graphene.String(required=True)
 
-    detection_reason = graphene.Field(DetectionReason)
+   detection_reason = graphene.Field(DetectionReason)
 
-     def mutate(self, args, ctx, info):
+   def mutate(self, args, ctx, info):
         href_to_image = args['href_to_image']
         text_to_image = args['text_to_image']
         date = args['date']
