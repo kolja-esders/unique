@@ -34,15 +34,15 @@ class Landing extends React.Component {
           <img  src={LogoImg} style={styles.backgroundImage}/>
 
           <p>
-            <Button primary as={Link} to='/add-book' className={styles.addBook}>Explore</Button>
+            <Button primary as={Link} to='/becoming-friends' className={styles.addBook}>Explore</Button>
             <FacebookProvider appId="133394323974213">
               <Login
                   scope="email"
                   onResponse={this.handleResponse}
                   onError={this.handleError}>
                   <Button className={styles.loginButtonFacebook}>Login via Facebook</Button>
-
               </Login>
+
             </FacebookProvider>
           </p>
           <p>
