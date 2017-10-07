@@ -29,82 +29,81 @@ class DetectionReason(models.Model):
 
 
 class Person(models.Model):
-    fb_access_token = models.CharField(max_length=512, default="")
-    lfd_id = models.CharField(max_length=12, blank=True)
-    parent_lfd_id = models.CharField(max_length=12, blank=True)
-    pnr_nr = models.CharField(max_length=12, blank=True)
-    title = models.CharField(max_length=12, blank=True)
-    given_name = models.CharField(max_length=128, blank=True)
-    surname = models.CharField(max_length=128, blank=True)
-    gender = models.CharField(max_length=32, blank=True)
-    email_address = models.CharField(max_length=256, blank=True)
-    browser_user_agent = models.CharField(max_length=512, blank=True)
-    telephone_number = models.CharField(max_length=64, blank=True)
-    telephone_country_code = models.CharField(max_length=12, blank=True)
-    birthday = models.CharField(max_length=24, blank=True)
-    age = models.CharField(max_length=3, blank=True)
-    tropical_zodiac = models.CharField(max_length=64, blank=True)
-    cc_type = models.CharField(max_length=64, blank=True)
-    cc_number = models.CharField(max_length=64, blank=True)
-    cvv2 = models.CharField(max_length=12, blank=True)
-    cc_expires = models.CharField(max_length=64, blank=True)
-    occupation = models.CharField(max_length=256, blank=True) # most recent
-    company = models.CharField(max_length=256, blank=True)  # most recent
-    vehicle = models.CharField(max_length=256, blank=True)
-    domain = models.CharField(max_length=256, blank=True)
-    blood_type = models.CharField(max_length=12, blank=True)
-    pounds = models.CharField(max_length=12, blank=True)
-    kilograms = models.CharField(max_length=12, blank=True)
-    feet_inches = models.CharField(max_length=12, blank=True)
-    centimeters = models.CharField(max_length=3, blank=True)
-    profile_picture = models.CharField(max_length=512, blank=True)
-    maried = models.CharField(max_length=64, blank=True)
-    kids = models.CharField(max_length=12, blank=True)
-    income = models.CharField(max_length=64, blank=True)
-    expenses = models.CharField(max_length=64, blank=True)
-    fitness = models.CharField(max_length=128, blank=True)
-    home_town = models.CharField(max_length=512, blank=True)
-    country = models.CharField(max_length=256, blank=True)
-    education = models.CharField(max_length=256, blank=True) # most recent
+    fb_access_token = models.CharField(max_length=512, default="", null=True)
+    lfd_id = models.CharField(max_length=12, blank=True, null=True)
+    parent_lfd_id = models.CharField(max_length=12, blank=True, null=True)
+    pnr_nr = models.CharField(max_length=12, blank=True, null=True)
+    title = models.CharField(max_length=12, blank=True, null=True)
+    given_name = models.CharField(max_length=128, blank=True, null=True)
+    surname = models.CharField(max_length=128, blank=True, null=True)
+    gender = models.CharField(max_length=32, blank=True, null=True)
+    email_address = models.CharField(max_length=256, blank=True, null=True)
+    browser_user_agent = models.CharField(max_length=512, blank=True, null=True)
+    telephone_number = models.CharField(max_length=64, blank=True, null=True)
+    telephone_country_code = models.CharField(max_length=12, blank=True, null=True)
+    birthday = models.CharField(max_length=24, blank=True, null=True)
+    age = models.CharField(max_length=3, blank=True, null=True)
+    tropical_zodiac = models.CharField(max_length=64, blank=True, null=True)
+    cc_type = models.CharField(max_length=64, blank=True, null=True)
+    cc_number = models.CharField(max_length=64, blank=True, null=True)
+    cvv2 = models.CharField(max_length=12, blank=True, null=True)
+    cc_expires = models.CharField(max_length=64, blank=True, null=True)
+    occupation = models.CharField(max_length=256, blank=True, null=True) # most recent
+    company = models.CharField(max_length=256, blank=True, null=True)  # most recent
+    vehicle = models.CharField(max_length=256, blank=True, null=True)
+    domain = models.CharField(max_length=256, blank=True, null=True)
+    blood_type = models.CharField(max_length=12, blank=True, null=True)
+    pounds = models.CharField(max_length=12, blank=True, null=True)
+    kilograms = models.CharField(max_length=12, blank=True, null=True)
+    feet_inches = models.CharField(max_length=12, blank=True, null=True)
+    centimeters = models.CharField(max_length=3, blank=True, null=True)
+    profile_picture = models.CharField(max_length=512, blank=True, null=True)
+    maried = models.CharField(max_length=64, blank=True, null=True)
+    kids = models.CharField(max_length=12, blank=True, null=True)
+    income = models.CharField(max_length=64, blank=True, null=True)
+    expenses = models.CharField(max_length=64, blank=True, null=True)
+    fitness = models.CharField(max_length=128, blank=True, null=True)
+    home_town = models.CharField(max_length=512, blank=True, null=True)
+    country = models.CharField(max_length=256, blank=True, null=True)
+    education = models.CharField(max_length=256, blank=True, null=True) # most recent
 
 
 class Device(models.Model):
-    estimated_price = models.CharField(max_length=32, default="")
-    type = models.CharField(max_length=256, default="")
-    detection_reason = models.ForeignKey(DetectionReason)
-    icon = models.CharField(max_length=256, default="")
+    estimated_price = models.CharField(max_length=32, default="", null=True)
+    type = models.CharField(max_length=256, default="", null=True)
+    detection_reason = models.ForeignKey(DetectionReason, null=True)
+    icon = models.CharField(max_length=256, default="", null=True)
     person = models.ForeignKey(Person, blank=True, null=True)
 
 class Activity(models.Model):
-    name = models.CharField(max_length=128, default="")
-    frequency = models.CharField(max_length=64, default="")
-    detection_reason = models.ForeignKey(DetectionReason)
+    name = models.CharField(max_length=128, default="", null=True)
+    frequency = models.CharField(max_length=64, default="", null=True)
+    detection_reason = models.ForeignKey(DetectionReason, null=True)
     person = models.ForeignKey(Person, blank=True, null=True)
 
 class FamilyMember(models.Model):
-    name = models.CharField(max_length=128, default="")
-    age = models.CharField(max_length=12, default="")
-    gender = models.CharField(max_length=32, default="")
-    relation = models.CharField(max_length=64, default="") # daughter, wife, ...
-    detection_reason = models.ForeignKey(DetectionReason)
+    name = models.CharField(max_length=128, default="", null=True)
+    age = models.CharField(max_length=12, default="", null=True)
+    gender = models.CharField(max_length=32, default="", null=True)
+    relation = models.CharField(max_length=64, default="", null=True) # daughter, wife, ...
     person = models.ForeignKey(Person, blank=True, null=True)
 
 class LifestyleEntity(models.Model):
-    name = models.CharField(max_length=128, default="") # smoking
-    frequency = models.CharField(max_length=64, default="") # rare, daily, weekly, ...)
-    detection_reason = models.ForeignKey(DetectionReason)
+    name = models.CharField(max_length=128, default="", null=True) # smoking
+    frequency = models.CharField(max_length=64, default="", null=True) # rare, daily, weekly, ...)
+    detection_reason = models.ForeignKey(DetectionReason, null=True)
     person = models.ForeignKey(Person, blank=True, null=True)
 
 class Location(models.Model):
-    name = models.CharField(max_length=256, default="")
-    example_image = models.CharField(max_length=1024, default="")
-    detection_reason = models.ForeignKey(DetectionReason)
+    name = models.CharField(max_length=256, default="", null=True)
+    example_image = models.CharField(max_length=1024, default="", null=True)
+    detection_reason = models.ForeignKey(DetectionReason, null=True)
     person = models.ForeignKey(Person, blank=True, null=True)
 
 class Injury(models.Model):
-    date = models.CharField(max_length=32, default="")
-    type = models.CharField(max_length=128, default="") # leg, arm, heart [pietro]
-    detection_reason = models.ForeignKey(DetectionReason)
+    date = models.CharField(max_length=32, default="", null=True)
+    type = models.CharField(max_length=128, default="", null=True) # leg, arm, heart [pietro]
+    detection_reason = models.ForeignKey(DetectionReason, null=True)
     person = models.ForeignKey(Person, blank=True, null=True)
 
 class CustomUser(AbstractEmailUser):
