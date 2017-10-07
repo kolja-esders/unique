@@ -10,7 +10,7 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        path = "/home/thomas/insurhack/customerdata2/ZurichTestUserData/NEW_P_NAPA.csv"
+        path = "/Users/kolja/Downloads/ZurichTestUserData/NEW_P_NAPA.csv"
 
         with open(path) as f:
             reader = csv.reader(f, delimiter=',')
@@ -52,11 +52,11 @@ class Command(BaseCommand):
                     income='',
                     expenses='',
                     fitness='',
-                    activities='',
+                    # activities='',
                     home_town='',
                     country='',
                     education='',
-                    devices='',
+                    #devices='',
                 )
 
             self.stdout.write(self.style.SUCCESS('Successfully closed poll "%s"' % poll_id))
