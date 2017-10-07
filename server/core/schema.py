@@ -6,7 +6,7 @@ from core.user_helper.jwt_util import get_token_user_id
 from core.user_helper.jwt_schema import TokensInterface
 from .models import Book as BookModal, BookshelfEntry as BookshelfEntryModal, Membership as MembershipModal, Group as GroupModal
 from .models import DetectionReason as DetectionReasonModal, Device as DeviceModal, Activity as ActivityModal, FamilyMember as FamilyMemberModal, LifestyleEntity as LifestyleEntityModal, Location as LocationModal, Injury as InjuryModal, Person as PersonModal, Contract as ContractModal, Review as ReviewModal, CustomUser as CustomUserModal, SalaryMapping as SalaryMappingModal, Story as StoryModal, Trigger as TriggerModal
-from server.core.helpers.profiler.builder import create_person_for
+# from server.core.helpers.profiler.builder import create_person_for
 
 class Book(DjangoObjectType):
     class Meta:
@@ -171,11 +171,12 @@ class CoreQueries(graphene.AbstractType):
     trigger = graphene.Node.Field(Trigger)
 
     def resolve_trigger(self, args, context, info):
-        if 'id' in args:
-           user = UserModal.objects.get(pk=args['id'])
-           create_person_for(user)
-           return Trigger(success='1')
-        return Trigger(success='0')
+        # if 'id' in args:
+           # user = UserModal.objects.get(pk=args['id'])
+           # create_person_for(user)
+           # return Trigger(success='1')
+        # return Trigger(success='0')
+        return None
 
     def resolve_detection_reasons(self, args, context, info):
         detection_reasons = DetectionReasonModal.objects.all()
