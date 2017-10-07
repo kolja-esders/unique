@@ -23,7 +23,7 @@ const coreRoutes = [
     component: GroupView,
   },
   {
-    path: '/becomming-friends',
+    path: '/becoming-friends',
     component: LoadingPage,
   },
   {

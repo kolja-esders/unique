@@ -6,7 +6,7 @@ import styles from './LoadingPage.scss'
 class LoadingPage extends React.Component{
   render(){
     return(
-      <Page title="Becomming Friends ;-)" viewer={this.props.viewer}>
+      <Page title="Becoming Friends ;-)" viewer={this.props.viewer}>
         <section className={styles.container}>
 
             <h1>Lets become Friends!</h1>
