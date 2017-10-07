@@ -214,7 +214,6 @@ class CoreQueries(graphene.AbstractType):
         stories = StoryModal.objects.all()
         return stories
 
-
     book = graphene.Node.Field(Book)
     books = graphene.List(Book)
     all_books = DjangoFilterConnectionField(Book)
