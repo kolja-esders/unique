@@ -14,6 +14,7 @@ const rootQuery = graphql`
       ...Landing_viewer
       ...GroupView_viewer
       ...ConfirmPage_viewer
+      ...Story_viewer
       ...LoadingPage_viewer
       ...ModulePage_viewer
       }

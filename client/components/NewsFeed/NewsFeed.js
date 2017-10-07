@@ -9,14 +9,7 @@ class NewsFeed extends React.Component {
 
   render() {
     return (
-        <section className={styles.container}>
-          <h1>Insurance is unique.</h1>
-          <h3>As are you.</h3>
-          <p>
-            <Button primary as={Link} to='/add-book' className={styles.addBook}>Explore</Button>
-          </p>
-
-        </section>
+            <h1>Hallo</h1>
     );
   }
 }

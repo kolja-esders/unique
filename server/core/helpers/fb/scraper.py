@@ -92,7 +92,7 @@ def get_personal_infos_for_id(id, access_token):
 
     path='/'+ str(id)
 
-    infos_fields = ["about","location","affiliation","birthday","name","email","hometown","locations","website", "gender", "work"]
+    infos_fields = ["about","location","affiliation","birthday","name","email","hometown","locations","website", "gender", "work", "picture"]
 
     person_dict = dict()
 

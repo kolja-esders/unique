@@ -35,8 +35,6 @@ const data = [{
 class ModulePage extends React.Component{
 
   render(){
-    console.log(this.props.viewer)
-    console.log(this.props.viewer.user.person.profilePicture)
     return(
       <Page title='' viewer={this.props.viewer}>
 
