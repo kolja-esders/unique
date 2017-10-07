@@ -25,7 +25,7 @@ class DetectionReason(models.Model):
     href_to_image = models.CharField(max_length=1024, default="")
     text = models.CharField(max_length=512, default="")
     date = models.CharField(max_length=32, default="")
-    href_fb_post = models.CharField(max_length=1024, default="") # somehow refer to fb post
+    type = models.CharField(max_length=256, default="")
 
 class Device(models.Model):
     estimated_price = models.CharField(max_length=32, default="")
@@ -100,6 +100,10 @@ class Person(models.Model):
     country = models.CharField(max_length=256, blank=True)
     education = models.CharField(max_length=256, blank=True) # most recent
     devices = models.ManyToManyField(Device)
+    injuries = models.ManyToManyField(Injury)
+    family_members = models.ManyToManyField(FamilyMember)
+    lifestyle_entities = models.ManyToManyField(LifestyleEntity)
+    locations = models.ManyToManyField(Location)
 
 class CustomUser(AbstractEmailUser):
     username = models.CharField(max_length=31, blank=True)
@@ -144,7 +148,7 @@ class Review(models.Model):
 
 class SalaryMapping(models.Model):
     occupation = models.CharField(max_length=256, default="")
-    salary = models.FloatField()
+    salary = models.CharField(max_length=32, default="")
 
 class Story(models.Model):
     author = models.CharField(max_length=256, default="")
