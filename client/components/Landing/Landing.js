@@ -8,6 +8,7 @@ import styles from './Landing.scss';
 import LogoImg from './image.jpg';
 import FacebookProvider, { Login } from 'react-facebook';
 import SignupUserMutation from '../../modules/auth/mutations/Signup';
+import LoginUserMutation from '../../modules/auth/mutations/Login';
 import { isAuthenticated } from '../../modules/auth/utils';
 
 class Landing extends React.Component {
@@ -15,23 +16,28 @@ class Landing extends React.Component {
   handleResponse = (data) => {
     const { environment, router } = this.props
 
+    console.log(data)
+
     let input = {
       firstName: data['profile']['first_name'],
       lastName: data['profile']['last_name'],
       password: 'yolo1337',
-      email: data['profile']['email']
+      email: data['profile']['email'],
+      accessToken: data['tokenDetail']['accessToken']
     }
 
     function test(data) {
-      return true;
+      console.log('callback error', data)
+      console.log(input)
+      LoginUserMutation(environment, null, {password: input['password'], email: input['email'], accessToken: input['accessToken']})
     }
 
     SignupUserMutation(environment, test, input)
-    this.props.router.history.push('/setup')
+    this.props.router.history.push('/becoming-friends')
   }
 
   handleError = (error) => {
-    this.setState({ error });
+    console.log(error)
   }
 
   render() {
@@ -52,11 +58,6 @@ class Landing extends React.Component {
               </Login>
 
             </FacebookProvider>
-          </p>
-          <p>
-            <a
-              href="https://www.youtube.com/watch?v=p6N-ad52Z60" id="gtm_link_watch_the_video_above_the_fold" class="link-video js-btn-video"><i></i>Watch the video
-            </a>
           </p>
         </section>
 

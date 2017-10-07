@@ -32,6 +32,7 @@ class LoginMutation(relay.ClientIDMutation):
     class Input:
         email = String(required=True)
         password = String(required=True)
+        access_token = String(required=True)
 
     auth_form_payload = Field(AuthFormUnion)
 
@@ -39,6 +40,7 @@ class LoginMutation(relay.ClientIDMutation):
     def mutate_and_get_payload(cls, input, context, info):
         email = input.get('email')
         password = input.get('password')
+        access_token = input.get('access_token')
         user_exists = get_user_model().objects.filter(email=email)
         errors = []
         if not user_exists:
@@ -54,6 +56,8 @@ class LoginMutation(relay.ClientIDMutation):
             return LoginMutation(FormErrors(errors))
 
         user = authenticate(username=email, password=password)
+        user.access_token = access_token
+        user.save()
         jwt_token = get_jwt_token(user)
 
         if user and jwt_token:
@@ -73,6 +77,7 @@ class SignupUserMutation(relay.ClientIDMutation):
         password = String(required=True)
         first_name = String(required=True)
         last_name = String(required=True)
+        access_token = String(required=True)
 
     auth_form_payload = Field(AuthFormUnion)
 
@@ -82,10 +87,11 @@ class SignupUserMutation(relay.ClientIDMutation):
         password = input.get('password')
         first_name = input.get('first_name')
         last_name = input.get('last_name')
+        access_token = input.get('access_token')
         user = get_user_model().objects.filter(email=email)
         errors = []
         if not user:
-            user = get_user_model().objects.create_user(email=email, password=password, first_name=first_name, last_name=last_name)
+            user = get_user_model().objects.create_user(email=email, password=password, first_name=first_name, last_name=last_name, access_token=access_token)
             jwt_token = get_jwt_token(user)
             token = TokensSuccess(
                 token=jwt_token

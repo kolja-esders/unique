@@ -1,12 +1,56 @@
 
-
 .container {
   width: 800px;
   margin: 0 auto;
 
+
+  .imageWrapperRow {
+    margin: 0 auto;
+    display: flex;
+    flex-direction:row;
+    margin-left: -105px;
+  }
+
+  .imageWrapper {
+    margin-left: 20px;
+    width: 150px;
+    display: flex;
+    flex-direction:column;
+  }
+
+  .personal {
+    margin: 50px auto;
+    margin-bottom: 100px;
+    text-align: center;
+
+    .name {
+      font-family: Merriweather;
+      margin-top: 10px;
+      font-size: 3rem;
+    }
+
+    .welcome {
+      font-weight: normal;
+      font-family: Merriweather;
+      color: #aaa;
+      font-size: 3rem;
+    }
+  }
+
   .addBook {
     margin-top: 10px;
     float: right;
+  }
+
+  .hello {
+    font-family: Merriweather;
+    font-size: 3rem;
+    margin-bottom: 50px;
+  }
+
+  .listening {
+    margin-top: 30px!important;
+    font-family: Merriweather;
   }
 
   .emoji{
@@ -18,28 +62,16 @@
     float: left;
   }
 
-  .root {
-    display: flex;
-    flex: 1;
-    justify-content: center;
-    margin-top: 100px;
-
-
-    .becomingFriends {
-
-       width: 800px;
-
-
-      .friends {
-        margin-left: calc(128px + 3em);
-
-      }
-    }
+  .progress {
+    max-width: 600px;
+    margin: 0 auto!important;
   }
 
-
-
-
-
+  .friends {
+    margin-top: 80px;
+    font-family: Merriweather;
+    font-weight: normal;
+    font-size: 2rem;
+  }
 
 }
