@@ -1,4 +1,3 @@
-
 //import Polls from 'modules/polls/Polls';
 //import PollsDetail from 'modules/polls/PollsDetail';
 //import PollsResults from 'modules/polls/PollsResults';
@@ -7,6 +6,8 @@ import AddBookToBookshelf from 'modules/core/AddBookToBookshelf/AddBookToBookshe
 import GroupView from 'modules/core/GroupView/GroupView';
 import LoadingPage from 'components/LoadingPage/LoadingPage'
 import ConfirmPage from 'modules/core/ConfirmPage/ConfirmPage';
+import LandingPage from 'components/Landing/Landing';
+import ModulePage from 'components/ModulePage/ModulePage'
 
 
 const coreRoutes = [
@@ -15,7 +16,6 @@ const coreRoutes = [
     component: SharedBooks,
   },
   {
-
     path: '/add-book',
     component: AddBookToBookshelf,
   },
@@ -24,12 +24,20 @@ const coreRoutes = [
     component: GroupView,
   },
   {
-    path: '/becomming-friends',
+    path: '/becoming-friends',
     component: LoadingPage,
   },
   {
     path: '/setup',
     component: ConfirmPage,
+  },
+  {
+    path: '/home',
+    component: LandingPage,
+  },
+  {
+    path: '/myinsurances',
+    component: ModulePage,
   }
 
   //{
