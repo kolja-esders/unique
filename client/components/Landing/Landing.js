@@ -7,12 +7,23 @@ import { Button, Grid } from 'semantic-ui-react';
 import Link from 'react-router-dom/es/Link'
 import styles from './Landing.scss';
 import LogoImg from './image.jpg';
+import { FacebookLogin } from 'react-facebook-login-component';
+
 
 
 class Landing extends React.Component {
+
+  constructor (props, context) {
+    super(props, context);
+  }
+
+  responseFacebook (response) {
+   console.log(response);
+   //anything else you want to do(save to localStorage)...
+  }
+
   render() {
     return (
-      <Page title='' viewer={this.props.viewer}>
 
         <section className={styles.container}>
           <h1>Insurance is unique.</h1>
@@ -29,9 +40,21 @@ class Landing extends React.Component {
             </a>
           </p>
 
+          <div>
+            <FacebookLogin socialId="121319955244297"
+                           language="en_US"
+                           scope="public_profile,email"
+                           responseHandler={this.responseFacebook}
+                           xfbml={true}
+                           fields="id,email,name"
+                           version="v2.5"
+                           className="facebook-login"
+                           buttonText="Login With Facebook"/>
+          </div>
+
+
         </section>
 
-      </Page>
     );
   }
 }
