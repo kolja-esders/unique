@@ -1,5 +1,7 @@
 from collections import defaultdict
 
+from server.your_insurance.helpers.utils import PROJ_PATH
+
 CATS = ["activities", "devices", "injury", "locations", "lifestyle"]
 
 
@@ -13,7 +15,9 @@ class TextClassifier(object):
 
         for category in CATS:
 
-            with open(category + ".txt") as f:
+            file_name = PROJ_PATH + "/helpers/profiler/" + category + ".txt"
+
+            with open(file_name) as f:
                 for line in f.readlines():
                     if line.strip():
                         cls, keywrds = line.strip().split(":")
