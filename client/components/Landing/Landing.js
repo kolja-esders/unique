@@ -7,19 +7,18 @@ import { Button, Grid } from 'semantic-ui-react';
 import Link from 'react-router-dom/es/Link'
 import styles from './Landing.scss';
 import LogoImg from './image.jpg';
-import { FacebookLogin } from 'react-facebook-login-component';
+import FacebookProvider, { Login } from 'react-facebook';
 
 
 
 class Landing extends React.Component {
 
-  constructor (props, context) {
-    super(props, context);
+  handleResponse = (data) => {
+    console.log(data);
   }
 
-  responseFacebook (response) {
-   console.log(response);
-   //anything else you want to do(save to localStorage)...
+  handleError = (error) => {
+    this.setState({ error });
   }
 
   render() {
@@ -40,17 +39,15 @@ class Landing extends React.Component {
             </a>
           </p>
 
-          <div>
-            <FacebookLogin socialId="121319955244297"
-                           language="en_US"
-                           scope="public_profile,email"
-                           responseHandler={this.responseFacebook}
-                           xfbml={true}
-                           fields="id,email,name"
-                           version="v2.5"
-                           className="facebook-login"
-                           buttonText="Login With Facebook"/>
-          </div>
+          <FacebookProvider appId="365404513910530">
+        <Login
+          scope="email"
+          onResponse={this.handleResponse}
+          onError={this.handleError}
+        >
+          <span>Login via Facebook</span>
+        </Login>
+      </FacebookProvider>
 
 
         </section>
