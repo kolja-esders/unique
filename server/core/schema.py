@@ -281,20 +281,24 @@ class CreateDevice(graphene.Mutation):
         type = graphene.String(required=True)
         detection_reason = graphene.String(required=True)
         icon = graphene.String(required=True)
+        person = graphene.String(required=True)
 
     device = graphene.Field(Device)
 
     def mutate(self, args, ctx, info):
         detection_reason_id = args['detection_reason_id']
+        person_id = args['person_id']
         estimated_price = args['estimated_price']
         type = args['type']
         detection_reason = DeviceModal.objects.get(pk=detection_reason_id)
         icon = args['icon']
+        person = DeviceModal.objects.get(pk=person_id)
         device = DeviceModal(
             estimated_price=estimated_price,
             type=type,
             detection_reason=detection_reason,
-            icon=icon
+            icon=icon,
+            person=person
         )
         device.save()
         return CreateDevice(device=device)
@@ -304,18 +308,22 @@ class CreateActivity(graphene.Mutation):
         name = graphene.String(required=True)
         frequency = graphene.String(required=True)
         detection_reason = graphene.String(required=True)
+        person = graphene.String(required=True)
 
     activity = graphene.Field(Activity)
 
     def mutate(self, args, ctx, info):
         detection_reason_id = args['detection_reason_id']
+        person_id = args['person_id']
         name = args['name']
         frequency = args['frequency']
-        detection_reason = DeviceModal.objects.get(pk=detection_reason_id)
+        detection_reason = ActivityModal.objects.get(pk=detection_reason_id)
+        person = ActivityModal.objects.get(pk=person_id)
         activity = ActivityModal(
             name=name,
             frequency=frequency,
-            detection_reason=detection_reason
+            detection_reason=detection_reason,
+            person=person
         )
         activity.save()
         return CreateActivity(activity=activity)
@@ -327,22 +335,26 @@ class CreateFamilyMember(graphene.Mutation): # TODO TODO TODO
         gender = graphene.String(required=True)
         relation = graphene.String(required=True)
         detection_reason = graphene.String(required=True)
+        person = graphene.String(required=True)
 
     family_member = graphene.Field(FamilyMember)
 
     def mutate(self, args, ctx, info):
         detection_reason_id = args['detection_reason_id']
+        person_id = args['person_id']
         name = args['name']
         age = args['age']
         gender = args['gender']
         relation = args['relation']
-        detection_reason = DeviceModal.objects.get(pk=detection_reason_id)
+        detection_reason = FamilyMemberModal.objects.get(pk=detection_reason_id)
+        person = FamilyMemberModal.objects.get(pk=person_id)
         family_member = FamilyMemberModal(
             name=name,
             age=age,
             gender=gender,
             relation=relation,
-            detection_reason=detection_reason
+            detection_reason=detection_reason,
+            person=person
         )
         family_member.save()
         return CreateFamilyMember(family_member=family_member)
@@ -352,18 +364,22 @@ class CreateLifestyleEntity(graphene.Mutation):
         name = graphene.String(required=True)
         frequency = graphene.String(required=True)
         detection_reason = graphene.String(required=True)
+        person = graphene.String(required=True)
 
     lifestyle_entity = graphene.Field(LifestyleEntity)
 
     def mutate(self, args, ctx, info):
         detection_reason_id = args['detection_reason_id']
+        person_id = args['person_id']
         name = args['name']
         frequency = args['frequency']
-        detection_reason = DeviceModal.objects.get(pk=detection_reason_id)
+        detection_reason = LifestyleEntityModal.objects.get(pk=detection_reason_id)
+        person = LifestyleEntityModal.objects.get(pk=person_id)
         lifestyle_entity = LifestyleEntityModal(
             name=name,
             frequency=frequency,
-            detection_reason=detection_reason
+            detection_reason=detection_reason,
+            person=person
         )
         lifestyle_entity.save()
         return CreateLifestyleEntity(lifestyle_entity=lifestyle_entity)
@@ -373,18 +389,22 @@ class CreateLocation(graphene.Mutation):
         name = graphene.String(required=True)
         example_image = graphene.String(required=True)
         detection_reason = graphene.String(required=True)
+        person = graphene.String(required=True)
 
     location = graphene.Field(Location)
 
     def mutate(self, args, ctx, info):
         detection_reason_id = args['detection_reason_id']
+        person_id = args['person_id']
         name = args['name']
         example_image = args['example_image']
-        detection_reason = DeviceModal.objects.get(pk=detection_reason_id)
+        detection_reason = LocationModal.objects.get(pk=detection_reason_id)
+        person = LocationModal.objects.get(pk=person_id)
         location = LocationModal(
             name=name,
             example_image=example_image,
-            detection_reason=detection_reason
+            detection_reason=detection_reason,
+            person=person
         )
         location.save()
         return CreateLocation(location=location)
@@ -394,18 +414,22 @@ class CreateInjury(graphene.Mutation):
         date = graphene.String(required=True)
         type = graphene.String(required=True)
         detection_reason = graphene.String(required=True)
+        person = graphene.String(required=True)
 
     injury = graphene.Field(Injury)
 
     def mutate(self, args, ctx, info):
         detection_reason_id = args['detection_reason_id']
+        person_id = args['person_id']
         date = args['date']
         type = args['type']
-        detection_reason = DeviceModal.objects.get(pk=detection_reason_id)
+        detection_reason = InjuryModal.objects.get(pk=detection_reason_id)
+        person = InjuryModal.objects.get(pk=person_id)
         injury = InjuryModal(
             date=date,
             type=type,
-            detection_reason=detection_reason
+            detection_reason=detection_reason,
+            person=person
         )
         injury.save()
         return CreateInjury(injury=injury)
