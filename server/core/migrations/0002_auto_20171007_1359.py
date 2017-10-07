@@ -14,72 +14,6 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Activity',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(default='', max_length=128)),
-                ('frequency', models.CharField(default='', max_length=64)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='DetectionReason',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('href_to_image', models.CharField(default='', max_length=1024)),
-                ('text', models.CharField(default='', max_length=512)),
-                ('date', models.CharField(default='', max_length=32)),
-                ('fb_post', models.CharField(default='', max_length=1024)),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Device',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('estimated_price', models.CharField(default='', max_length=32)),
-                ('type', models.CharField(default='', max_length=256)),
-                ('icon', models.CharField(default='', max_length=256)),
-                ('detection_reason', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.DetectionReason')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='FamilyMember',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(default='', max_length=128)),
-                ('age', models.CharField(default='', max_length=12)),
-                ('gender', models.CharField(default='', max_length=32)),
-                ('relation', models.CharField(default='', max_length=64)),
-                ('detection_reason', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.DetectionReason')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Injury',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('date', models.CharField(default='', max_length=32)),
-                ('type', models.CharField(default='', max_length=128)),
-                ('detection_reason', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.DetectionReason')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='LifestyleEntity',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(default='', max_length=128)),
-                ('frequency', models.CharField(default='', max_length=64)),
-                ('detection_reason', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.DetectionReason')),
-            ],
-        ),
-        migrations.CreateModel(
-            name='Location',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(default='', max_length=256)),
-                ('example_image', models.CharField(default='', max_length=1024)),
-                ('detection_reason', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.DetectionReason')),
-            ],
-        ),
-        migrations.CreateModel(
             name='SalaryMapping',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
@@ -91,24 +25,5 @@ class Migration(migrations.Migration):
             model_name='customuser',
             name='person',
             field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='core.Person'),
-        ),
-        migrations.AddField(
-            model_name='person',
-            name='fb_access_token',
-            field=models.CharField(default='', max_length=512),
-        ),
-        migrations.RemoveField(
-            model_name='person',
-            name='devices',
-        ),
-        migrations.AddField(
-            model_name='activity',
-            name='detection_reason',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.DetectionReason'),
-        ),
-        migrations.AddField(
-            model_name='person',
-            name='devices',
-            field=models.ManyToManyField(to='core.Device'),
         ),
     ]
