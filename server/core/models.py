@@ -25,12 +25,10 @@ class CustomUser(AbstractEmailUser):
     username = models.CharField(max_length=31, blank=True)
     first_name = models.CharField(max_length=31, blank=True)
     last_name = models.CharField(max_length=31, blank=True)
-    groups = models.ManyToManyField(Group, through='Membership', symmetrical=False, related_name='users')
-    books = models.ManyToManyField(Book, through='BookshelfEntry', symmetrical=False, related_name='users')
 
 class BookshelfEntry(models.Model):
-    user = models.ForeignKey(CustomUser)
-    book = models.ForeignKey(Book)
+    user = models.ForeignKey(CustomUser, null=True)
+    book = models.ForeignKey(Book, blank=True)
     state = models.CharField(max_length = 31) # to-read, read, ...
     rating = models.PositiveSmallIntegerField(null=True)
 
@@ -38,7 +36,7 @@ class BookshelfEntry(models.Model):
         unique_together = ('user', 'book')
 
 class Membership(models.Model):
-    user = models.ForeignKey(CustomUser)
+    user = models.ForeignKey(CustomUser, null=True)
     group = models.ForeignKey(Group)
 
     class Meta:
