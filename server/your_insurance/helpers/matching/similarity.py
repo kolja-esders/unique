@@ -9,7 +9,7 @@ def get_jac_similarity(model1, model2):
     for key, val in model1_dict.items():
 
         if key in model2_dict:
-            if model1_dict[key] == model2_dict[key]:
+            if model1_dict[key] and model1_dict[key] == model2_dict[key]:
                 similarity_cntr += 1
 
 
