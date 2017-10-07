@@ -27,17 +27,9 @@ class ConfirmPage extends React.Component {
     return (
       <header className={styles.root}>
         <div className={styles.personal}>
-          <div className={styles.imageWrapperRow}>
-            <div className={styles.imageWrapper}>
-              <ProfileImage imagePath="https://scontent-ams3-1.xx.fbcdn.net/v/t31.0-8/15271783_1242828795739861_3065007741581304786_o.jpg?oh=bc827532805d7e451af6ffa279e01a32&oe=5A7B1765" />
-            </div>
-            <div className={styles.imageWrapper}>
-              <ProfileImage imagePath={img} />
-            </div>
-          </div>
-          <h1 className={styles.name}>{ user.firstName }<span className={styles.welcome}>, meet Ginger</span></h1>
+          <ProfileImage imagePath="https://scontent-ams3-1.xx.fbcdn.net/v/t31.0-8/15271783_1242828795739861_3065007741581304786_o.jpg?oh=bc827532805d7e451af6ffa279e01a32&oe=5A7B1765" />
+          <h1 className={styles.name}>{ user.firstName }<span className={styles.welcome}>, verify your data.</span></h1>
         </div>
-
         <Form>
           <section className={styles.infoSection}>
           {/*<header>
@@ -165,7 +157,7 @@ class ConfirmPage extends React.Component {
         </Form>
 
         <h1 className={styles.brand_name}>
-          <Button as={Link} color="green" size="huge" fluid to="/home" className={styles.continueBtn}>Get me some recommendations</Button>
+          <Button as={Link} color="green" size="huge" fluid to="/home" className={styles.continueBtn}>Get quote</Button>
         </h1>
       </header>
     )
