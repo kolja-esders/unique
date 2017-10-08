@@ -16,8 +16,14 @@ from core.models import Person, DetectionReason, FamilyMember, Location, Activit
 from core.models import Contract
 
 UPDATE_IDS = []
-
-
+INCOME_LOOKUP = dict(
+    Tutor=450
+)
+DEV_VAL_MAP = dict(
+    tv="300",
+    oven="200",
+    laptop="700"
+)
 
 TextCls = TextClassifier()
 
@@ -35,7 +41,7 @@ def find_best_persons(person):
 
     p_sim_lst.sort(reverse=True, key= lambda x : x[0])
 
-    return p_sim_lst[:3]
+    return p_sim_lst[:4]
 
 
 def find_best_contracts(person):
@@ -85,12 +91,15 @@ def create_person_for(user):
         nbps = find_best_persons(person)
         person.nb_p1 = nbps[0][1]
         person.nb_p2 = nbps[1][1]
-        person.nb_p3 = nbps[1][1]
+        person.nb_p3 = nbps[2][1]
+        person.nb_p4 = nbps[3][1]
         person.save()
 
         cbps = find_best_contracts(person)
-        for cbp in cbps:
-            person.nb_con.add(cbp[1])
+        person.nb_con1 = cbps[0]
+        person.nb_con2 = cbps[1]
+        person.nb_con3 = cbps[2]
+        person.nb_con4 = cbps[3]
         person.save()
 
         cups = find_contract_updates(person)
@@ -119,19 +128,22 @@ def create_profile(access_token):
     family = get_family_for_uid("me", access_token=access_token)
     locs = get_locations_for_uid("me", access_token=access_token)
 
+
     name = infos.get("name")
     person.given_name = name.split(" ")[1]
     person.surname = name.split(" ")[0]
 
     person.fb_access_token = access_token
 
-    person.home_town = infos.get("hometown", "")
+    person.home_town = infos.get("hometown", {}).get("name")
     person.gender = infos.get("gender", "")
 
     work = infos.get("work")
     if work is not None:
-        work = work[-1].get("employer").get("name", "")
-    person.work = work
+        person.occupation = work[-1].get("position", {}).get("name", "")
+        person.company = work[-1].get("employer", {}).get("name", "")
+
+        person.income = INCOME_LOOKUP.get(person.occupation, "0")
 
     person.email_address = infos.get("email", "")
     person.birthday = infos.get("birthday", "")
@@ -169,6 +181,8 @@ def create_profile(access_token):
         file_name, headers = urllib.request.urlretrieve(img_url)
         img_desc = get_img_description(file_name)
         img_objs = detect(file_name)
+
+        print(img_objs)
 
         rets = TextCls.classify_text(img_text)
         for key, vals in rets.items():
@@ -227,7 +241,8 @@ def create_profile(access_token):
         reason = it['reason']
         reason.save()
         dev = Device()
-        dev.name = it_val
+        dev.type = it_val
+        dev.estimated_price = DEV_VAL_MAP.get(it_val, "100.0")
         dev.detection_reason = reason
         dev.person = person
         dev.save()
