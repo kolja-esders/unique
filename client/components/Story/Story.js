@@ -23,7 +23,7 @@ class Story extends React.Component {
       <div className={styles.container}>
         <Item.Group>
           <Item>
-            <Item.Image size='small' src="https://www.lvcriminaldefense.com/wp-content/uploads/2015/03/burglary.jpg"/>
+            <Item.Image className={styles.img-circle} src="https://www.lvcriminaldefense.com/wp-content/uploads/2015/03/burglary.jpg"/>
             <Item.Content>
               <Item.Header as='a'>{story[0].author}</Item.Header>
               <Item.Meta>{story[0].content}</Item.Meta>

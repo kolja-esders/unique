@@ -35,11 +35,13 @@ const data = [{
 class ModulePage extends React.Component{
 
   render(){
+    console.log(this.props.viewer)
+
     return(
       <Page title='' viewer={this.props.viewer}>
 
         <section className={styles.container}>
-          <ProfileImage imagePath={this.props.viewer.user.person.profilePicture} />
+          <ProfileImage imagePath="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Pietro-Lombardi.jpg/220px-Pietro-Lombardi.jpg" />
 
           <h1>Recommended Insurances</h1>
           <InsuranceModule data={data[0]}/>
