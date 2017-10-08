@@ -18,12 +18,12 @@ class InsuranceModule extends React.Component{
       <div className={styles.container}>
 
         <div className={styles.headerContainer}>
-            <span className={styles.type}>Life Insurance</span>
+            <span className={styles.type}>{this.props.person.contractType}</span>
         </div>
 
         <div className={styles.insuranceContainer}>
           <span className={styles.priceWrapper}>
-            <span className={styles.price}>$ 120</span>
+            <span className={styles.price}>$ {this.props.person.amountMoney}</span>
             <span className={styles.priceExtra}> / month</span>
           </span>
               <Popup inverted
@@ -38,11 +38,12 @@ class InsuranceModule extends React.Component{
         </div>
 
         <span className={styles.cite}>
-          I really enjoy my personal insurance. On the other hand I must admit that the phone support could be a little bit better. Overall the flexible price is a huge benefit to me.
+          {this.props.data.quote}
+        
 
         </span>
         <div className={styles.btnWrapper}>
-          <Button color='green' size="huge" fluid className={styles.buyButton}>Buy now</Button>
+          <Button as={Link} to='/Congrats' color='green' size="huge" fluid className={styles.buyButton}>Buy now</Button>
         </div>
       </div>
     );

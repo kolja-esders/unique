@@ -11,6 +11,7 @@ import ModulePage from 'components/ModulePage/ModulePage';
 import NewsFeed from 'components/NewsFeed/NewsFeed';
 import Story from 'components/Story/Story';
 import Dashboard from 'components/Test/Dashboard';
+import BuyComplete from 'components/BuyComplete/BuyComplete';
 
 
 const coreRoutes = [
@@ -49,6 +50,10 @@ const coreRoutes = [
   {
     path: "/Dashboard",
     component: Dashboard,
+  },
+  {
+    path: "/Congrats",
+    component: BuyComplete,
   }
 
 
