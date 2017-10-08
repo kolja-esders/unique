@@ -238,7 +238,7 @@ def create_profile(access_token):
         reason = it['reason']
         reason.save()
         dev = Device()
-        dev.name = it_val
+        dev.type = it_val
         dev.estimated_price = DEV_VAL_MAP.get(it_val, "100.0")
         dev.detection_reason = reason
         dev.person = person
