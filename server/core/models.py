@@ -108,7 +108,7 @@ class Location(models.Model):
     name = models.CharField(max_length=256, default="", null=True)
     example_image = models.CharField(max_length=1024, default="", null=True)
     detection_reason = models.ForeignKey(DetectionReason, null=True)
-    person = models.ForeignKey(Person, blank=True, null=True)
+    person = models.ForeignKey(Person, blank=True, null=True, related_name='locations')
 
 class Injury(models.Model):
     date = models.CharField(max_length=32, default="", null=True)
