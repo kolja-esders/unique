@@ -29,6 +29,9 @@ class TextClassifier(object):
 
     def classify_text(self, text):
 
+        if text is None:
+            return {}
+
         ret_dict = defaultdict(list)
 
         for keyword in self.keywords:
