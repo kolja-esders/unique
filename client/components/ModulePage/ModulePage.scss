@@ -1,4 +1,11 @@
-.container {
+.root {
   width: 800px;
   margin: 0 auto;
+
+  .heading {
+    font-size: 3rem;
+    font-weight: normal;
+    font-family: Merriweather;
+    text-align: center;
+  }
 }
