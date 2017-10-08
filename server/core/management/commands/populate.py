@@ -41,6 +41,18 @@ class Command(BaseCommand):
                     type = "type"
                 )
 
+
+                contract, created = Contract.objects.get_or_create(
+                    contract_name = "contract_name",
+                    start_date = "2010-01-01",
+                    end_date = "2055-01-01",
+                    contract_type = "contract_type",
+                    contract_class = "contract_class",
+                    due_data = "2040-01-04",
+                    amount_money = "10000",
+                    auto_extensions ="auto_extensions"
+                )
+
                 person, created = Person.objects.get_or_create(
                     lfd_id=row[0],
                     parent_lfd_id=row[1],
@@ -80,6 +92,12 @@ class Command(BaseCommand):
                     country='',
                     education='',
                     #devices='',
+
+                    nb_con1 = contract,
+                    nb_con2 = contract,
+                    nb_con3 = contract,
+                    nb_con4 = contract,
+
                 )
 
                 obj, created = Activity.objects.get_or_create(

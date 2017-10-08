@@ -35,12 +35,14 @@ const data = [{
 class ModulePage extends React.Component{
 
   render() {
+    console.log(this.props.viewer)
     return(
       <Page title='' viewer={this.props.viewer}>
         <section className={styles.root}>
           <h1 className={styles.heading}>Your Recommendations</h1>
+
           <InsuranceModule data={data[0]}/>
-          <InsuranceModule data={data[1]}/>
+
         </section>
       </Page>
     );
@@ -51,11 +53,104 @@ export default createFragmentContainer(
   ModulePage,
   graphql`
     fragment ModulePage_viewer on Viewer {
-      user{
-        person{
+      id
+      user {
+        email
+        firstName
+        lastName
+        person {
+          age
+          occupation
+          company
           profilePicture
+          devices {
+            edges {
+              node {
+                estimatedPrice
+                type
+              }
+            }
+          }
+          activities {
+            edges {
+              node {
+                name
+                frequency
+              }
+            }
+          }
+          familyMembers {
+            edges {
+              node {
+                name
+                age
+                gender
+                relation
+              }
+            }
+          }
+          lifestyleEntities {
+            edges {
+              node {
+                name
+                frequency
+              }
+            }
+          }
+          locations {
+            edges {
+              node {
+                name
+                exampleImage
+              }
+            }
+          }
+          injuries {
+            edges {
+              node {
+                date
+                type
+              }
+            }
+          }
+          nbCon1 {
+            contractName
+            startDate
+            endDate
+            contractType
+            contractClass
+            dueData
+            amountMoney
+            autoExtensions
+            url
+            description
+          }
+          nbCon2 {
+            contractName
+            startDate
+            endDate
+            contractType
+            contractClass
+            dueData
+            amountMoney
+            autoExtensions
+            url
+            description
+          }
+          nbCon3 {
+            contractName
+            startDate
+            endDate
+            contractType
+            contractClass
+            dueData
+            amountMoney
+            autoExtensions
+            url
+            description
+        }
         }
       }
     }
-  `
+  `,
 )
