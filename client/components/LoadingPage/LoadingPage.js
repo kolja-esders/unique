@@ -12,8 +12,7 @@ const fancyText = [
   'Re-experiencing your vacations',
 ]
 
-
-class LoadingPage extends React.Component{
+class LoadingPage extends React.Component {
   state = { percent: 10 }
 
   constructor(props) {
