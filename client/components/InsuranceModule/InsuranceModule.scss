@@ -83,11 +83,39 @@
     }
   }
 
+
+  .simWrapper {
+    margin: 150px auto 0 auto;
+    text-align: center;
+
+    .simName {
+      font-family: Merriweather;
+      border-radius: 5px;
+      margin-left: 5px;
+      margin-right: 5px;
+      font-size: 1rem;
+      padding: 5px 10px 5px 10px;
+      background-color: #2185D0;
+      color: white;
+    }
+
+    .simSimilarity {
+      font-family: Merriweather;
+      border-radius: 5px;
+      margin-left: 5px;
+      margin-right: 5px;
+      font-size: 1rem;
+      padding: 5px 10px 5px 10px;
+      background-color: #21BA45;
+      color: white;
+    }
+  }
+
   .cite {
+    margin-top: -10px;
     line-height: 2rem;
     font-size: 1.4rem;
     font-family: Merriweather;
-    margin-top: 150px;
     display: block;
     width: 100%;
     background-color: #efefef;

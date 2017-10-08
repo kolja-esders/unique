@@ -53,6 +53,10 @@ class InsuranceModule extends React.Component{
             </Popup>
         </div>
 
+        <div className={styles.simWrapper}>
+          <span className={styles.simName}>John</span>
+          <span className={styles.simSimilarity}>is also a Tutor</span>
+        </div>
         <span className={styles.cite}>
           I really enjoy my personal insurance. On the other hand I must admit that the phone support could be a little bit better. Overall the flexible price is a huge benefit to me.
 
@@ -61,8 +65,6 @@ class InsuranceModule extends React.Component{
           <Button color='green' size="huge" fluid className={styles.buyButton}>Buy now</Button>
         </div>
       </div>
-
-
     );
   }
 
