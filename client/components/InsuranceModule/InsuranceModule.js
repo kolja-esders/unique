@@ -18,12 +18,12 @@ class InsuranceModule extends React.Component{
       <div className={styles.container}>
 
         <div className={styles.headerContainer}>
-            <span className={styles.type}>Life Insurance</span>
+            <span className={styles.type}>{this.props.person.contractType}</span>
         </div>
 
         <div className={styles.insuranceContainer}>
           <span className={styles.priceWrapper}>
-            <span className={styles.price}>$ 120</span>
+            <span className={styles.price}>$ {this.props.person.amountMoney}</span>
             <span className={styles.priceExtra}> / month</span>
           </span>
               <Popup inverted
