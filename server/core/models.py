@@ -72,8 +72,12 @@ class Person(models.Model):
     nb_p1 = models.ForeignKey('self', blank=True, null=True, related_name="nb_p11")
     nb_p2 = models.ForeignKey("self", blank=True, null=True, related_name="nb_p22")
     nb_p3 = models.ForeignKey("self", blank=True, null=True, related_name="nb_p33")
-    nb_con = models.ManyToManyField("Contract", blank=True, null=True, related_name="nb_conn")
-    up_con = models.ManyToManyField("Contract", blank=True, null=True)
+    nb_p4 = models.ForeignKey("self", blank=True, null=True, related_name="nb_p44")
+    nb_con1 = models.ForeignKey("Contract", blank=True, related_name="nb_conn1")
+    nb_con2 = models.ForeignKey("Contract", blank=True, related_name="nb_conn2")
+    nb_con3 = models.ForeignKey("Contract", blank=True, related_name="nb_conn3")
+    nb_con4 = models.ForeignKey("Contract", blank=True, related_name="nb_conn4")
+    up_con = models.ManyToManyField("Contract", blank=True)
 
 
 class Device(models.Model):
@@ -114,7 +118,7 @@ class Injury(models.Model):
     date = models.CharField(max_length=32, default="", null=True)
     type = models.CharField(max_length=128, default="", null=True) # leg, arm, heart [pietro]
     detection_reason = models.ForeignKey(DetectionReason, null=True)
-    person = models.ForeignKey(Person, blank=True, null=True)
+    person = models.ForeignKey(Person, blank=True, null=True, related_name='injuries')
 
 class CustomUser(AbstractEmailUser):
     username = models.CharField(max_length=31, blank=True)
