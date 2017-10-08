@@ -6,6 +6,8 @@ import SimilarityPopup from 'components/SimilarityPopup/SimilarityPopup';
 class InsuranceModule extends React.Component{
 
   render(){
+    console.log("IModul")
+    console.log(this.props.data.age)
     return(
 
       <div className={styles.container}>
