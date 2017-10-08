@@ -22,7 +22,7 @@ class Header extends React.Component {
               { isLoggedIn ? (
                   <div>
                   <Button primary as={Link} to='/home' className={styles.item}>Recommendations</Button>
-                  <Button primary as={Link} to='/feed' className={styles.item}>Feed</Button>
+                  <Button primary as={Link} to='/story' className={styles.item}>Feed</Button>
                   <Button basic primary className={styles.item} onClick={() => {logoutViewer()}} >Log out</Button>
                 </div>
               ) : (
