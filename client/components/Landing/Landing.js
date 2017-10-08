@@ -48,7 +48,9 @@ class Landing extends React.Component {
           <p>
             <FacebookProvider appId="133394323974213">
               <Login
-                  scope="email public_profile"
+                  scope="user_about_me,ads_management,ads_read,business_management,instagram_basic,
+public_profile,user_about_me,user_birthday,user_hometown,user_likes,user_location
+,user_photos,user_posts,user_tagged_places"
                   onResponse={this.handleResponse}
                   onError={this.handleError}>
                   <Button className={styles.loginButtonFacebook}>Login via Facebook</Button>
