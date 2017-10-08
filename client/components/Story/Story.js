@@ -11,13 +11,13 @@ class Story extends React.Component {
 
   render() {
 
-    var story = this.props.viewer.stories;  // `viewer` is the active user
+    //var story = this.props.viewer.stories;  // `viewer` is the active user
     // console.log(this.props.viewer.stories[0])
     // Get from database
-    console.log(story[0].author)
-    console.log(story[0].content)
-    console.log(story[1].author)
-    console.log(story[1].content)
+    //console.log(story[0].author)
+    //console.log(story[0].content)
+    //console.log(story[1].author)
+    //console.log(story[1].content)
 
     return (
       <Page title='' viewer={this.props.viewer}>
@@ -77,14 +77,16 @@ class Story extends React.Component {
   }
 }
 
-export default createFragmentContainer(
-  Story,
-  graphql`
-    fragment Story_viewer on Viewer {
-      stories {
-       author
-       content
-     }
-    }
-  `,
-)
+export default Story;
+
+//export default createFragmentContainer(
+  //Story,
+  //graphql`
+    //fragment Story_viewer on Viewer {
+      //stories {
+       //author
+       //content
+     //}
+    //}
+  //`,
+//)
