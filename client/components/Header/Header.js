@@ -17,7 +17,7 @@ class Header extends React.Component {
       <header className={styles.root}>
           <h1 className={styles.brand_name}>
             <Button primary as={Link} to='/home' className={styles.item}>Recommendations</Button>
-            <Button primary as={Link} to='/feed' className={styles.item}>Feed</Button>
+            <Button primary as={Link} to='/story' className={styles.item}>Feed</Button>
           </h1>
       </header>
     )
