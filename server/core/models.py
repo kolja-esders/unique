@@ -73,10 +73,10 @@ class Person(models.Model):
     nb_p2 = models.ForeignKey("self", blank=True, null=True, related_name="nb_p22")
     nb_p3 = models.ForeignKey("self", blank=True, null=True, related_name="nb_p33")
     nb_p4 = models.ForeignKey("self", blank=True, null=True, related_name="nb_p44")
-    nb_con1 = models.ManyToManyField("Contract", blank=True, related_name="nb_conn1")
-    nb_con2 = models.ManyToManyField("Contract", blank=True, related_name="nb_conn2")
-    nb_con3 = models.ManyToManyField("Contract", blank=True, related_name="nb_conn3")
-    nb_con4 = models.ManyToManyField("Contract", blank=True, related_name="nb_conn4")
+    nb_con1 = models.ForeignKey("Contract", blank=True, related_name="nb_conn1")
+    nb_con2 = models.ForeignKey("Contract", blank=True, related_name="nb_conn2")
+    nb_con3 = models.ForeignKey("Contract", blank=True, related_name="nb_conn3")
+    nb_con4 = models.ForeignKey("Contract", blank=True, related_name="nb_conn4")
     up_con = models.ManyToManyField("Contract", blank=True)
 
 
