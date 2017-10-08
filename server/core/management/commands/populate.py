@@ -13,6 +13,7 @@ from core.models import Review
 from core.models import SalaryMapping
 from core.models import Story
 from core.models import DetectionReason
+from core.models import Contract
 
 
 class Command(BaseCommand):
@@ -92,7 +93,8 @@ class Command(BaseCommand):
                     estimated_price = '500',
                     type = 'type',
                     icon = 'klns',
-                    detection_reason = detection_reason
+                    detection_reason = detection_reason,
+                    person = person
                 )
 
                 obj, created = FamilyMember.objects.get_or_create(
@@ -100,25 +102,29 @@ class Command(BaseCommand):
                     age = '33',
                     gender = 'f',
                     relation = 'married',
-                    detection_reason =  detection_reason
+                    detection_reason =  detection_reason,
+                    person = person
                 )
 
                 obj, created = LifestyleEntity.objects.get_or_create(
                     name ='LifeStyle',
                     frequency ='2',
-                    detection_reason = detection_reason
+                    detection_reason = detection_reason,
+                    person = person
                 )
 
                 obj, created = Location.objects.get_or_create(
                     name ='Cologne',
                     example_image ='asdfg',
-                    detection_reason = detection_reason
+                    detection_reason = detection_reason,
+                    person = person
                 )
 
                 obj, created = Injury.objects.get_or_create(
                     date ='2017-10-08',
                     type = 'type',
-                    detection_reason = detection_reason
+                    detection_reason = detection_reason,
+                    person = person
                 )
 
                 obj, created = CustomUser.objects.get_or_create(
@@ -142,6 +148,27 @@ class Command(BaseCommand):
                     content = "qwert"
 
                 )
+
+                contract, created = Contract.objects.get_or_create(
+                    contract_name = "contract_name",
+                    start_date = "2010-01-01",
+                    end_date = "2055-01-01",
+                    contract_type = "contract_type",
+                    contract_class = "contract_class",
+                    due_data = "2040-01-04",
+                    amount_money = "amount_money",
+                    auto_extensions ="auto_extensions"
+                )
+
+
+                obj, created = Review.objects.get_or_create(
+                    person = person,
+                    contract = contract,
+                    text = 'text',
+                    stars = 3,
+                    date = '2010-01-01'
+                )
+
 
 
 

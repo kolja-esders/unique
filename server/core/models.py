@@ -146,8 +146,8 @@ class Contract(models.Model):
     auto_extensions  = models.CharField(max_length=128, default="")
 
 class Review(models.Model):
-    person = models.ManyToManyField(Person)
-    contract = models.ManyToManyField(Contract)
+    person = models.ForeignKey(Person)
+    contract = models.ForeignKey(Contract)
     text = models.TextField()
     stars = models.FloatField()
     date = models.CharField(max_length=32, default="")
