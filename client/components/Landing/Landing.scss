@@ -1,21 +1,50 @@
 
-.container {
+.root {
   width: 800px;
   margin: 0 auto;
 
-  .addBook {
-    margin-top: 100px;
-    float: mid;
-    width: 250px;
-    height: 50px;
-    color: red;
-    text-align: bottom;
-    line-height: 15px;
-    font-size: 150%;
+  .emph {
+    font-style: italic;
+    font-weight: bold;
+    color: rgb(255, 0, 102);
   }
 
-  .backgroundImage {
-     //background: url(./image.jpg)
+  .bold {
+    font-weight: bold;
+    color: #888;
+  }
+
+  .headingFirst {
+    font-size: 5.7rem;
+    font-weight: normal;
+    font-family: Merriweather;
+    text-align: center;
+    margin: 0;
+    padding-top: 200px;
+  }
+
+  .heading {
+    font-size: 3rem;
+    color: #aaa;
+    font-weight: normal;
+    font-family: Merriweather;
+    text-align: center;
+    margin: 0;
+  }
+
+  .descWrapper {
+    padding-top: 150px;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .desc {
+    font-weight: 200;
+    font-family: Merriweather;
+    font-size: 1.5rem;
+    color: #aaa;
+    line-height: 32px;
   }
 
   .loginButtonFacebook {
@@ -38,6 +67,8 @@
       font-size: 150%;
       color: #FFF;
       font-color: white;
+      display: block;
+      margin: 50px auto;
     }
 
   .loginButtonFacebook:before {
@@ -53,11 +84,11 @@
     }
 
   .loginButtonFacebook:hover,
-
   .loginButtonFacebook:focus {
       background-color: #5B7BD5;
       background-image: linear-gradient(#5B7BD5, #4864B1);
       outline: none;
+      color: white;
     }
 
     .loginButtonFacebook:active {
