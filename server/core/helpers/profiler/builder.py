@@ -20,6 +20,9 @@ def create_person_for(user):
     access_token = user.access_token
 
     if user.person is None:
+
+        print("Person Created !")
+
         person = create_profile(access_token)
         user.person = person
         user.save()
