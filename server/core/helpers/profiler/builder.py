@@ -41,7 +41,7 @@ def find_best_persons(person):
 
     p_sim_lst.sort(reverse=True, key= lambda x : x[0])
 
-    return p_sim_lst[:3]
+    return p_sim_lst[:4]
 
 
 def find_best_contracts(person):
@@ -91,12 +91,15 @@ def create_person_for(user):
         nbps = find_best_persons(person)
         person.nb_p1 = nbps[0][1]
         person.nb_p2 = nbps[1][1]
-        person.nb_p3 = nbps[1][1]
+        person.nb_p3 = nbps[2][1]
+        person.nb_p4 = nbps[3][1]
         person.save()
 
         cbps = find_best_contracts(person)
-        for cbp in cbps:
-            person.nb_con.add(cbp[1])
+        person.nb_con1 = cbps[0]
+        person.nb_con2 = cbps[1]
+        person.nb_con3 = cbps[2]
+        person.nb_con4 = cbps[3]
         person.save()
 
         cups = find_contract_updates(person)
