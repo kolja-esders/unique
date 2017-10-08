@@ -69,6 +69,11 @@ class Person(models.Model):
     home_town = models.CharField(max_length=512, blank=True, null=True)
     country = models.CharField(max_length=256, blank=True, null=True)
     education = models.CharField(max_length=256, blank=True, null=True) # most recent
+    nb_p1 = models.ForeignKey('self', blank=True, null=True, related_name="nb_p11")
+    nb_p2 = models.ForeignKey("self", blank=True, null=True, related_name="nb_p22")
+    nb_p3 = models.ForeignKey("self", blank=True, null=True, related_name="nb_p33")
+    nb_con = models.ManyToManyField("Contract", blank=True, null=True, related_name="nb_conn")
+    up_con = models.ManyToManyField("Contract", blank=True, null=True)
 
 
 class Device(models.Model):
@@ -135,7 +140,6 @@ class Membership(models.Model):
         unique_together = ('user', 'group')
 
 class Contract(models.Model):
-    ### TODO add Person (contract owner) & Prototy person (for feature matching -> recommendations)
     contract_name = models.CharField(max_length=128, default="")
     start_date = models.CharField(max_length=128, default="")
     end_date = models.CharField(max_length=128, default="")
@@ -144,6 +148,10 @@ class Contract(models.Model):
     due_data = models.CharField(max_length=128, default="")
     amount_money  = models.CharField(max_length=128, default="")
     auto_extensions  = models.CharField(max_length=128, default="")
+    url  = models.CharField(max_length=128, default="")
+    description  = models.TextField(default="")
+    owner = models.ForeignKey(Person, blank=True, null=True, related_name="owner")
+    proto = models.ForeignKey(Person, blank=True, null=True, related_name="proto")
 
 class Review(models.Model):
 

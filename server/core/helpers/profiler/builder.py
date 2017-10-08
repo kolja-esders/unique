@@ -4,6 +4,7 @@ import numpy as np
 
 from server.core.helpers.image_cap.sample import get_img_description
 from server.core.helpers.image_det.detect import detect
+from server.core.helpers.matching.similarity import get_person_similarity
 from server.core.helpers.profiler.extract import TextClassifier
 
 from server.core.helpers.fb.scraper import get_posts_for_uid, get_images_for_uid, get_personal_infos_for_id, \
@@ -12,8 +13,62 @@ from server.core.helpers.fb.scraper import get_posts_for_uid, get_images_for_uid
 from core.models import Person, DetectionReason, FamilyMember, Location, Activity, Injury, Device, LifestyleEntity
 #from server.core.models import Person, DetectionReason, FamilyMember, Location, Activity, Injury, Device, \
 #    LifestyleEntity
+from core.models import Contract
+
+UPDATE_IDS = []
+
+
 
 TextCls = TextClassifier()
+
+
+
+
+def find_best_persons(person):
+    ps = Person.objects.all()
+
+    p_sim_lst = []
+
+    for p in ps:
+        sim = get_person_similarity(person, p)
+        p_sim_lst.append((sim, p))
+
+    p_sim_lst.sort(reverse=True, key= lambda x : x[0])
+
+    return p_sim_lst[:3]
+
+
+def find_best_contracts(person):
+    cs = Contract.objects.all()
+
+    p_sim_lst = []
+
+    for c in cs:
+        sim = 0
+        try:
+            sim = get_person_similarity(person, c.proto)
+        except:
+            pass
+        p_sim_lst.append((sim, c))
+
+    p_sim_lst.sort(reverse=True, key= lambda x : x[0])
+
+    return p_sim_lst[:4]
+
+
+
+def find_contract_updates(person):
+
+    c_lst = []
+
+    for up_id in UPDATE_IDS:
+        c_lst.append(Contract.objects.get(id=up_id))
+
+    return c_lst
+
+
+
+
 
 def create_person_for(user):
 
@@ -26,6 +81,22 @@ def create_person_for(user):
         person = create_profile(access_token)
         user.person = person
         user.save()
+
+        nbps = find_best_persons(person)
+        person.nb_p1 = nbps[0][1]
+        person.nb_p2 = nbps[1][1]
+        person.nb_p3 = nbps[1][1]
+        person.save()
+
+        cbps = find_best_contracts(person)
+        for cbp in cbps:
+            person.nb_con.add(cbp[1])
+        person.save()
+
+        cups = find_contract_updates(person)
+        for cup in cups:
+            person.up_con.add(cup)
+        person.save()
 
 
 
