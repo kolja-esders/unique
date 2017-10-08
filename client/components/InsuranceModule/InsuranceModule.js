@@ -11,6 +11,8 @@ class InsuranceModule extends React.Component{
     console.log("IModul")
     console.log(this.props.person)
     console.log(this.props.data)
+    console.log(this.props.similar)
+
     return(
 
       <div className={styles.container}>
@@ -27,11 +29,20 @@ class InsuranceModule extends React.Component{
           </span>
               <Popup inverted
                 className={styles.popup}
+                trigger={  <Image className={styles.simPicture} src={this.props.similar.profilePicture} size='tiny' shape='circular' />}
+                flowing
+                hoverable
+              >
+              {<SimilarityPopup similar={this.props.similar} data={this.props.data}/>}
+            </Popup>
+
+              <Popup inverted
+                className={styles.popup}
                 trigger={  <Image className={styles.simPicture} src={this.props.data.pictures[0]} size='tiny' shape='circular' />}
                 flowing
                 hoverable
               >
-              {<SimilarityPopup data={this.props.data}/>}
+              {<SimilarityPopup similar={this.props.similar} data={this.props.data}/>}
             </Popup>
 
               <Popup inverted
@@ -40,16 +51,7 @@ class InsuranceModule extends React.Component{
                 flowing
                 hoverable
               >
-              {<SimilarityPopup data={this.props.data}/>}
-            </Popup>
-
-              <Popup inverted
-                className={styles.popup}
-                trigger={  <Image className={styles.simPicture} src={this.props.data.pictures[2]} size='tiny' shape='circular' />}
-                flowing
-                hoverable
-              >
-              {<SimilarityPopup data={this.props.data}/>}
+              {<SimilarityPopup similar={this.props.similar}  data={this.props.data}/>}
             </Popup>
         </div>
 
@@ -133,6 +135,60 @@ export default createFragmentContainer(
 
 
           }
+          nbP1 {
+             profilePicture
+             age
+             surname
+             givenName
+             gender
+             occupation
+             kids
+             income
+             activities {
+               edges {
+                 node {
+                   name
+                   frequency
+             }
+           }
+         }
+       }
+         nbP2 {
+            profilePicture
+            age
+            surname
+            givenName
+            gender
+            occupation
+            kids
+            income
+            activities {
+              edges {
+                node {
+                  name
+                  frequency
+            }
+          }
+        }
+      }
+        nbP3 {
+           profilePicture
+           age
+           surname
+           givenName
+           gender
+           occupation
+           kids
+           income
+           activities {
+             edges {
+               node {
+                 name
+                 frequency
+           }
+         }
+       }
+     }
     }
   `,
 )
