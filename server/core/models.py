@@ -76,20 +76,20 @@ class Device(models.Model):
     type = models.CharField(max_length=256, default="", null=True)
     detection_reason = models.ForeignKey(DetectionReason, null=True)
     icon = models.CharField(max_length=256, default="", null=True)
-    person = models.ForeignKey(Person, blank=True, null=True)
+    person = models.ForeignKey(Person, blank=True, null=True, related_name='devices')
 
 class Activity(models.Model):
     name = models.CharField(max_length=128, default="", null=True)
     frequency = models.CharField(max_length=64, default="", null=True)
     detection_reason = models.ForeignKey(DetectionReason, null=True)
-    person = models.ForeignKey(Person, blank=True, null=True)
+    person = models.ForeignKey(Person, blank=True, null=True, related_name='activities')
 
 class FamilyMember(models.Model):
     name = models.CharField(max_length=128, default="", null=True)
     age = models.CharField(max_length=12, default="", null=True)
     gender = models.CharField(max_length=32, default="", null=True)
     relation = models.CharField(max_length=64, default="", null=True) # daughter, wife, ...
-    person = models.ForeignKey(Person, blank=True, null=True)
+    person = models.ForeignKey(Person, blank=True, null=True, related_name='family_members')
     detection_reason = models.ForeignKey(DetectionReason, null=True)
 
 
@@ -97,7 +97,7 @@ class LifestyleEntity(models.Model):
     name = models.CharField(max_length=128, default="", null=True) # smoking
     frequency = models.CharField(max_length=64, default="", null=True) # rare, daily, weekly, ...)
     detection_reason = models.ForeignKey(DetectionReason, null=True)
-    person = models.ForeignKey(Person, blank=True, null=True)
+    person = models.ForeignKey(Person, blank=True, null=True, related_name='lifestyle_entities')
 
 class Location(models.Model):
     name = models.CharField(max_length=256, default="", null=True)
