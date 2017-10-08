@@ -55,6 +55,7 @@ class LoadingPage extends React.Component {
             <h1 className={styles.friends}>Let's become friends</h1>
 
             <Progress className={styles.progress} percent={this.state.percent} indicating />
+            <h1 className={styles.social}>Scanning social media profiles...</h1>
           </div>
         </section>
     );
