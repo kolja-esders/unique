@@ -34,16 +34,19 @@ const similar = [{
   similar:  ['Aaron', 'Anna', 'Astrid', 'Atsushi'],
   pictures: [Aaron, Anna, Astrid, Atsushi],
   fit: [96, 63, 34],
+  quote: "I really enjoy my personal insurance. On the other hand I must admit that the phone support could be a little bit better. Overall the flexible price is a huge benefit to me."
 },
 {
   similar: ['Atsushi', 'Anna', 'Aaron', 'Astrid'],
   pictures: [Atsushi, Anna, Aaron, Astrid],
-  fit: [81, 76, 63]
+  fit: [81, 76, 63],
+  quote: "I really love the frictioness and the simplicity!"
 },
 {
 similar: ['Atsushi', 'Anna', 'Aaron', 'Astrid'],
 pictures: [Atsushi, Anna, Aaron, Astrid],
-fit: [76, 55, 45]
+fit: [76, 55, 45],
+quote: "By continous social media updates my insurance adapts well to my current situation."
 },
 
 ]
