@@ -19,7 +19,6 @@ class InsuranceModule extends React.Component{
 
         <div className={styles.headerContainer}>
             <span className={styles.type}>Life Insurance</span>
-            <span className={styles.peopleHeading}>People similar to you said...</span>
         </div>
 
         <div className={styles.insuranceContainer}>
@@ -36,29 +35,8 @@ class InsuranceModule extends React.Component{
               {<SimilarityPopup similar={this.props.similar} data={this.props.data}/>}
             </Popup>
 
-              <Popup inverted
-                className={styles.popup}
-                trigger={  <Image className={styles.simPicture} src={this.props.data.pictures[0]} size='tiny' shape='circular' />}
-                flowing
-                hoverable
-              >
-              {<SimilarityPopup similar={this.props.similar} data={this.props.data}/>}
-            </Popup>
-
-              <Popup inverted
-                className={styles.popup}
-                trigger={  <Image className={styles.simPicture} src={this.props.data.pictures[1]} size='tiny' shape='circular' />}
-                flowing
-                hoverable
-              >
-              {<SimilarityPopup similar={this.props.similar}  data={this.props.data}/>}
-            </Popup>
         </div>
 
-        <div className={styles.simWrapper}>
-          <span className={styles.simName}>John</span>
-          <span className={styles.simSimilarity}>is also a Tutor</span>
-        </div>
         <span className={styles.cite}>
           I really enjoy my personal insurance. On the other hand I must admit that the phone support could be a little bit better. Overall the flexible price is a huge benefit to me.
 
