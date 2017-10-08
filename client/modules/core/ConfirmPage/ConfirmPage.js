@@ -59,6 +59,7 @@ class ConfirmPage extends React.Component {
               <Grid.Row columns={2}>
                 <Grid.Column>
                   <div className={styles.greetingEmoji}></div>
+                  <h2 className={styles.headText}>Personal</h2>
 
                   <Form.Field>
                     <label>First name</label>
@@ -84,6 +85,7 @@ class ConfirmPage extends React.Component {
 
                 <Grid.Column>
                   <div className={styles.homeEmoji}></div>
+                  <h2 className={styles.headText}>Address</h2>
 
                   <Form.Field>
                     <label>Street address</label>
@@ -107,9 +109,13 @@ class ConfirmPage extends React.Component {
               <Grid.Row columns={2}>
                 <Grid.Column>
                   <div className={styles.runningEmoji}></div>
+                  <h2 className={styles.headText}>Activities</h2>
                   {person.activities.edges.map(function(obj, i) {
                     return (
-                      <Popup key={i} position='left center' inverted hoverable trigger= { getActivity(obj.node.name, obj.node.frequency) }>Facebook post from the 12th Sept. 2017.
+                      <Popup key={i} position='left center' inverted hoverable trigger= { getActivity(obj.node.name, obj.node.frequency) }>
+                          Facebook {obj.node.detectionReason.type} from {obj.node.detectionReason.date}: <br/>
+                          { obj.node.detectionReason.text } <br/>
+                          <Image src={ obj.node.detectionReason.image }/> <br/>
                       </Popup>
                   )
                   })}
@@ -117,9 +123,13 @@ class ConfirmPage extends React.Component {
 
                 <Grid.Column>
                   <div className={styles.sunEmoji}></div>
+                  <h2 className={styles.headText}>Lifestyle</h2>
                   {person.lifestyleEntities.edges.map(function(obj, i) {
                     return (
-                      <Popup key={i} position='right center' inverted hoverable trigger= { getActivity(obj.node.name, obj.node.frequency) }>Facebook post from the 12th Sept. 2017.
+                      <Popup key={i} position='right center' inverted hoverable trigger= { getActivity(obj.node.name, obj.node.frequency) }>
+                          Facebook { obj.node.detectionReason.type } from { obj.node.detectionReason.date }: <br/>
+                          { obj.node.detectionReason.text } <br/>
+                          <Image src={ obj.node.detectionReason.image }/> <br/>
                       </Popup>
                   )
                   })}
@@ -133,9 +143,13 @@ class ConfirmPage extends React.Component {
               <Grid.Row columns={2}>
                 <Grid.Column>
                   <div className={styles.deviceEmoji}></div>
+                  <h2 className={styles.headText}>Items</h2>
                     {person.devices.edges.map(function(obj, i) {
                       return (
-                        <Popup key={i} position='left center' inverted hoverable trigger= { getActivity(obj.node.type, getPriceFormatting(obj.node.estimatedPrice)) }>Facebook post from the 12th Sept. 2017.
+                        <Popup key={i} position='left center' inverted hoverable trigger= { getActivity(obj.node.type, getPriceFormatting(obj.node.estimatedPrice)) }>
+                          Facebook { obj.node.detectionReason.type} from { obj.node.detectionReason.date }: <br/>
+                          { obj.node.detectionReason.text } <br/>
+                          <Image src={ obj.node.detectionReason.image }/> <br/>
                         </Popup>
                     )
                     })}
@@ -143,9 +157,13 @@ class ConfirmPage extends React.Component {
 
                 <Grid.Column>
                   <div className={styles.familyEmoji}></div>
+                  <h2 className={styles.headText}>Family</h2>
                     {person.familyMembers.edges.map(function(obj, i) {
                       return (
-                        <Popup key={i} position='right center' inverted hoverable trigger= { getActivity(obj.node.name, getAgeFormatting(obj.node.age)) }>Facebook post from the 12th Sept. 2017.
+                        <Popup key={i} position='right center' inverted hoverable trigger= { getActivity(obj.node.name, getAgeFormatting(obj.node.age)) }>
+                          Facebook { obj.node.detectionReason.type } from { obj.node.detectionReason.date }: <br/>
+                          { obj.node.detectionReason.text } <br/>
+                          <Image src={ obj.node.detectionReason.image }/> <br/>
                         </Popup>
                     )
                     })}
@@ -159,9 +177,13 @@ class ConfirmPage extends React.Component {
               <Grid.Row columns={2}>
                 <Grid.Column>
                   <div className={styles.injuryEmoji}></div>
+                  <h2 className={styles.headText}>Injuries</h2>
                     {person.injuries.edges.map(function(obj, i) {
                       return (
-                        <Popup key={i} position='left center' inverted hoverable trigger= { getActivity(getInjuryTypeFormatting(obj.node.type), getInjuryDateFormatting(obj.node.date)) }>Facebook post from the 12th Sept. 2017.
+                        <Popup key={i} position='left center' inverted hoverable trigger= { getActivity(getInjuryTypeFormatting(obj.node.type), getInjuryDateFormatting(obj.node.date)) }>
+                          Facebook { obj.node.detectionReason.type  } from { obj.node.detectionReason.date }: <br/>
+                          { obj.node.detectionReason.text } <br/>
+                          <Image src={ obj.node.detectionReason.image }/> <br/>
                         </Popup>
                     )
                     })}
@@ -169,9 +191,13 @@ class ConfirmPage extends React.Component {
 
                 <Grid.Column>
                   <div className={styles.vacationEmoji}></div>
+                  <h2 className={styles.headText}>Vacation</h2>
                   {person.locations.edges.map(function(obj, i) {
                     return (
-                      <Popup key={i} position='right center' inverted hoverable trigger= { getActivity(obj.node.name, '') }>Facebook post from the 12th Sept. 2017.
+                      <Popup key={i} position='right center' inverted hoverable trigger={ getActivity(obj.node.name, '') }>
+                          Facebook { obj.node.detectionReason.type } from { obj.node.detectionReason.date }: <br/>
+                          { obj.node.detectionReason.text } <br/>
+                          <Image src={ obj.node.detectionReason.image }/> <br/>
                       </Popup>
                   )
                   })}
@@ -209,6 +235,13 @@ export default createFragmentContainer(
               node {
                 estimatedPrice
                 type
+                detectionReason {
+                  id
+                  text
+                  hrefToImage
+                  date
+                  type
+                }
               }
             }
           }
@@ -217,6 +250,13 @@ export default createFragmentContainer(
               node {
                 name
                 frequency
+                detectionReason {
+                  id
+                  text
+                  hrefToImage
+                  date
+                  type
+                }
               }
             }
           }
@@ -227,6 +267,13 @@ export default createFragmentContainer(
                 age
                 gender
                 relation
+                detectionReason {
+                  id
+                  text
+                  hrefToImage
+                  date
+                  type
+                }
               }
             }
           }
@@ -235,6 +282,13 @@ export default createFragmentContainer(
               node {
                 name
                 frequency
+                detectionReason {
+                  id
+                  text
+                  hrefToImage
+                  date
+                  type
+                }
               }
             }
           }
@@ -243,6 +297,13 @@ export default createFragmentContainer(
               node {
                 name
                 exampleImage
+                detectionReason {
+                  id
+                  text
+                  hrefToImage
+                  date
+                  type
+                }
               }
             }
           }
@@ -251,6 +312,13 @@ export default createFragmentContainer(
               node {
                 date
                 type
+                detectionReason {
+                  id
+                  text
+                  hrefToImage
+                  date
+                  type
+                }
               }
             }
           }
