@@ -215,16 +215,19 @@ def create_profile(access_token):
             ))
 
 
+    prev_acts = set()
     for it in x_dict['activities']:
         it_val = it['val']
         reason = it['reason']
         reason.save()
-        act = Activity()
-        act.name = it_val
-        act.frequency = str(np.random.randint(0,10))
-        act.detection_reason = reason
-        act.person = person
-        act.save()
+        if it_val not in prev_acts:
+            act = Activity()
+            act.name = it_val
+            act.frequency = str(np.random.randint(0,10))
+            act.detection_reason = reason
+            act.person = person
+            act.save()
+            prev_acts.add(it_val)
 
     for it in x_dict['injury']:
         it_val = it['val']
