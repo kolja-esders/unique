@@ -9,6 +9,24 @@ import ProfileImage from 'components/ProfileImage/ProfileImage.js'
 import img from '../../../assets/logo2.png'
 
 
+let getPriceFormatting = function(estimatedPrice) {
+  return '~ ' + estimatedPrice + ' €';
+}
+
+
+let getAgeFormatting = function(age) {
+  return age + ' years old';
+}
+
+
+let getInjuryDateFormatting = function(date) {
+  return 'happened on ' + date;
+}
+
+let getInjuryTypeFormatting = function(type) {
+  return 'Injured ' + type
+}
+
 let getActivity = function(name, frequency) {
   return (
     <div className={styles.entityContainer}>
@@ -117,28 +135,20 @@ class ConfirmPage extends React.Component {
                   <div className={styles.deviceEmoji}></div>
                     {person.devices.edges.map(function(obj, i) {
                       return (
-                        <Popup key={i} position='left center' inverted hoverable trigger= { getActivity(obj.node.name, obj.node.frequency) }>Facebook post from the 12th Sept. 2017.
+                        <Popup key={i} position='left center' inverted hoverable trigger= { getActivity(obj.node.type, getPriceFormatting(obj.node.estimatedPrice)) }>Facebook post from the 12th Sept. 2017.
                         </Popup>
                     )
                     })}
-
-                    <Popup position='left center' inverted hoverable trigger= { getActivity('Smartphone', '~ 1,000 €') }>Facebook post from the 12th Sept. 2017.
-                    </Popup>
-                    <Popup position='left center' inverted hoverable trigger= { getActivity('Oven', '~ 3.200 €') }>Facebook post from the 12th Sept. 2017.
-                    </Popup>
                 </Grid.Column>
 
                 <Grid.Column>
                   <div className={styles.familyEmoji}></div>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Cassandra', '32 years old') }>
-                    Facebook profile information.
-                  </Popup>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Anna', '12 years old') }>
-                    Facebook profile information.
-                  </Popup>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Tom', '10 years old') }>
-                    Facebook profile information.
-                  </Popup>
+                    {person.familyMembers.edges.map(function(obj, i) {
+                      return (
+                        <Popup key={i} position='right center' inverted hoverable trigger= { getActivity(obj.node.name, getAgeFormatting(obj.node.age)) }>Facebook post from the 12th Sept. 2017.
+                        </Popup>
+                    )
+                    })}
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -149,25 +159,26 @@ class ConfirmPage extends React.Component {
               <Grid.Row columns={2}>
                 <Grid.Column>
                   <div className={styles.injuryEmoji}></div>
-                    <Popup position='left center' inverted hoverable trigger= { getActivity('Snowboarding', 'Enthusiastic') }>Facebook post from the 12th Sept. 2017.
-                    </Popup>
-                    <Popup position='left center' inverted hoverable trigger= { getActivity('Running', 'Casual') }>Facebook post from the 12th Sept. 2017.
-                    </Popup>
+                    {person.injuries.edges.map(function(obj, i) {
+                      return (
+                        <Popup key={i} position='left center' inverted hoverable trigger= { getActivity(getInjuryTypeFormatting(obj.node.type), getInjuryDateFormatting(obj.node.date)) }>Facebook post from the 12th Sept. 2017.
+                        </Popup>
+                    )
+                    })}
                 </Grid.Column>
 
                 <Grid.Column>
                   <div className={styles.vacationEmoji}></div>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Bali', 'In April') }>
-                    Facebook post from the 12th Sept. 2017.
-                  </Popup>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Mallorca', 'In January') }>
-                    Facebook post from the 12th Sept. 2017.
-                  </Popup>
+                  {person.locations.edges.map(function(obj, i) {
+                    return (
+                      <Popup key={i} position='right center' inverted hoverable trigger= { getActivity(obj.node.name, '') }>Facebook post from the 12th Sept. 2017.
+                      </Popup>
+                  )
+                  })}
                 </Grid.Column>
               </Grid.Row>
             </Grid>
           </section>
-
         </Form>
 
         <h1 className={styles.brand_name}>
