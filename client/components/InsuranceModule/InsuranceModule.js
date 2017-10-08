@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './InsuranceModule.scss';
 import { Grid, Button, Progress, Rating, Image, Popup, Header } from 'semantic-ui-react';
+import Link from 'react-router-dom/es/Link'
 import SimilarityPopup from 'components/SimilarityPopup/SimilarityPopup';
 
 class InsuranceModule extends React.Component{
@@ -14,12 +15,12 @@ class InsuranceModule extends React.Component{
 
         <div className={styles.insuranceContainer}>
             <span className={styles.type}>{this.props.data.type}</span>
-            <span className={styles.peopleHeading}>People with similar interests</span>
+            <span className={styles.peopleHeading}>People similar to you said...</span>
         </div>
 
         <div className={styles.insuranceContainer}>
             <span className={styles.price}>${this.props.data.premium}</span>
-
+            <span className={styles.priceExtra}> / month</span>
               <Popup inverted
                 className={styles.popup}
                 trigger={  <Image className={styles.simPicture} src={this.props.data.pictures[0]} size='tiny' shape='circular' />}
@@ -37,8 +38,10 @@ class InsuranceModule extends React.Component{
 
         <div className={styles.insuranceContainer}>
 
-          <Button color='blue' size="huge" className={styles.buyButton}>Buy</Button>
-          <Button size="huge" className={styles.buyButton}>Details</Button>
+          <div className={styles.bottom}>
+            <Link to='#' className={styles.learnMore}>Learn more</Link> or 
+            <Button color='green' size="huge" className={styles.buyButton}>Buy now</Button>
+          </div>
         </div>
       </div>
 
