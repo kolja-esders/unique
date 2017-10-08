@@ -51,11 +51,15 @@ class ConfirmPage extends React.Component {
                   </Form.Field>
                   <Form.Field>
                     <label>Age</label>
-                    <input placeholder='Age' value='24'/>
+                    <input placeholder='Age' value={ user.person.age }/>
+                  </Form.Field>
+                  <Form.Field>
+                    <label>Occupation</label>
+                    <input placeholder='Occupation' value={ user.person.occupation }/>
                   </Form.Field>
                   <Form.Field>
                     <label>Employer / School</label>
-                    <input placeholder='Employer / School' value='Karlsruhe Institute of Technology'/>
+                    <input placeholder='Employer / School' value={ user.person.company }/>
                   </Form.Field>
                 </Grid.Column>
 
@@ -64,15 +68,15 @@ class ConfirmPage extends React.Component {
 
                   <Form.Field>
                     <label>Street address</label>
-                    <input placeholder='' value='Hildebrandstr. 39'/>
+                    <input placeholder='' value=''/>
                   </Form.Field>
                   <Form.Field>
                     <label>City</label>
-                    <input placeholder='City' value='Karlsruhe'/>
+                    <input placeholder='City' value=''/>
                   </Form.Field>
                   <Form.Field>
                     <label>Zip code</label>
-                    <input placeholder='Zip code' value='76227'/>
+                    <input placeholder='Zip code' value=''/>
                   </Form.Field>
                 </Grid.Column>
               </Grid.Row>
@@ -175,6 +179,61 @@ export default createFragmentContainer(
         email
         firstName
         lastName
+        person {
+          age
+          occupation
+          company
+          devices {
+            edges {
+              node {
+                estimatedPrice
+                type
+              }
+            }
+          }
+          activities {
+            edges {
+              node {
+                name
+                frequency
+              }
+            }
+          }
+          familyMembers {
+            edges {
+              node {
+                name
+                age
+                gender
+                relation
+              }
+            }
+          }
+          lifestyleEntities {
+            edges {
+              node {
+                name
+                frequency
+              }
+            }
+          }
+          locations {
+            edges {
+              node {
+                name
+                exampleImage
+              }
+            }
+          }
+          injuries {
+            edges {
+              node {
+                date
+                type
+              }
+            }
+          }
+        }
       }
     }
   `,
