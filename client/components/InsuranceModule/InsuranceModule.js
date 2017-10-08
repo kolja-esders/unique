@@ -15,14 +15,16 @@ class InsuranceModule extends React.Component{
 
       <div className={styles.container}>
 
-        <div className={styles.insuranceContainer}>
-            <span className={styles.type}>{this.props.data.type}</span>
+        <div className={styles.headerContainer}>
+            <span className={styles.type}>Life Insurance</span>
             <span className={styles.peopleHeading}>People similar to you said...</span>
         </div>
 
         <div className={styles.insuranceContainer}>
-            <span className={styles.price}>${this.props.data.premium}</span>
+          <span className={styles.priceWrapper}>
+            <span className={styles.price}>$ 120</span>
             <span className={styles.priceExtra}> / month</span>
+          </span>
               <Popup inverted
                 className={styles.popup}
                 trigger={  <Image className={styles.simPicture} src={this.props.data.pictures[0]} size='tiny' shape='circular' />}
@@ -32,7 +34,7 @@ class InsuranceModule extends React.Component{
               {<SimilarityPopup data={this.props.data}/>}
             </Popup>
 
-              <Popup
+              <Popup inverted
                 className={styles.popup}
                 trigger={  <Image className={styles.simPicture} src={this.props.data.pictures[1]} size='tiny' shape='circular' />}
                 flowing
@@ -41,7 +43,7 @@ class InsuranceModule extends React.Component{
               {<SimilarityPopup data={this.props.data}/>}
             </Popup>
 
-              <Popup
+              <Popup inverted
                 className={styles.popup}
                 trigger={  <Image className={styles.simPicture} src={this.props.data.pictures[2]} size='tiny' shape='circular' />}
                 flowing
@@ -49,15 +51,14 @@ class InsuranceModule extends React.Component{
               >
               {<SimilarityPopup data={this.props.data}/>}
             </Popup>
-
         </div>
 
-        <div className={styles.insuranceContainer}>
+        <span className={styles.cite}>
+          I really enjoy my personal insurance. On the other hand I must admit that the phone support could be a little bit better. Overall the flexible price is a huge benefit to me.
 
-          <div className={styles.bottom}>
-            <Link to='#' className={styles.learnMore}>Learn more</Link> or 
-            <Button color='green' size="huge" className={styles.buyButton}>Buy now</Button>
-          </div>
+        </span>
+        <div className={styles.btnWrapper}>
+          <Button color='green' size="huge" fluid className={styles.buyButton}>Buy now</Button>
         </div>
       </div>
 
