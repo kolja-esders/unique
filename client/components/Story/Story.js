@@ -6,6 +6,7 @@ import Link from 'react-router-dom/es/Link'
 import { graphql, createFragmentContainer } from 'react-relay';
 import Page from 'components/Page/Page';
 import LogoImg from './image.jpg';
+import map_img from '../../assets/map.png'
 
 class Story extends React.Component {
 
@@ -24,7 +25,7 @@ class Story extends React.Component {
                     <Item.Header className={styles.header} as='a'>Household Insurance</Item.Header>
                     <Item.Meta className={styles.meta}>Currently, the probability for burglary in your neighbourhood is high.</Item.Meta>
                     <Item.Description>
-                         <Image src="http://i.telegraph.co.uk/multimedia/archive/01815/Glovers-Court_1815707a.jpg" />
+                         <Image src={map_img} />
                          </Item.Description>
                   </Item.Content>
                 </Item>
