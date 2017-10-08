@@ -1,71 +1,126 @@
 .container {
   width: 800px;
   margin: 0 auto;
+  margin-top: 50px;
 
-  .insuranceContainer{
-    margin-top: 5px;
+  .headerContainer {
+    margin-top: 10px;
     padding-top: 16px;
-    padding-bottom: 16px;
+    //padding-bottom: 16px;
     border-radius: 2px;
-    margin-bottom: 70px;
-
+    //margin-bottom: 20px;
 
     .type{
-      float: left;
       font-size: 2rem;
       font-family: Merriweather;
-      padding: 8px;
-      margin-left: 8px;
       font-weight: bold;
+      margin: 0;
+      padding: 0;
     }
 
     .peopleHeading{
       float: right;
-      font-size: 1rem;
-      font-family: Merriweather;
-      padding: 8px;
-      margin-left: 8px;
-
-    }
-
-
-    .price{
-      border-radius: 999px;
-      float: left;
       font-size: 2rem;
       font-family: Merriweather;
-      padding: 8px;
-      margin-left: 8px;
-      font-weight: bold;
-      background-color: pink;
-      color: white;
-      margin-top: 20px;
-    }
-
-    .buyButton{
-      float: right;
-      color: white;
-      margin-top: 20px;
-      margin-left: 8px;
-    }
-
-    .simPicture{
-      float: right;
-      margin-left: 8px;
-      filter: grayscale(100%);
-
-      &:hover{
-        filter: grayscale(0%);
-
-      }
-
-
-    }
-
-    .popup{
-
-
+      margin: 0;
+      padding: 0;
     }
 
   }
+
+  .insuranceContainer{
+    //margin-top: 10px;
+    //padding-top: 16px;
+    //padding-bottom: 16px;
+    //border-radius: 2px;
+    //margin-bottom: 20px;
+
+    .priceWrapper {
+      padding-top: 70px;
+      display: block;
+      float: left;
+    }
+
+    .price {
+      font-size: 6rem;
+      font-family: Merriweather;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .priceExtra {
+      color: #aaa;
+      font-size: 2rem;
+      font-family: Merriweather;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+
+
+    .simPicture{
+      margin-top: 40px;
+      float: right;
+      margin-left: 8px;
+      //filter: grayscale(100%);
+
+      //&:hover{
+        //filter: grayscale(0%);
+      //}
+    }
+
+    .bottom {
+    }
+
+    .popup{
+    }
+  }
+
+  .btnWrapper {
+    padding-top: 10px;
+
+    .buyButton{
+    }
+  }
+
+
+  .simWrapper {
+    margin: 150px auto 0 auto;
+    text-align: center;
+
+    .simName {
+      font-family: Merriweather;
+      border-radius: 5px;
+      margin-left: 5px;
+      margin-right: 5px;
+      font-size: 1rem;
+      padding: 5px 10px 5px 10px;
+      background-color: #2185D0;
+      color: white;
+    }
+
+    .simSimilarity {
+      font-family: Merriweather;
+      border-radius: 5px;
+      margin-left: 5px;
+      margin-right: 5px;
+      font-size: 1rem;
+      padding: 5px 10px 5px 10px;
+      background-color: #21BA45;
+      color: white;
+    }
+  }
+
+  .cite {
+    margin-top: -10px;
+    line-height: 2rem;
+    font-size: 1.4rem;
+    font-family: Merriweather;
+    display: block;
+    width: 100%;
+    background-color: #efefef;
+    border-radius: 10px;
+    padding: 20px;
+  }
+
 }

@@ -33,19 +33,18 @@ const data = [{
 const similar = [{
   similar:  ['Aaron', 'Anna', 'Astrid', 'Atsushi'],
   pictures: [Aaron, Anna, Astrid, Atsushi],
-  fit: [85, 76, 63],
+  fit: [96, 63, 34],
 },
 {
   similar: ['Atsushi', 'Anna', 'Aaron', 'Astrid'],
   pictures: [Atsushi, Anna, Aaron, Astrid],
-  fit: [85, 76, 63]
+  fit: [81, 76, 63]
 },
 {
 similar: ['Atsushi', 'Anna', 'Aaron', 'Astrid'],
 pictures: [Atsushi, Anna, Aaron, Astrid],
-fit: [85, 76, 63]
+fit: [76, 55, 45]
 },
-
 
 ]
 
@@ -62,9 +61,9 @@ class ModulePage extends React.Component{
           <h1 className={styles.heading}>Your Recommendations</h1>
 
 
-          <InsuranceModule person={this.props.viewer.user.person.nbCon1} data={similar[0]}/>
-          <InsuranceModule person={this.props.viewer.user.person.nbCon2} data={similar[1]}/>
-          <InsuranceModule person={this.props.viewer.user.person.nbCon3} data={similar[2]}/>
+          <InsuranceModule person={this.props.viewer.user.person.nbCon1} similar={this.props.viewer.user.person.nbP1} data={similar[0]}/>
+          <InsuranceModule person={this.props.viewer.user.person.nbCon2} similar={this.props.viewer.user.person.nbP2} data={similar[1]}/>
+          <InsuranceModule person={this.props.viewer.user.person.nbCon3} similar={this.props.viewer.user.person.nbP3} data={similar[2]}/>
 
         </section>
       </Page>
@@ -83,6 +82,7 @@ export default createFragmentContainer(
         lastName
         person {
           ...InsuranceModule_person
+          ...SimilarityPopup_similar
 
           age
           occupation
@@ -140,7 +140,61 @@ export default createFragmentContainer(
             autoExtensions
             url
             description
+          }
+          nbP1 {
+             profilePicture
+             age
+             surname
+             givenName
+             gender
+             occupation
+             kids
+             income
+             activities {
+               edges {
+                 node {
+                   name
+                   frequency
+             }
+           }
+         }
+       }
+         nbP2 {
+            profilePicture
+            age
+            surname
+            givenName
+            gender
+            occupation
+            kids
+            income
+            activities {
+              edges {
+                node {
+                  name
+                  frequency
+            }
+          }
         }
+      }
+        nbP3 {
+           profilePicture
+           age
+           surname
+           givenName
+           gender
+           occupation
+           kids
+           income
+           activities {
+             edges {
+               node {
+                 name
+                 frequency
+           }
+         }
+       }
+     }
         }
       }
     }
