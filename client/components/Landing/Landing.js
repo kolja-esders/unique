@@ -15,7 +15,6 @@ class Landing extends React.Component {
 
   handleResponse = (data) => {
     const { environment, router } = this.props
-
     console.log(data)
 
     let input = {
@@ -42,16 +41,14 @@ class Landing extends React.Component {
 
   render() {
     return (
-        <section className={styles.container}>
-          <h1>Insurance is unique.</h1>
-          <h3>As are you.</h3>
-          <img src={LogoImg} style={styles.backgroundImage}/>
+        <section className={styles.root}>
+          <h1 className={styles.headingFirst}>You are <span className={styles.emph}>unique</span>.</h1>
+          <h1 className={styles.heading}>So should be your insurance.</h1>
 
           <p>
-            <Button primary as={Link} to='/becoming-friends' className={styles.addBook}>Explore</Button>
             <FacebookProvider appId="133394323974213">
               <Login
-                  scope="email"
+                  scope="email public_profile"
                   onResponse={this.handleResponse}
                   onError={this.handleError}>
                   <Button className={styles.loginButtonFacebook}>Login via Facebook</Button>
@@ -59,6 +56,11 @@ class Landing extends React.Component {
 
             </FacebookProvider>
           </p>
+          <div className={styles.descWrapper}>
+            <h2 className={styles.desc}>
+              Classic insurance is <span className={styles.bold}>unpersonal</span> and <span className={styles.bold}>intransparent</span>. Unique is here to help you. We take a look at your social media presence and offer you a <span className={styles.bold}>tailored</span> and <span className={styles.bold}>modern</span> insurance experience.
+            </h2>
+          </div>
         </section>
 
     );
