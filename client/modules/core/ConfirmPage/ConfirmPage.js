@@ -157,7 +157,7 @@ class ConfirmPage extends React.Component {
         </Form>
 
         <h1 className={styles.brand_name}>
-          <Button as={Link} color="green" size="huge" fluid to="/home" className={styles.continueBtn}>Get quote</Button>
+          <Button as={Link} color="green" size="huge" fluid to="/home" className={styles.continueBtn}>Looks good!</Button>
         </h1>
       </header>
     )
