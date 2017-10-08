@@ -34,17 +34,13 @@ const data = [{
 
 class ModulePage extends React.Component{
 
-  render(){
+  render() {
     return(
       <Page title='' viewer={this.props.viewer}>
-
-        <section className={styles.container}>
-          <ProfileImage imagePath={this.props.viewer.user.person.profilePicture} />
-
-          <h1>Recommended Insurances</h1>
+        <section className={styles.root}>
+          <h1 className={styles.heading}>Your Recommendations</h1>
           <InsuranceModule data={data[0]}/>
           <InsuranceModule data={data[1]}/>
-
         </section>
       </Page>
     );

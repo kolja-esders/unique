@@ -4,7 +4,7 @@ import Page from 'components/Page/Page';
 import styles from './LoadingPage.scss'
 import { graphql, createFragmentContainer } from 'react-relay';
 import ProfileImage from 'components/ProfileImage/ProfileImage.js'
-import img from '../../assets/logo2.png'
+import img from '../../assets/logo_unique.png'
 
 const fancyText = [
   'Handling the basics',
@@ -52,7 +52,7 @@ class LoadingPage extends React.Component{
                 <ProfileImage imagePath={img} />
               </div>
             </div>
-            <h1 className={styles.name}>{ user.firstName }<span className={styles.welcome}>, meet Ginger.</span></h1>
+            <h1 className={styles.name}>{ user.firstName }<span className={styles.welcome}>, meet Unique.</span></h1>
             <h1 className={styles.friends}>Let's become friends</h1>
 
             <Progress className={styles.progress} percent={this.state.percent} indicating />
