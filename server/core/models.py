@@ -90,6 +90,8 @@ class FamilyMember(models.Model):
     gender = models.CharField(max_length=32, default="", null=True)
     relation = models.CharField(max_length=64, default="", null=True) # daughter, wife, ...
     person = models.ForeignKey(Person, blank=True, null=True)
+    detection_reason = models.ForeignKey(DetectionReason, null=True)
+
 
 class LifestyleEntity(models.Model):
     name = models.CharField(max_length=128, default="", null=True) # smoking
