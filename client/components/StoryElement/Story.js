@@ -15,10 +15,6 @@ class StoryElement extends React.Component {
     console.log(story[0].author)
     console.log(story[0].content)
 
-
-    return (
-      <h1>{story[0].author}</h1>
-
       const ItemExampleItems = () => (
         <Item.Group>
           <Item>
@@ -49,10 +45,9 @@ class StoryElement extends React.Component {
         </Item.Group>
       )
 
-export default ItemExampleItems
 
-
-
+    return (
+      <h1>{story[0].author}</h1>
     );
   }
 }
