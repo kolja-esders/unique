@@ -16,7 +16,9 @@ from core.models import Person, DetectionReason, FamilyMember, Location, Activit
 from core.models import Contract
 
 UPDATE_IDS = []
-
+INCOME_LOOKUP = dict(
+    Tutor=450
+)
 
 
 TextCls = TextClassifier()
@@ -119,19 +121,22 @@ def create_profile(access_token):
     family = get_family_for_uid("me", access_token=access_token)
     locs = get_locations_for_uid("me", access_token=access_token)
 
+
     name = infos.get("name")
     person.given_name = name.split(" ")[1]
     person.surname = name.split(" ")[0]
 
     person.fb_access_token = access_token
 
-    person.home_town = infos.get("hometown", "")
+    person.home_town = infos.get("hometown", {}).get("name")
     person.gender = infos.get("gender", "")
 
     work = infos.get("work")
     if work is not None:
-        work = work[-1].get("employer").get("name", "")
-    person.work = work
+        person.occupation = work[-1].get("position", {}).get("name", "")
+        person.company = work[-1].get("employer", {}).get("name", "")
+
+        person.income = INCOME_LOOKUP.get(person.occupation, "0")
 
     person.email_address = infos.get("email", "")
     person.birthday = infos.get("birthday", "")
