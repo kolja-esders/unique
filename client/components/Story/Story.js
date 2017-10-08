@@ -24,35 +24,50 @@ class Story extends React.Component {
         <section className={styles.root}>
           <h1 className={styles.heading}>Your Feed</h1>
           <div className={styles.container}>
+
             <Item.Group>
-              <Item>
-                <Item.Image className={styles.images} shape='circular' size='tiny' src="https://www.lvcriminaldefense.com/wp-content/uploads/2015/03/burglary.jpg"/>
-                <Item.Content>
-                  <Item.Header as='a'>Household Insurance</Item.Header>
-                  <Item.Meta>Currently, the probability for burglary in your neighbourhood is high.</Item.Meta>
-                  <Item.Description>
-                           <Image src="http://i.telegraph.co.uk/multimedia/archive/01815/Glovers-Court_1815707a.jpg" />
+                <Item>
+                  <Item.Image className={styles.images} shape='circular' size='tiny' src="https://www.lvcriminaldefense.com/wp-content/uploads/2015/03/burglary.jpg"/>
+                  <Item.Content>
+                    <Item.Header className={styles.header} as='a'>Household Insurance</Item.Header>
+                    <Item.Meta className={styles.meta}>Currently, the probability for burglary in your neighbourhood is high.</Item.Meta>
+                    <Item.Description>
+                         <Image src="http://i.telegraph.co.uk/multimedia/archive/01815/Glovers-Court_1815707a.jpg" />
                          </Item.Description>
-                </Item.Content>
-              </Item>
+                  </Item.Content>
+                </Item>
 
                 <Item>
                   <Item.Image className={styles.images} shape='circular' size='tiny' src="http://www.uspassporthelpguide.com/wp-content/uploads/2016/07/optimized-kw6b.jpeg"/>
                   <Item.Content>
                     <Item.Header as='a'>Foreign Health Insurance</Item.Header>
-                    <Item.Meta>We noticed, you have accepted the offer for a job abroad? You might update your foreign health insurance.</Item.Meta>
-
+                    <Item.Meta>We noticed, you accepted the offer for a job in Spain? You might update your health insurance.</Item.Meta>
                   </Item.Content>
                 </Item>
 
-                  <Item>
-                    <Item.Image className={styles.images} shape='circular' size='tiny' src={LogoImg}/>
-                    <Item.Content>
-                      <Item.Header as='a'>Travel Insurance</Item.Header>
-                      <Item.Meta>You are flying to Hawaii? You should update your travel insurance.</Item.Meta>
+                <Item>
+                  <Item.Image className={styles.images} shape='circular' size='tiny' src={LogoImg}/>
+                  <Item.Content>
+                    <Item.Header as='a'>Travel Insurance</Item.Header>
+                    <Item.Meta>You are flying to Hawaii? You should update your travel insurance.</Item.Meta>
+                  </Item.Content>
+                </Item>
 
-                    </Item.Content>
-                  </Item>
+                <Item>
+                  <Item.Image className={styles.images} shape='circular' size='tiny' src="http://dreamicus.com/data/baby/baby-04.jpg"/>
+                  <Item.Content>
+                    <Item.Header as='a'>Health Insurance for Children</Item.Header>
+                    <Item.Meta>Congrats to your first child. You might want to add a health insurance.</Item.Meta>
+                  </Item.Content>
+                </Item>
+
+                <Item>
+                  <Item.Image className={styles.images} shape='circular' size='tiny' src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAg9AAAAJGU4N2U1OGFiLTBmNjQtNDczMC04YjViLTc0YTIyOWQwNTVlYg.jpg"/>
+                  <Item.Content>
+                    <Item.Header as='a'>Mountainbike Insurance</Item.Header>
+                    <Item.Meta>You might want to add an insurance for your new mountainbike.</Item.Meta>
+                  </Item.Content>
+                </Item>
 
             </Item.Group>
           </div>

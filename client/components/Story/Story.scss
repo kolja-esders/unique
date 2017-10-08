@@ -9,21 +9,45 @@
     text-align: center;
   }
   .container {
-    margin-top: 20px;
+    margin-top: 100px;
     padding-top: 16px;
     padding-bottom: 16px;
     border-radius: 2px;
     margin-bottom: 100px;
     width: 100%;
-    margin: 0 auto;
+    margin: 20 auto;
+    font-size: 1rem;
+    letter-spacing: normal;
+    font-family: Merriweather;
+    padding: 7px;
+    margin-left: 8px;
+
 
     .images {
+      float: left;
       display: inline-block;
       position: relative;
       width: 80px;
       height: 80px;
       overflow: hidden;
-      border-radius: 50%;
+      border-radius: 100%;
+
+      .header{
+        font-size: 2rem;
+      }
+      .meta{
+        font-weight: lighter;
+      }
     }
+
+    .text {
+        float: left;
+        font-size: 2rem;
+        font-family: Merriweather;
+        padding: 7px;
+        margin-left: 8px;
+        font-weight: bold;
+    }
+
   }
 }

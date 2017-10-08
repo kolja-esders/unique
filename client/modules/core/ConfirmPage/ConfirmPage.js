@@ -23,6 +23,7 @@ class ConfirmPage extends React.Component {
   render() {
     console.log(this.props.viewer)
     const user = this.props.viewer.user;
+    const person = user.person;
     
     return (
       <header className={styles.root}>
@@ -68,7 +69,7 @@ class ConfirmPage extends React.Component {
 
                   <Form.Field>
                     <label>Street address</label>
-                    <input placeholder='' value=''/>
+                    <input placeholder='Street address' value=''/>
                   </Form.Field>
                   <Form.Field>
                     <label>City</label>
@@ -88,20 +89,22 @@ class ConfirmPage extends React.Component {
               <Grid.Row columns={2}>
                 <Grid.Column>
                   <div className={styles.runningEmoji}></div>
-                    <Popup position='left center' inverted hoverable trigger= { getActivity('Snowboarding', 'Enthusiastic, 2x in the past month') }>Facebook post from the 12th Sept. 2017.
-                    </Popup>
-                    <Popup position='left center' inverted hoverable trigger= { getActivity('Running', 'Casual, 1x in the past month') }>Facebook post from the 12th Sept. 2017.
-                    </Popup>
+                  {person.activities.edges.map(function(obj, i) {
+                    return (
+                      <Popup key={i} position='left center' inverted hoverable trigger= { getActivity(obj.node.name, obj.node.frequency) }>Facebook post from the 12th Sept. 2017.
+                      </Popup>
+                  )
+                  })}
                 </Grid.Column>
 
                 <Grid.Column>
                   <div className={styles.sunEmoji}></div>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Smoking', 'Daily') }>
-                    Facebook post from the 12th Sept. 2017.
-                  </Popup>
-                  <Popup position='right center' inverted hoverable trigger= { getActivity('Concerts', 'Yearly') }>
-                    Facebook post from the 12th Sept. 2017.
-                  </Popup>
+                  {person.lifestyleEntities.edges.map(function(obj, i) {
+                    return (
+                      <Popup key={i} position='right center' inverted hoverable trigger= { getActivity(obj.node.name, obj.node.frequency) }>Facebook post from the 12th Sept. 2017.
+                      </Popup>
+                  )
+                  })}
                 </Grid.Column>
               </Grid.Row>
             </Grid>
@@ -112,6 +115,13 @@ class ConfirmPage extends React.Component {
               <Grid.Row columns={2}>
                 <Grid.Column>
                   <div className={styles.deviceEmoji}></div>
+                    {person.devices.edges.map(function(obj, i) {
+                      return (
+                        <Popup key={i} position='left center' inverted hoverable trigger= { getActivity(obj.node.name, obj.node.frequency) }>Facebook post from the 12th Sept. 2017.
+                        </Popup>
+                    )
+                    })}
+
                     <Popup position='left center' inverted hoverable trigger= { getActivity('Smartphone', '~ 1,000 €') }>Facebook post from the 12th Sept. 2017.
                     </Popup>
                     <Popup position='left center' inverted hoverable trigger= { getActivity('Oven', '~ 3.200 €') }>Facebook post from the 12th Sept. 2017.
