@@ -11,14 +11,6 @@ class Story extends React.Component {
 
   render() {
 
-    //var story = this.props.viewer.stories;  // `viewer` is the active user
-    // console.log(this.props.viewer.stories[0])
-    // Get from database
-    //console.log(story[0].author)
-    //console.log(story[0].content)
-    //console.log(story[1].author)
-    //console.log(story[1].content)
-
     return (
       <Page title='' viewer={this.props.viewer}>
         <section className={styles.root}>
