@@ -15,11 +15,10 @@ class InsuranceModule extends React.Component{
             <span className={styles.peopleHeading}>People with similar interests</span>
         </div>
 
-
         <div className={styles.insuranceContainer}>
             <span className={styles.price}>${this.props.data.premium}</span>
 
-              <Popup
+              <Popup inverted
                 className={styles.popup}
                 trigger={  <Image className={styles.simPicture} src={this.props.data.pictures[0]} size='tiny' shape='circular' />}
                 flowing
@@ -27,8 +26,6 @@ class InsuranceModule extends React.Component{
               >
               {<SimilarityPopup data={this.props.data}/>}
             </Popup>
-
-
 
             <Image className={styles.simPicture} src={this.props.data.pictures[1]} size='tiny' shape='circular' />
             <Image className={styles.simPicture} src={this.props.data.pictures[2]} size='tiny' shape='circular' />
@@ -39,7 +36,7 @@ class InsuranceModule extends React.Component{
         <div className={styles.insuranceContainer}>
 
           <Button color='blue' size="huge" className={styles.buyButton}>Buy</Button>
-          <Button color='light grey' size="huge" className={styles.buyButton}>Details</Button>
+          <Button size="huge" className={styles.buyButton}>Details</Button>
         </div>
       </div>
 
