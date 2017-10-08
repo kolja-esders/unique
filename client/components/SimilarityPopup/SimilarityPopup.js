@@ -18,7 +18,7 @@ class SimilarityPopup extends React.Component{
             <p>{this.props.similar.occupation}</p>
             <p>Age: {this.props.similar.age}</p>
             <p>Likes: {this.props.similar.activities.edges[0].node.name}</p>
-            <p>Rating: <Rating defaultRating={3} maxRating={5} disabled /></p>
+            <p>Rating: <Rating icon='star' defaultRating={3} maxRating={5} disabled /></p>
             <p>Similarity: <Progress className={styles.progress} percent={this.props.data.fit[0]} progress color='blue' size="small"/></p>
 
           </Grid.Column>

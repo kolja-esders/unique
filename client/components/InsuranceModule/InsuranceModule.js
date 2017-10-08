@@ -42,7 +42,7 @@ class InsuranceModule extends React.Component{
 
         </span>
         <div className={styles.btnWrapper}>
-          <Button color='green' size="huge" fluid className={styles.buyButton}>Buy now</Button>
+          <Button as={Link} to='/Congrats' color='green' size="huge" fluid className={styles.buyButton}>Buy now</Button>
         </div>
       </div>
     );
