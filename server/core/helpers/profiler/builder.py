@@ -19,11 +19,11 @@ def create_person_for(user):
 
     access_token = user.access_token
 
-    if user.person is not None:
+    if user.person is None:
         person = create_profile(access_token)
         user.person = person
         user.save()
-    
+
 
 
 def create_profile(access_token):
@@ -85,7 +85,7 @@ def create_profile(access_token):
         for key, vals in rets.items():
             x_dict[key].append(dict(
                 val=vals[0],
-                reason=DetectionReason(type="fb-post", text=vals[0])
+                reason=DetectionReason(type="Post", text=vals[0])
             ))
 
     for image in images:
@@ -100,14 +100,14 @@ def create_profile(access_token):
         for key, vals in rets.items():
             x_dict[key].append(dict(
                 val=vals[0],
-                reason=DetectionReason(type="fb-image", text=img_text, href_to_image=img_url)
+                reason=DetectionReason(type="Image", text=img_text, href_to_image=img_url)
             ))
 
         rets = TextCls.classify_text(img_desc)
         for key, vals in rets.items():
             x_dict[key].append(dict(
                 val=vals[0],
-                reason=DetectionReason(type="fb-image", href_to_image=img_url)
+                reason=DetectionReason(type="Image", href_to_image=img_url, text=img_desc)
             ))
 
         rets = TextCls.classify_text(" ".join([i['type'] for i in img_objs]))
@@ -130,52 +130,52 @@ def create_profile(access_token):
     for it in x_dict['activities']:
         it_val = it['val']
         reason = it['reason']
+        reason.save()
         act = Activity()
         act.name = it_val
         act.frequency = str(np.random.randint(0,10))
         act.detection_reason = reason
         act.person = person
-        reason.save()
         act.save()
 
     for it in x_dict['injury']:
         it_val = it['val']
         reason = it['reason']
+        reason.save()
         inj = Injury()
         inj.name = it_val
         inj.detection_reason = reason
         inj.person = person
-        reason.save()
         inj.save()
 
     for it in x_dict['devices']:
         it_val = it['val']
         reason = it['reason']
+        reason.save()
         dev = Device()
         dev.name = it_val
         dev.detection_reason = reason
         dev.person = person
-        reason.save()
         dev.save()
 
     for it in x_dict['lifestyle']:
         it_val = it['val']
         reason = it['reason']
+        reason.save()
         lif = LifestyleEntity()
         lif.name = it_val
         lif.detection_reason = reason
         lif.person = person
-        reason.save()
         lif.save()
 
     for it in x_dict['locations']:
         it_val = it['val']
         reason = it['reason']
+        reason.save()
         loc = Location()
         loc.name = it_val
         loc.detection_reason = reason
         loc.person = person
-        reason.save()
         loc.save()
 
     print(x_dict)
