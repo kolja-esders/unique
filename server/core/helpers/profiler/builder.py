@@ -19,7 +19,11 @@ UPDATE_IDS = []
 INCOME_LOOKUP = dict(
     Tutor=450
 )
-
+DEV_VAL_MAP = dict(
+    tv="300",
+    oven="200",
+    laptop="700"
+)
 
 TextCls = TextClassifier()
 
@@ -175,6 +179,8 @@ def create_profile(access_token):
         img_desc = get_img_description(file_name)
         img_objs = detect(file_name)
 
+        print(img_objs)
+
         rets = TextCls.classify_text(img_text)
         for key, vals in rets.items():
             x_dict[key].append(dict(
@@ -233,6 +239,7 @@ def create_profile(access_token):
         reason.save()
         dev = Device()
         dev.name = it_val
+        dev.estimated_price = DEV_VAL_MAP.get(it_val, "100.0")
         dev.detection_reason = reason
         dev.person = person
         dev.save()
