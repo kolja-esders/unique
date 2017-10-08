@@ -6,6 +6,7 @@ import Link from 'react-router-dom/es/Link'
 import { graphql, createFragmentContainer } from 'react-relay';
 import Page from 'components/Page/Page';
 import LogoImg from './image.jpg';
+import map_img from '../../assets/map.png'
 
 var e = 0
 
@@ -15,7 +16,7 @@ function getInitialEvents() {
     title: "Household Insurance",
     desc: "Currently, the probability for burglary in your neighbourhood is high.",
     img: "https://www.lvcriminaldefense.com/wp-content/uploads/2015/03/burglary.jpg",
-    img2: "http://i.telegraph.co.uk/multimedia/archive/01815/Glovers-Court_1815707a.jpg"
+    img2: {map_img},
   }, {
     title: "Foreign Health Insurance",
     desc: "We noticed, you accepted the offer for a job in Spain? You might update your health insurance.",
